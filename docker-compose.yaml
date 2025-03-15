@@ -1,0 +1,14 @@
+name: jalawave
+services:
+  jalawave-frontend-acs:
+    container_name: jalawave-frontend-acs
+    image: dedisalam/jalawave-frontend-acs
+    ports:
+      - "3001:3000"
+    networks:
+      - jalawave
+    restart: always
+
+networks:
+  jalawave:
+    name: jalawave
