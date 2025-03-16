@@ -1,6 +1,6 @@
-import { Base } from "./base";
+import { Base, MenuUnsignedInteger } from "./base";
 
 export interface PPP extends Base {
   Interface: Base;
-  InterfaceNumberOfEntries: Menu;
+  InterfaceNumberOfEntries: MenuUnsignedInteger;
 }

@@ -1,14 +1,19 @@
-import { Base, Menu } from "@/types/genieacs/base";
+import {
+  Base,
+  MenuBoolean,
+  MenuString,
+  MenuUnsignedInteger,
+} from "@/types/genieacs/base";
 import { Stats } from "./stats";
 
 export interface InterfaceMenu extends Base {
-  CurrentBitRate: Menu;
-  Enable: Menu;
-  LowerLayers: Menu;
-  MACAddress: Menu;
+  CurrentBitRate: MenuUnsignedInteger;
+  Enable: MenuBoolean;
+  LowerLayers: MenuString;
+  MACAddress: MenuString;
   Stats: Stats;
-  Status: Menu;
-  X_MIKROTIK_Comment: Menu;
-  X_MIKROTIK_LinkDowns: Menu;
-  X_MIKROTIK_Name: Menu;
+  Status: MenuString;
+  X_MIKROTIK_Comment: MenuString;
+  X_MIKROTIK_LinkDowns: MenuUnsignedInteger;
+  X_MIKROTIK_Name: MenuString;
 }

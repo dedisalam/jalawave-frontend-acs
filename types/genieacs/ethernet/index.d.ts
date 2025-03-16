@@ -1,10 +1,10 @@
-import { Base, Menu } from "../base";
+import { Base, MenuUnsignedInteger } from "../base";
 import { Interface } from "./interface";
 import { Link } from "./link";
 
 export interface Ethernet extends Base {
   Interface: Interface;
-  InterfaceNumberOfEntries: Menu;
+  InterfaceNumberOfEntries: MenuUnsignedInteger;
   Link: Link;
-  LinkNumberOfEntries: Menu;
+  LinkNumberOfEntries: MenuUnsignedInteger;
 }

@@ -1,7 +1,7 @@
-import { Base, Menu } from "../../base";
+import { Base, MenuString } from "../../base";
 
 export interface AccessPointMenu extends Base {
-  APN: Menu;
-  Password: Menu;
-  Username: Menu;
+  APN: MenuString;
+  Password: MenuString;
+  Username: MenuString;
 }

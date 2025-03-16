@@ -1,7 +1,7 @@
-import { Base, Menu } from "../../base";
+import { Base, MenuBoolean, MenuString } from "../../base";
 
 export interface VendorConfigFileMenu extends Base {
-  Description: Menu;
-  Name: Menu;
-  UseForBackupRestore: Menu;
+  Description: MenuString;
+  Name: MenuString;
+  UseForBackupRestore: MenuBoolean;
 }

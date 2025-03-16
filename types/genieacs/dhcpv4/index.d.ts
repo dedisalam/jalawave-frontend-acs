@@ -1,9 +1,13 @@
-import { Base, Menu } from "../base";
+import { Base, MenuUnsignedInteger } from "../base";
 import { Client } from "./client";
-import { Server } from "./server";
+import { ServerMikrotik, ServerRuijie } from "./server";
 
-export interface DHCPv4 extends Base {
+export interface DHCPv4Mikrotik extends Base {
   Client: Client;
-  ClientNumberOfEntries: Menu;
-  Server: Server;
+  ClientNumberOfEntries: MenuUnsignedInteger;
+  Server: ServerMikrotik;
+}
+
+export interface DHCPv4Ruijie extends Base {
+  Server: ServerRuijie;
 }

@@ -1,11 +1,11 @@
-import { Base, Menu } from "../base";
+import { Base, MenuUnsignedInteger } from "../base";
 import { AccessPoint } from "./accessPoint";
 import { X_MIKROTIK_CellDiagnostics } from "./x_MIKROTIK_CellDiagnostics";
 
 export interface Cellular extends Base {
   AccessPoint: AccessPoint;
-  AccessPointNumberOfEntries: Menu;
+  AccessPointNumberOfEntries: MenuUnsignedInteger;
   Interface: Base;
-  InterfaceNumberOfEntries: Menu;
+  InterfaceNumberOfEntries: MenuUnsignedInteger;
   X_MIKROTIK_CellDiagnostics: X_MIKROTIK_CellDiagnostics;
 }

@@ -1,8 +1,8 @@
-import { Base, Menu } from "@/types/genieacs/base";
+import { Base, MenuBoolean, MenuString } from "@/types/genieacs/base";
 
 export interface ServerMenu extends Base {
-  DNSServer: Menu;
-  Enable: Menu;
-  Status: Menu;
-  Type: Menu;
+  DNSServer: MenuString;
+  Enable: MenuBoolean;
+  Status: MenuString;
+  Type: MenuString;
 }

@@ -1,13 +1,13 @@
-import { Base, Menu } from "../../base";
+import { Base, MenuString } from "../../base";
 
 export interface ClientMenu extends Base {
-  DHCPServer: Menu;
-  DHCPStatus: Menu;
-  DNSServers: Menu;
-  Enable: Menu;
-  IPAddress: Menu;
-  IPRouters: Menu;
-  Interface: Menu;
-  Status: Menu;
-  SubnetMask: Menu;
+  DHCPServer: MenuString;
+  DHCPStatus: MenuString;
+  DNSServers: MenuString;
+  Enable: MenuBoolean;
+  IPAddress: MenuString;
+  IPRouters: MenuString;
+  Interface: MenuString;
+  Status: MenuString;
+  SubnetMask: MenuString;
 }

@@ -20,3 +20,17 @@ export interface Customer {
   representative: Representative;
   balance: number;
 }
+
+export interface Device {
+  id: string;
+  serialNumber: string;
+  manufacturer: string;
+  arch: string;
+  identity: string;
+  ip: string;
+  dhcpClientIp: string;
+  productType: string;
+  softwareVersion: string;
+  uptime: number;
+  lastUpdateInfo: string;
+}

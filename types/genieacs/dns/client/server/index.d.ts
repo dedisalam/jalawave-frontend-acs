@@ -1,5 +1,6 @@
 import { Base } from "@/types/genieacs/base";
+import { ServerMenu } from "./serverMenu";
 
 export interface Server extends Base {
-  "5": ServerMenu;
+  [key: number]: ServerMenu;
 }

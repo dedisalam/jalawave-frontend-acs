@@ -1,28 +1,34 @@
-import { Base, Menu } from "@/types/genieacs/base";
+import {
+  Base,
+  MenuBoolean,
+  MenuInteger,
+  MenuString,
+  MenuUnsignedInteger,
+} from "@/types/genieacs/base";
 
 export interface RuleMenu extends Base {
-  ConnState: Menu;
-  ConnStateExclude: Menu;
-  Description: Menu;
-  DestIPExclude: Menu;
-  DestIPRange: Menu;
-  DestInterface: Menu;
-  DestInterfaceExclude: Menu;
-  DestInterfaceGroup: Menu;
-  DestPortExclude: Menu;
-  DestPortList: Menu;
-  Enable: Menu;
-  Log: Menu;
-  Order: Menu;
-  Protocol: Menu;
-  ProtocolExclude: Menu;
-  SourceIPExclude: Menu;
-  SourceIPRange: Menu;
-  SourceInterface: Menu;
-  SourceInterfaceExclude: Menu;
-  SourceInterfaceGroup: Menu;
-  SourcePortExclude: Menu;
-  SourcePortList: Menu;
-  Target: Menu;
-  TargetChain: Menu;
+  ConnState: MenuString;
+  ConnStateExclude: MenuBoolean;
+  Description: MenuString;
+  DestIPExclude: MenuBoolean;
+  DestIPRange: MenuString;
+  DestInterface: MenuString;
+  DestInterfaceExclude: MenuBoolean;
+  DestInterfaceGroup: MenuString;
+  DestPortExclude: MenuBoolean;
+  DestPortList: MenuString;
+  Enable: MenuBoolean;
+  Log: MenuBoolean;
+  Order: MenuUnsignedInteger;
+  Protocol: MenuInteger;
+  ProtocolExclude: MenuBoolean;
+  SourceIPExclude: MenuBoolean;
+  SourceIPRange: MenuString;
+  SourceInterface: MenuString;
+  SourceInterfaceExclude: MenuBoolean;
+  SourceInterfaceGroup: MenuString;
+  SourcePortExclude: MenuBoolean;
+  SourcePortList: MenuString;
+  Target: MenuString;
+  TargetChain: MenuString;
 }

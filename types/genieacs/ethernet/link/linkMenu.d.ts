@@ -1,7 +1,7 @@
-import { Base, Menu } from "../../base";
+import { Base, MenuBoolean, MenuString } from "../../base";
 
 export interface LinkMenu extends Base {
-  Enable: Menu;
-  LowerLayers: Menu;
-  Status: Menu;
+  Enable: MenuBoolean;
+  LowerLayers: MenuString;
+  Status: MenuString;
 }

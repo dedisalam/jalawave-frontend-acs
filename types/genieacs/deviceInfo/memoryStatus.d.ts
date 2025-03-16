@@ -1,6 +1,6 @@
-import { Base, Menu } from "../base";
+import { Base, MenuString, MenuUnsignedInteger } from "../base";
 
 export interface MemoryStatus extends Base {
-  Free: Menu;
-  Total: Menu;
+  Free: MenuString | MenuUnsignedInteger;
+  Total: MenuString | MenuUnsignedInteger;
 }

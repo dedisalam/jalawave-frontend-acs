@@ -1,9 +1,9 @@
-import { Base, Menu } from "../base";
+import { Base, MenuString, MenuUnsignedInteger } from "../base";
 
 export interface X_MIKROTIK_CellDiagnostics extends Base {
-  DiagnosticsState: Menu;
-  Interface: Menu;
+  DiagnosticsState: MenuString;
+  Interface: MenuString;
   Result: Base;
-  ResultNumberOfEntries: Menu;
-  Seconds: Menu;
+  ResultNumberOfEntries: MenuUnsignedInteger;
+  Seconds: MenuUnsignedInteger;
 }

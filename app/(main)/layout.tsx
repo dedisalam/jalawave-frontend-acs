@@ -8,17 +8,14 @@ interface AppLayoutProps {
 export const viewport: Viewport = { initialScale: 1, width: "device-width" };
 
 export const metadata: Metadata = {
-  title: "PrimeReact Sakai",
-  description:
-    "The ultimate collection of design-agnostic, flexible and accessible React UI Components.",
+  title: "ACS Jalawave",
+  description: "Frontend ACS Jalawave",
   robots: { index: false, follow: false },
   openGraph: {
     type: "website",
-    title: "PrimeReact SAKAI-REACT",
-    url: "https://sakai.primereact.org/",
-    description:
-      "The ultimate collection of design-agnostic, flexible and accessible React UI Components.",
-    images: ["https://www.primefaces.org/static/social/sakai-react.png"],
+    title: "Jalawave Cakrawala",
+    url: "https://www.jalawave.net.id/",
+    description: "Website Jalawave Cakrawala",
     ttl: 604800,
   },
   icons: {
