@@ -14,6 +14,9 @@ import { InputIcon } from "primereact/inputicon";
 import { Button } from "primereact/button";
 import { Device } from "@/types/table";
 import { DeviceService } from "@/service/DeviceService";
+import { Tag } from "primereact/tag";
+import { Skeleton } from "primereact/skeleton";
+import { Card } from "primereact/card";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -62,8 +65,21 @@ const defaultFilters: DataTableFilterMeta = {
 export default function DevicesPage() {
   const [devices, setDevices] = useState<Device[]>([]);
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
+
+  const getSeverity = (status: string) => {
+    switch (status) {
+      case "Online":
+        return "success";
+
+      case "Disconnect":
+        return "danger";
+
+      case "Other":
+        return "warning";
+    }
+  };
 
   useEffect(() => {
     DeviceService.getData().then((data: Device[]) => {
@@ -114,105 +130,106 @@ export default function DevicesPage() {
     );
   };
 
+  const statusBodyTemplate = (rowData: Device) => {
+    return (
+      <Tag value={rowData.status} severity={getSeverity(rowData.status)} />
+    );
+  };
+
+  const serialNumberBodyTemplate = (rowData: Device) => {
+    return (
+      <a
+        href={`/devices/${encodeURIComponent(rowData.id)}`}
+        rel="noopener noreferrer"
+      >
+        {rowData.serialNumber}
+      </a>
+    );
+  };
+
   const header = renderHeader();
 
+  if (loading) {
+    return <Skeleton height="51rem"></Skeleton>;
+  }
+
   return (
-    <div className="card">
+    <Card title="Devices">
       <DataTable
         value={devices}
         paginator
         showGridlines
         rows={10}
-        loading={loading}
         dataKey="id"
         filters={filters}
         globalFilterFields={[
           "serialNumber",
           "manufacturer",
-          "arch",
           "identity",
           "ip",
           "dhcpClientIp",
           "productType",
           "softwareVersion",
-          "uptime",
+          "status",
           "lastUpdateInfo",
         ]}
         header={header}
         emptyMessage="No devices found."
+        removableSort
         onFilter={(e) => setFilters(e.filters)}
       >
         <Column
           field="serialNumber"
           header="Serial Number"
-          filter
-          filterPlaceholder="Search by serial number"
+          body={serialNumberBodyTemplate}
+          sortable
           style={{ minWidth: "12rem" }}
         />
         <Column
           field="manufacturer"
           header="Manufacturer"
-          filter
-          filterPlaceholder="Search by manufacturer"
-          style={{ minWidth: "12rem" }}
-        />
-        <Column
-          field="arch"
-          header="Architecture"
-          filter
-          filterPlaceholder="Search by architecture"
+          sortable
           style={{ minWidth: "12rem" }}
         />
         <Column
           field="identity"
           header="Identity"
-          filter
-          filterPlaceholder="Search by identity"
+          sortable
           style={{ minWidth: "12rem" }}
         />
-        <Column
-          field="ip"
-          header="IP"
-          filter
-          filterPlaceholder="Search by ip"
-          style={{ minWidth: "12rem" }}
-        />
+        <Column field="ip" header="IP" sortable style={{ minWidth: "12rem" }} />
         <Column
           field="dhcpClientIp"
           header="DHCP Client IP"
-          filter
-          filterPlaceholder="Search by DHCP client ip"
+          sortable
           style={{ minWidth: "12rem" }}
         />
         <Column
           field="productType"
           header="Product Type"
-          filter
-          filterPlaceholder="Search by product type"
+          sortable
           style={{ minWidth: "12rem" }}
         />
         <Column
           field="softwareVersion"
           header="Software Version"
-          filter
-          filterPlaceholder="Search by software version"
+          sortable
           style={{ minWidth: "12rem" }}
         />
         <Column
-          field="uptime"
-          header="Uptime"
-          filter
-          filterPlaceholder="Search by uptime"
+          field="status"
+          header="Status"
+          sortable
+          body={statusBodyTemplate}
           style={{ minWidth: "12rem" }}
         />
         <Column
           field="lastUpdateInfo"
           header="Last Update Info"
-          filter
-          filterPlaceholder="Search by last update info"
+          sortable
           style={{ minWidth: "12rem" }}
         />
       </DataTable>
-    </div>
+    </Card>
   );
 }
