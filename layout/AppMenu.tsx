@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import AppMenuitem from "./AppMenuitem";
 import { MenuProvider } from "./context/menucontext";
 import { AppMenuItem } from "@/types/layout";
@@ -16,7 +16,9 @@ const AppMenu = () => {
       <ul className="layout-menu">
         {model.map((item, i) => {
           return !item?.seperator ? (
-            <AppMenuitem item={item} root={true} index={i} key={item.label} />
+            <Suspense>
+              <AppMenuitem item={item} root={true} index={i} key={item.label} />
+            </Suspense>
           ) : (
             <li className="menu-separator"></li>
           );
