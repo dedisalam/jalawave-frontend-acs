@@ -15,6 +15,7 @@ import { LayoutContext } from "./context/layoutcontext";
 import { PrimeReactContext } from "primereact/api";
 import { usePathname, useSearchParams } from "next/navigation";
 import { AppTopbarRef, ChildContainerProps, LayoutState } from "@/types/types";
+import { MenuProvider } from "./context/menucontext";
 
 const Layout = ({ children }: ChildContainerProps) => {
   const { layoutConfig, layoutState, setLayoutState } =
@@ -147,17 +148,19 @@ const Layout = ({ children }: ChildContainerProps) => {
 
   return (
     <React.Fragment>
-      <div className={containerClass}>
-        <AppTopbar ref={topbarRef} />
-        <div ref={sidebarRef} className="layout-sidebar">
-          <AppSidebar />
+      <MenuProvider>
+        <div className={containerClass}>
+          <AppTopbar ref={topbarRef} />
+          <div ref={sidebarRef} className="layout-sidebar">
+            <AppSidebar />
+          </div>
+          <div className="layout-main-container">
+            <div className="layout-main">{children}</div>
+            <AppFooter />
+          </div>
+          <div className="layout-mask"></div>
         </div>
-        <div className="layout-main-container">
-          <div className="layout-main">{children}</div>
-          <AppFooter />
-        </div>
-        <div className="layout-mask"></div>
-      </div>
+      </MenuProvider>
     </React.Fragment>
   );
 };

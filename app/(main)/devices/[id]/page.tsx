@@ -1,11 +1,12 @@
 "use client";
 
 import { DeviceService } from "@/service/DeviceService";
-import { Device } from "@/types/table";
+import { DeviceObject, DeviceObjectMikrotik } from "@/types/genieacs";
 import { Card } from "primereact/card";
 import { Skeleton } from "primereact/skeleton";
 import { TabMenu } from "primereact/tabmenu";
 import React, { useEffect, useState } from "react";
+import DeviceMikrotik from "./mikrotik";
 
 export default function DevicePage({
   params,
@@ -14,14 +15,14 @@ export default function DevicePage({
 }) {
   const [id, setId] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
-  const [device, setDevice] = useState<Device>();
+  const [device, setDevice] = useState<DeviceObject>();
 
   useEffect(() => {
     params.then((params) => {
       setId(params.id);
     });
     if (id) {
-      DeviceService.getData(id).then((data: Device[]) => {
+      DeviceService.getDetail(id).then((data: DeviceObject[]) => {
         setDevice(data[0]);
         setLoading(false);
       });
@@ -36,8 +37,14 @@ export default function DevicePage({
     );
   }
 
+  if (device?._deviceId._Manufacturer === "MikroTik") {
+    const mikrotik = device as DeviceObjectMikrotik;
+
+    return <DeviceMikrotik device={mikrotik}></DeviceMikrotik>;
+  }
+
   return (
-    <Card title={device?.identity}>
+    <Card title="Device Detail">
       <TabMenu
         model={[
           { label: "Overview", icon: "pi pi-eye" },

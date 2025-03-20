@@ -81,12 +81,14 @@ export const DeviceService = {
           .filter((item) => !item.startsWith("_"))
           .map((item) => Number(item));
 
+        console.log(device);
+
         return ipv4AddressKeys
           .map(
             (ipv4AddressKey) =>
               device.Device.IP.Interface[interfaceKey].IPv4Address[
                 ipv4AddressKey
-              ].IPAddress._value
+              ].IPAddress?._value
           )
           .join(", ");
       })
@@ -189,5 +191,16 @@ export const DeviceService = {
     }) as Device[];
 
     return device;
+  },
+
+  async getDetail(id: string): Promise<DeviceObject[]> {
+    let url = "http://60.253.103.102:7557/devices";
+    if (id) {
+      url = `http://60.253.103.102:7557/devices/?query=%7B%22_id%22%3A%22${id}%22%7D`;
+    }
+
+    const response = await axios.get<DeviceObject[]>(url);
+
+    return response.data;
   },
 };
