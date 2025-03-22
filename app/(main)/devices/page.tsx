@@ -11,7 +11,6 @@ import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
-import { Button } from "primereact/button";
 import { Device } from "@/types/table";
 import { DeviceService } from "@/service/DeviceService";
 import { Tag } from "primereact/tag";
@@ -89,10 +88,6 @@ export default function DevicesPage() {
     initFilters();
   }, []);
 
-  const clearFilter = () => {
-    initFilters();
-  };
-
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const _filters = { ...filters };
@@ -111,13 +106,6 @@ export default function DevicesPage() {
   const renderHeader = () => {
     return (
       <div className="flex justify-content-between">
-        <Button
-          type="button"
-          icon="pi pi-filter-slash"
-          label="Clear"
-          outlined
-          onClick={clearFilter}
-        />
         <IconField iconPosition="left">
           <InputIcon className="pi pi-search" />
           <InputText
