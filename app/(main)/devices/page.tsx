@@ -105,7 +105,7 @@ export default function DevicesPage() {
 
   const renderHeader = () => {
     return (
-      <div className="flex justify-content-between">
+      <div className="flex justify-content-end">
         <IconField iconPosition="left">
           <InputIcon className="pi pi-search" />
           <InputText

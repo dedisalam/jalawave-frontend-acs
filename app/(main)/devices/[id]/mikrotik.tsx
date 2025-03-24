@@ -2,34 +2,52 @@
 
 import { DeviceObjectMikrotik } from "@/types/genieacs";
 import { Card } from "primereact/card";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import DeviceInfo from "./device-info";
 import Ethernet from "./ethernet";
-import { Button } from "primereact/button";
-import { DeviceService } from "@/service/DeviceService";
+import { MenuContext } from "@/layout/context/menucontext";
 
 export default function DeviceMikrotik({
   device,
 }: {
   device: DeviceObjectMikrotik;
 }) {
+  const { setActiveListMenu } = useContext(MenuContext);
+
   useEffect(() => {
-    console.log(device._id);
-  }, [device._id]);
+    setActiveListMenu([
+      {
+        label: "IP",
+        icon: "pi pi-fw pi-cog",
+        items: [
+          {
+            label: "Address",
+            icon: "pi pi-fw pi-globe",
+            to: `/devices/${encodeURIComponent(device._id)}/ip/address`,
+          },
+        ],
+      },
+      {
+        label: "System",
+        icon: "pi pi-fw pi-cog",
+        items: [
+          {
+            label: "Reboot",
+            icon: "pi pi-fw pi-refresh",
+            to: `/devices/${encodeURIComponent(device._id)}/system/reboot`,
+          },
+          {
+            label: "Resources",
+            icon: "pi pi-fw pi-database",
+            to: `/devices/${encodeURIComponent(device._id)}/system/resources`,
+          },
+        ],
+      },
+    ]);
+  }, [setActiveListMenu, device]);
 
   return (
     <>
-      <Card
-        title={device.Device.DeviceInfo.X_MIKROTIK_SystemIdentity._value}
-        className="mb-4"
-      >
-        <Button
-          label="Reboot"
-          icon="pi pi-refresh"
-          className="p-button-danger"
-          onClick={() => DeviceService.reboot(encodeURIComponent(device._id))}
-        />
-      </Card>
       <Card title={"Device Information"} className="mb-4">
         <DeviceInfo device={device}></DeviceInfo>
       </Card>

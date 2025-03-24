@@ -203,18 +203,11 @@ export const DeviceService = {
   },
 
   async reboot(id: string) {
-    try {
-      await axios.post(
-        `http://60.253.103.102:7557/devices/${id}/tasks?timeout=3000&connection_request=true`,
-        {
-          name: "reboot",
-        },
-        { method: "POST" }
-      );
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log(error.message);
+    await axios.post(
+      `http://60.253.103.102:7557/devices/${id}/tasks?timeout=3000&connection_request=true`,
+      {
+        name: "reboot",
       }
-    }
+    );
   },
 };
