@@ -1,5 +1,9 @@
 app
+layout
 node_modules
+service
+style
+types
 .dockerignore
 .gitignore
 docker-compose.yaml
