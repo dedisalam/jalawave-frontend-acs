@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FilterMatchMode, FilterOperator } from "primereact/api";
 import {
   DataTable,
@@ -16,6 +16,7 @@ import { DeviceService } from "@/service/DeviceService";
 import { Tag } from "primereact/tag";
 import { Skeleton } from "primereact/skeleton";
 import { Card } from "primereact/card";
+import { MenuContext } from "@/layout/context/menucontext";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -66,6 +67,7 @@ export default function DevicesPage() {
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
   const [loading, setLoading] = useState<boolean>(true);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
+  const { setActiveListMenu } = useContext(MenuContext);
 
   const getSeverity = (status: string) => {
     switch (status) {
@@ -87,6 +89,15 @@ export default function DevicesPage() {
     });
     initFilters();
   }, []);
+
+  useEffect(() => {
+    setActiveListMenu([
+      {
+        label: "Home",
+        items: [{ label: "Devices", icon: "pi pi-fw pi-home", to: "/devices" }],
+      },
+    ]);
+  }, [setActiveListMenu]);
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

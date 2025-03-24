@@ -2,13 +2,14 @@
 import Link from "next/link";
 import { Ripple } from "primereact/ripple";
 import { classNames } from "primereact/utils";
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import { MenuContext } from "./context/menucontext";
 import { usePathname, useSearchParams } from "next/navigation";
 import { AppMenuItemProps } from "@/types/layout";
 
 const AppMenuitem = (props: AppMenuItemProps) => {
+  const nodeRef = useRef(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { activeMenu, setActiveMenu } = useContext(MenuContext);
@@ -54,8 +55,9 @@ const AppMenuitem = (props: AppMenuItemProps) => {
       classNames="layout-submenu"
       in={props.root ? true : active}
       key={item!.label}
+      nodeRef={nodeRef}
     >
-      <ul>
+      <ul ref={nodeRef}>
         {item!.items.map((child, i) => {
           return (
             <AppMenuitem
