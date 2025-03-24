@@ -81,8 +81,6 @@ export const DeviceService = {
           .filter((item) => !item.startsWith("_"))
           .map((item) => Number(item));
 
-        console.log(device);
-
         return ipv4AddressKeys
           .map(
             (ipv4AddressKey) =>
@@ -202,5 +200,21 @@ export const DeviceService = {
     const response = await axios.get<DeviceObject[]>(url);
 
     return response.data;
+  },
+
+  async reboot(id: string) {
+    try {
+      await axios.post(
+        `http://60.253.103.102:7557/devices/${id}/tasks?timeout=3000&connection_request=true`,
+        {
+          name: "reboot",
+        },
+        { method: "POST" }
+      );
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error.message);
+      }
+    }
   },
 };
