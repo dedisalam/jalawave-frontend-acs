@@ -126,14 +126,16 @@ export function IpAddressMikrotik({
   };
 
   const actionBodyTemplate = (rowData: RowData) => {
-    return (
-      <Button
-        icon="pi pi-pencil"
-        rounded
-        severity="success"
-        onClick={() => editIP(rowData)}
-      />
-    );
+    if (rowData.flag === "Static") {
+      return (
+        <Button
+          icon="pi pi-pencil"
+          rounded
+          severity="success"
+          onClick={() => editIP(rowData)}
+        />
+      );
+    }
   };
 
   return (
