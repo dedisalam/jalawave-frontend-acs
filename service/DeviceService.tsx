@@ -220,4 +220,14 @@ export const DeviceService = {
       }
     );
   },
+
+  async refreshObject(id: string) {
+    await axios.post(
+      `http://60.253.103.102:7557/devices/${id}/tasks?timeout=3000&connection_request=true`,
+      {
+        name: "refreshObject",
+        objectName: "",
+      }
+    );
+  },
 };

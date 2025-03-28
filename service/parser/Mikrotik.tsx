@@ -6,7 +6,8 @@ import { InterfaceMenuMikrotik } from "@/types/genieacs/ip/interface/interfaceMe
 import { IPv4AddressMenuMikrotik } from "@/types/genieacs/ip/interface/interfaceMenu/ipv4Address/ipv4AddressMenu";
 import { GenericMenu } from "@/types/genieacs/x_MIKROTIK_Interface/generic/genericMenu";
 import { AppMenuItem } from "@/types/layout";
-import { AddressListMenu } from "@/types/mikrotik/addresslist";
+import { AddressListMenu, AddressListRow } from "@/types/mikrotik/addresslist";
+import { InterfacesRow } from "@/types/mikrotik/interfaces";
 import ipaddr from "ipaddr.js";
 
 interface BasicRow {
@@ -62,8 +63,8 @@ export class Mikrotik {
       });
   }
 
-  getIPs(): { key: string; value: AddressListMenu }[] {
-    const result = [] as { key: string; value: AddressListMenu }[];
+  getIPs(): AddressListRow[] {
+    const result = [] as AddressListRow[];
 
     this.getActiveInterfaces().forEach((interfaces) => {
       const link = "Device.Ethernet.Link";
@@ -138,7 +139,7 @@ export class Mikrotik {
     return result;
   }
 
-  getEthernetInterface(): { key: string; value: InterfaceMenu }[] {
+  getEthernetInterface(): InterfacesRow[] {
     return Object.keys(this.device.Device.Ethernet.Interface)
       .filter((val) => !val.includes("_"))
       .map((item) => {
@@ -148,6 +149,12 @@ export class Mikrotik {
           value: this.device.Device.Ethernet.Interface[key],
         };
       });
+  }
+
+  getInterfaces(): InterfacesRow[] {
+    const result = this.getEthernetInterface();
+
+    return result;
   }
 
   findEthernetInterface(id?: string): InterfaceMenu | undefined {
@@ -302,8 +309,13 @@ export class Mikrotik {
       icon: "pi pi-fw pi-cog",
       items: [
         {
+          label: "Interfaces",
+          icon: "pi pi-fw pi-list",
+          to: `/devices/${deviceID}/interfaces`,
+        },
+        {
           label: "IP",
-          icon: "pi pi-fw pi-cog",
+          icon: "pi pi-fw pi-desktop",
           items: [
             {
               label: "Address",
