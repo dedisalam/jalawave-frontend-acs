@@ -19,7 +19,7 @@ const AppMenuitem = (props: AppMenuItemProps) => {
     : String(props.index);
   const isActiveRoute = item!.to && pathname === item!.to;
   const active = activeMenu === key || activeMenu.startsWith(key + "-");
-  const onRouteChange = (url: string) => {
+  const onRouteChange = (url: string | null) => {
     if (item!.to && item!.to === url) {
       setActiveMenu(key);
     }
