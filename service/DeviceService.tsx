@@ -210,4 +210,14 @@ export const DeviceService = {
       }
     );
   },
+
+  async setParameterValues(id: string, parameterValues: string[][]) {
+    await axios.post(
+      `http://60.253.103.102:7557/devices/${id}/tasks?timeout=3000&connection_request=true`,
+      {
+        name: "setParameterValues",
+        parameterValues,
+      }
+    );
+  },
 };

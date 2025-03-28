@@ -6,6 +6,7 @@ import { InterfaceMenuMikrotik } from "@/types/genieacs/ip/interface/interfaceMe
 import { IPv4AddressMenuMikrotik } from "@/types/genieacs/ip/interface/interfaceMenu/ipv4Address/ipv4AddressMenu";
 import { GenericMenu } from "@/types/genieacs/x_MIKROTIK_Interface/generic/genericMenu";
 import { AppMenuItem } from "@/types/layout";
+import { AddressListMenu } from "@/types/mikrotik/addresslist";
 import ipaddr from "ipaddr.js";
 
 interface BasicRow {
@@ -38,13 +39,16 @@ export class Mikrotik {
       .flat();
   }
 
-  getActiveInterfaces(): InterfaceMenuMikrotik[] {
+  getActiveInterfaces(): { key: string; value: InterfaceMenuMikrotik }[] {
     const obj = this.device.Device.IP.Interface;
     return Object.keys(obj)
       .filter((val) => !val.includes("_"))
       .map((item) => {
         const key = Number(item);
-        return this.device.Device.IP.Interface[key];
+        return {
+          key: `Device.IP.Interface.${key}`,
+          value: this.device.Device.IP.Interface[key],
+        };
       });
   }
 
@@ -58,46 +62,75 @@ export class Mikrotik {
       });
   }
 
-  getIPs(): {
-    interface?: string;
-    ip: string;
-    network: string;
-    flag: string;
-  }[] {
-    const result = [] as {
-      interface?: string;
-      ip: string;
-      network: string;
-      flag: string;
-    }[];
+  getIPs(): { key: string; value: AddressListMenu }[] {
+    const result = [] as { key: string; value: AddressListMenu }[];
 
-    this.getActiveInterfaces().forEach((item) => {
-      let interfaceName: string | undefined;
-      const llv = item.LowerLayers._value;
-      if (llv.includes("Device.Ethernet.Link")) {
-        const ll = this.findEthernetLink(llv)?.LowerLayers._value;
-        interfaceName = this.findEthernetInterface(ll)?.X_MIKROTIK_Name._value;
-      } else if (llv.includes("Device.X_MIKROTIK_Interface.Generic")) {
-        interfaceName = this.findInterfaceGeneric(llv)?.Name._value;
+    this.getActiveInterfaces().forEach((interfaces) => {
+      const link = "Device.Ethernet.Link";
+      const generic = "Device.X_MIKROTIK_Interface.Generic";
+
+      let interfaceName: string;
+      const { LowerLayers } = interfaces.value;
+      const lowerLayers = LowerLayers._value;
+
+      if (lowerLayers.includes(link)) {
+        const ethernetLink = this.findEthernetLink(lowerLayers);
+        if (ethernetLink !== undefined) {
+          const lowerLayers2 = ethernetLink.LowerLayers._value;
+          const ethernetInterface = this.findEthernetInterface(lowerLayers2);
+          if (ethernetInterface !== undefined) {
+            interfaceName = ethernetInterface.X_MIKROTIK_Name._value;
+          }
+        }
+      } else if (lowerLayers.includes(generic)) {
+        const interfaceGeneric = this.findInterfaceGeneric(lowerLayers);
+        if (interfaceGeneric !== undefined) {
+          interfaceName = interfaceGeneric.Name._value;
+        }
       } else {
-        interfaceName = this.findEthernetInterface(llv)?.X_MIKROTIK_Name._value;
+        const ethernetInterface = this.findEthernetInterface(lowerLayers);
+        if (ethernetInterface !== undefined) {
+          interfaceName = ethernetInterface.X_MIKROTIK_Name._value;
+        }
       }
 
-      Object.keys(item.IPv4Address)
+      Object.keys(interfaces.value.IPv4Address)
         .filter((val) => !val.includes("_"))
         .forEach((item2) => {
           const key = Number(item2);
+          const value = interfaces.value.IPv4Address[key] as AddressListMenu;
+          const Interface: AddressListMenu["Interface"] = {
+            _object: false,
+            _type: "xsd:string",
+            _value: interfaceName,
+            _timestamp: Date.now().toString(),
+            _writable: false,
+          };
           const prefix = ipaddr.IPv4.parse(
-            item.IPv4Address[key].SubnetMask._value
+            value.SubnetMask._value
           ).prefixLengthFromSubnetMask();
-          const CIDR = `${item.IPv4Address[key].IPAddress._value}/${prefix}`;
-          const network = ipaddr.IPv4.networkAddressFromCIDR(CIDR);
+          const cidr = `${value.IPAddress._value}/${prefix}`;
+          const network = ipaddr.IPv4.networkAddressFromCIDR(cidr);
+          const Network: AddressListMenu["Network"] = {
+            _object: false,
+            _type: "xsd:string",
+            _value: network.toNormalizedString(),
+            _timestamp: Date.now().toString(),
+            _writable: false,
+          };
+          const CIDR: AddressListMenu["CIDR"] = {
+            _object: false,
+            _type: "xsd:string",
+            _value: cidr,
+            _timestamp: Date.now().toString(),
+            _writable: false,
+          };
+
+          Object.assign(value, { Interface, Network, CIDR });
 
           result.push({
-            flag: item.IPv4Address[key].AddressingType._value,
-            interface: interfaceName,
-            ip: CIDR,
-            network: network.toNormalizedString(),
+            key: `${interfaces.key}.IPv4Address.${key}`,
+            value: value,
           });
         });
     });
