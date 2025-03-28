@@ -1,6 +1,8 @@
 app
+components
 layout
 node_modules
+pages
 parsers
 service
 style
