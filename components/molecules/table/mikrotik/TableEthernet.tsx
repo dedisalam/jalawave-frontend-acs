@@ -1,17 +1,17 @@
 "use client";
 
 import React from "react";
-import { Mikrotik } from "@/parsers/Mikrotik";
+import { Mikrotik } from "@/service/parser/Mikrotik";
 import { DeviceObjectMikrotik } from "@/types/genieacs";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 
-interface TableResourcesProps {
+interface TableEthernetProps {
   device: DeviceObjectMikrotik;
 }
 
-export default function TableResources({ device }: TableResourcesProps) {
-  const value = new Mikrotik(device).getResources();
+export default function TableEthernet({ device }: TableEthernetProps) {
+  const value = new Mikrotik(device).getEthernets();
 
   return (
     <DataTable value={value} tableStyle={{ minWidth: "50rem" }}>

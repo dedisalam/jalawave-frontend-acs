@@ -1,6 +1,6 @@
 "use client";
 
-import { emptyAddressList } from "@/data/addresslist";
+import { emptyAddressList } from "@/service/data/addresslist";
 import { DeviceObjectMikrotik } from "@/types/genieacs";
 import { AddressListRow } from "@/types/mikrotik/addresslist";
 import { Button } from "primereact/button";
@@ -14,6 +14,7 @@ import { Toast } from "primereact/toast";
 
 interface DialogAddressListProps {
   stateDialog: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  stateDialogHeader: [string, React.Dispatch<React.SetStateAction<string>>];
   setRequery: React.Dispatch<React.SetStateAction<boolean>>;
   stateData: [
     AddressListRow,
@@ -25,6 +26,7 @@ interface DialogAddressListProps {
 
 export function DialogAddressList({
   stateDialog,
+  stateDialogHeader,
   stateData,
   setRequery,
   device,
@@ -119,7 +121,7 @@ export function DialogAddressList({
     <Dialog
       visible={stateDialog[0]}
       style={{ width: "450px" }}
-      header="IP Details"
+      header={stateDialogHeader[0]}
       modal
       className="p-fluid"
       footer={IPDialogFooter}

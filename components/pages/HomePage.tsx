@@ -1,7 +1,7 @@
 "use client";
 
-import CardHome from "@/components/card/CardHome";
-import { MenuContext } from "@/layout/context/menucontext";
+import CardHome from "@/components/molecules/card/CardHome";
+import { MenuContext } from "@/components/layout/context/menucontext";
 import { useContext, useEffect } from "react";
 
 export default function HomePage() {

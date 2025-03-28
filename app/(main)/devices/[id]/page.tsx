@@ -1,4 +1,4 @@
-import DevicePage from "@/pages/DevicePage";
+import DevicePage from "@/components/pages/DevicePage";
 
 interface PageProps {
   params: Promise<{ id: string }>;

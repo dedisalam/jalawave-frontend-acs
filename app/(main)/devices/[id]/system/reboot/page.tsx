@@ -1,4 +1,4 @@
-import RebootPage from "@/pages/device/mikrotik/RebootPage";
+import RebootPage from "@/components/pages/device/mikrotik/RebootPage";
 
 interface PageProps {
   params: Promise<{ id: string }>;

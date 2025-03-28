@@ -1,4 +1,4 @@
-import ResourcesPage from "@/pages/device/mikrotik/ResourcesPage";
+import ResourcesPage from "@/components/pages/device/mikrotik/ResourcesPage";
 
 interface PageProps {
   params: Promise<{ id: string }>;

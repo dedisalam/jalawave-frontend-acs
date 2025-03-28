@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useContext } from "react";
-import { MenuContext } from "@/layout/context/menucontext";
-import TableDevices from "@/components/table/TableDevices";
-import CardDevices from "@/components/card/CardDevices";
+import { MenuContext } from "@/components/layout/context/menucontext";
+import TableDevices from "@/components/molecules/table/TableDevices";
+import CardDevices from "@/components/molecules/card/CardDevices";
 
 export default function DevicesPage() {
   const { setActiveListMenu } = useContext(MenuContext);

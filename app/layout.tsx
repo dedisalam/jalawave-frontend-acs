@@ -6,7 +6,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "@/style/layout/layout.scss";
 import "@/style/demo/Demos.scss";
 import { PrimeReactProvider } from "primereact/api";
-import { LayoutProvider } from "@/layout/context/layoutcontext";
+import { LayoutProvider } from "@/components/layout/context/layoutcontext";
 
 export const metadata: Metadata = {
   title: "Jalawave ACS",

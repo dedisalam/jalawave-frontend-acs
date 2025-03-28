@@ -1,4 +1,4 @@
-import AddressListPage from "@/pages/device/mikrotik/AddressListPage";
+import AddressListPage from "@/components/pages/device/mikrotik/AddressListPage";
 
 interface PageProps {
   params: Promise<{ id: string }>;

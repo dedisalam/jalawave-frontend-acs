@@ -1,17 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ButtonReboot from "@/components/button/ButtonReboot";
-import CardReboot from "@/components/card/mikrotik/CardReboot";
-import { DeviceObject, DeviceObjectMikrotik } from "@/types/genieacs";
 import { DeviceService } from "@/service/DeviceService";
+import { DeviceObject, DeviceObjectMikrotik } from "@/types/genieacs";
+import { Card } from "primereact/card";
 import { Skeleton } from "primereact/skeleton";
+import { TabMenu } from "primereact/tabmenu";
+import MikrotikPage from "@/components/pages/device/MikrotikPage";
 
-interface RebootPageProps {
+interface DevicePageProps {
   params: Promise<{ id: string }>;
 }
 
-export default function RebootPage({ params }: RebootPageProps) {
+export default function DevicePage({ params }: DevicePageProps) {
   const [id, setId] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const [device, setDevice] = useState<DeviceObject>();
@@ -35,10 +36,18 @@ export default function RebootPage({ params }: RebootPageProps) {
   if (device._deviceId._Manufacturer === "MikroTik") {
     const deviceMikrotik = device as DeviceObjectMikrotik;
 
-    return (
-      <CardReboot>
-        <ButtonReboot device={deviceMikrotik} />
-      </CardReboot>
-    );
+    return <MikrotikPage device={deviceMikrotik} />;
   }
+
+  return (
+    <Card title="Device Detail">
+      <TabMenu
+        model={[
+          { label: "Overview", icon: "pi pi-eye" },
+          { label: "Detailed Entries", icon: "pi pi-list" },
+          { label: "Log History", icon: "pi pi-clock" },
+        ]}
+      ></TabMenu>
+    </Card>
+  );
 }

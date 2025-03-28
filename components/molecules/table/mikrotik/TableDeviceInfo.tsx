@@ -1,6 +1,6 @@
 "use client";
 
-import { Mikrotik } from "@/parsers/Mikrotik";
+import { Mikrotik } from "@/service/parser/Mikrotik";
 import { DeviceObjectMikrotik } from "@/types/genieacs";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";

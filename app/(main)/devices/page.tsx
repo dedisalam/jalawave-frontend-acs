@@ -1,4 +1,4 @@
-import DevicesPage from "@/pages/DevicesPage";
+import DevicesPage from "@/components/pages/DevicesPage";
 
 export default function Page() {
   return <DevicesPage />;

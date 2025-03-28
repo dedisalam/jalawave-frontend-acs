@@ -1,6 +1,6 @@
 "use client";
 
-import { Mikrotik } from "@/parsers/Mikrotik";
+import { Mikrotik } from "@/service/parser/Mikrotik";
 import { DeviceObjectMikrotik } from "@/types/genieacs";
 import { AddressListRow } from "@/types/mikrotik/addresslist";
 import { FilterMatchMode } from "primereact/api";
@@ -24,6 +24,7 @@ const defaultFilters: DataTableFilterMeta = {
 interface TableAddressListProps {
   device: DeviceObjectMikrotik;
   stateDialog: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  stateDialogHeader: [string, React.Dispatch<React.SetStateAction<string>>];
   stateData: [
     AddressListRow,
     React.Dispatch<React.SetStateAction<AddressListRow>>
@@ -34,6 +35,7 @@ export function TableAddressList({
   device,
   stateData,
   stateDialog,
+  stateDialogHeader,
 }: TableAddressListProps) {
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
@@ -45,6 +47,7 @@ export function TableAddressList({
   const editIP = (rowData: AddressListRow) => {
     stateData[1](rowData);
     stateDialog[1](true);
+    stateDialogHeader[1](`Address <${rowData.value.CIDR._value}>`);
   };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {

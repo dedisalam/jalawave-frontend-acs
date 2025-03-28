@@ -4,13 +4,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { DeviceService } from "@/service/DeviceService";
 import { DeviceObject, DeviceObjectMikrotik } from "@/types/genieacs";
 import { Skeleton } from "primereact/skeleton";
-import { CardAddressList } from "@/components/card/mikrotik/CardAddressList";
-import { TableAddressList } from "@/components/table/mikrotik/TableAddressList";
-import { DialogAddressList } from "@/components/dialog/mikrotik/DialogAddressList";
-import { emptyAddressList } from "@/data/addresslist";
+import { CardAddressList } from "@/components/molecules/card/mikrotik/CardAddressList";
+import { TableAddressList } from "@/components/molecules/table/mikrotik/TableAddressList";
+import { DialogAddressList } from "@/components/molecules/dialog/mikrotik/DialogAddressList";
+import { emptyAddressList } from "@/service/data/addresslist";
 import { AddressListRow } from "@/types/mikrotik/addresslist";
-import ToastAddressList from "@/components/toast/ToastAddressList";
 import { Toast } from "primereact/toast";
+import ToastAddressList from "@/components/molecules/toast/ToastAddressList";
 
 interface AddressListPageProps {
   params: Promise<{ id: string }>;
@@ -21,6 +21,7 @@ export default function AddressListPage({ params }: AddressListPageProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [device, setDevice] = useState<DeviceObject>();
   const stateDialog = useState(false);
+  const stateDialogHeader = useState<string>("");
   const stateData = useState<AddressListRow>(emptyAddressList);
   const [requery, setRequery] = useState(false);
   const toast = useRef<Toast>(null);
@@ -49,10 +50,12 @@ export default function AddressListPage({ params }: AddressListPageProps) {
         <TableAddressList
           device={deviceMikrotik}
           stateDialog={stateDialog}
+          stateDialogHeader={stateDialogHeader}
           stateData={stateData}
         />
         <DialogAddressList
           stateDialog={stateDialog}
+          stateDialogHeader={stateDialogHeader}
           stateData={stateData}
           setRequery={setRequery}
           device={deviceMikrotik}

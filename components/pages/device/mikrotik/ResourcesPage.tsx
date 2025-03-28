@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import CardResources from "@/components/card/mikrotik/CardResources";
-import TableResources from "@/components/table/mikrotik/TableResources";
+import CardResources from "@/components/molecules/card/mikrotik/CardResources";
+import TableResources from "@/components/molecules/table/mikrotik/TableResources";
 import { DeviceService } from "@/service/DeviceService";
 import { DeviceObject, DeviceObjectMikrotik } from "@/types/genieacs";
 import { Skeleton } from "primereact/skeleton";
