@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { Toast } from "primereact/toast";
+import { AddressListContext } from "@/components/pages/device/mikrotik/context/AddressListContext";
 
-interface ToastAddressListProps {
-  toast: React.RefObject<Toast | null>;
-}
+export function ToastAddressList() {
+  const { toast } = useContext(AddressListContext);
 
-export default function ToastAddressList({ toast }: ToastAddressListProps) {
   return <Toast ref={toast} />;
 }

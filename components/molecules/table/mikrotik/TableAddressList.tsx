@@ -1,7 +1,7 @@
 "use client";
 
+import { AddressListContext } from "@/components/pages/device/mikrotik/context/AddressListContext";
 import { Mikrotik } from "@/service/parser/Mikrotik";
-import { DeviceObjectMikrotik } from "@/types/genieacs";
 import { AddressListRow } from "@/types/mikrotik/addresslist";
 import { FilterMatchMode } from "primereact/api";
 import { Button } from "primereact/button";
@@ -14,29 +14,17 @@ import {
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
+import { Skeleton } from "primereact/skeleton";
 import { Tag } from "primereact/tag";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 };
 
-interface TableAddressListProps {
-  device: DeviceObjectMikrotik;
-  stateDialog: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
-  stateDialogHeader: [string, React.Dispatch<React.SetStateAction<string>>];
-  stateData: [
-    AddressListRow,
-    React.Dispatch<React.SetStateAction<AddressListRow>>
-  ];
-}
-
-export function TableAddressList({
-  device,
-  stateData,
-  stateDialog,
-  stateDialogHeader,
-}: TableAddressListProps) {
+export function TableAddressList() {
+  const { device, setData, setDialog, setDialogHeader, loading } =
+    useContext(AddressListContext);
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
 
@@ -45,9 +33,9 @@ export function TableAddressList({
   }, []);
 
   const editIP = (rowData: AddressListRow) => {
-    stateData[1](rowData);
-    stateDialog[1](true);
-    stateDialogHeader[1](`Address <${rowData.value.CIDR._value}>`);
+    setData(rowData);
+    setDialog(true);
+    setDialogHeader(`Address <${rowData.value.CIDR._value}>`);
   };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,6 +82,10 @@ export function TableAddressList({
       />
     );
   };
+
+  if (loading || device === undefined) {
+    return <Skeleton height="8rem"></Skeleton>;
+  }
 
   return (
     <DataTable
