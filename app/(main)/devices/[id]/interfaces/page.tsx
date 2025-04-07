@@ -1,9 +1,14 @@
-import InterfacesPage from "@/components/pages/device/mikrotik/InterfacesPage";
+import { InterfacesProvider } from "@/components/Device/mikrotik/interfaces/Interfaces.context";
+import { InterfacesPage } from "@/components/Device/mikrotik/interfaces/Interfaces.page";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
 export default function Page({ params }: PageProps) {
-  return <InterfacesPage params={params} />;
+  return (
+    <InterfacesProvider params={params}>
+      <InterfacesPage />
+    </InterfacesProvider>
+  );
 }
