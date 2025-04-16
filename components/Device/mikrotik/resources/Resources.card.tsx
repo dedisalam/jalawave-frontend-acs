@@ -1,10 +1,10 @@
 "use client";
 
 import { Card } from "primereact/card";
-import React from "react";
+import { ReactNode } from "react";
 
 interface ResourcesCard {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function ResourcesCard({ children }: ResourcesCard) {

@@ -1,13 +1,15 @@
 import { DeviceObjectMikrotik } from "@/types/genieacs";
-import { ClientMenu } from "@/types/genieacs/dhcpv4/client/clientMenu";
-import { InterfaceMenu } from "@/types/genieacs/ethernet/interface/interfaceMenu";
-import { LinkMenu } from "@/types/genieacs/ethernet/link/linkMenu";
-import { InterfaceMenuMikrotik } from "@/types/genieacs/ip/interface/interfaceMenu";
-import { IPv4AddressMenuMikrotik } from "@/types/genieacs/ip/interface/interfaceMenu/ipv4Address/ipv4AddressMenu";
-import { GenericMenu } from "@/types/genieacs/x_MIKROTIK_Interface/generic/genericMenu";
+import { MenuString } from "@/types/genieacs/base";
 import { AppMenuItem } from "@/types/layout";
-import { AddressListMenu, AddressListRow } from "@/types/mikrotik/addresslist";
-import { InterfacesRow } from "@/types/mikrotik/interfaces";
+import {
+  EthernetInterface,
+  EthernetLink,
+  InterfaceGeneric,
+  IPAddress,
+  IPInterface,
+  WiFiRadio,
+  WiFiSSID,
+} from "@/types/mikrotik";
 import ipaddr from "ipaddr.js";
 
 interface BasicRow {
@@ -23,287 +25,9 @@ export class Mikrotik {
     this.device = device;
   }
 
-  getInterfaceIPs(): IPv4AddressMenuMikrotik[] {
-    const obj1 = this.device.Device.IP.Interface;
-    return Object.keys(obj1)
-      .filter((val1) => !val1.includes("_"))
-      .map((item1) => {
-        const key1 = Number(item1);
-        const obj2 = this.device.Device.IP.Interface[key1].IPv4Address;
-        return Object.keys(obj2)
-          .filter((val2) => !val2.includes("_"))
-          .map((item2) => {
-            const key2 = Number(item2);
-            return obj2[key2];
-          });
-      })
-      .flat();
-  }
-
-  getActiveInterfaces(): { key: string; value: InterfaceMenuMikrotik }[] {
-    const obj = this.device.Device.IP.Interface;
-    return Object.keys(obj)
-      .filter((val) => !val.includes("_"))
-      .map((item) => {
-        const key = Number(item);
-        return {
-          key: `Device.IP.Interface.${key}`,
-          value: this.device.Device.IP.Interface[key],
-        };
-      });
-  }
-
-  getDHCPv4IPs(): ClientMenu[] {
-    const obj1 = this.device.Device.DHCPv4.Client;
-    return Object.keys(obj1)
-      .filter((val1) => !val1.includes("_"))
-      .map((item1) => {
-        const key1 = Number(item1);
-        return this.device.Device.DHCPv4.Client[key1];
-      });
-  }
-
-  getIPs(): AddressListRow[] {
-    const result = [] as AddressListRow[];
-
-    this.getActiveInterfaces().forEach((interfaces) => {
-      const link = "Device.Ethernet.Link";
-      const generic = "Device.X_MIKROTIK_Interface.Generic";
-
-      let interfaceName: string;
-      const { LowerLayers } = interfaces.value;
-      const lowerLayers = LowerLayers._value;
-
-      if (lowerLayers.includes(link)) {
-        const ethernetLink = this.findEthernetLink(lowerLayers);
-        if (ethernetLink !== undefined) {
-          const lowerLayers2 = ethernetLink.LowerLayers._value;
-          const ethernetInterface = this.findEthernetInterface(lowerLayers2);
-          if (ethernetInterface !== undefined) {
-            interfaceName = ethernetInterface.X_MIKROTIK_Name._value;
-          }
-        }
-      } else if (lowerLayers.includes(generic)) {
-        const interfaceGeneric = this.findInterfaceGeneric(lowerLayers);
-        if (interfaceGeneric !== undefined) {
-          interfaceName = interfaceGeneric.Name._value;
-        }
-      } else {
-        const ethernetInterface = this.findEthernetInterface(lowerLayers);
-        if (ethernetInterface !== undefined) {
-          interfaceName = ethernetInterface.X_MIKROTIK_Name._value;
-        }
-      }
-
-      Object.keys(interfaces.value.IPv4Address)
-        .filter((val) => !val.includes("_"))
-        .forEach((item2) => {
-          const key = Number(item2);
-          const value = interfaces.value.IPv4Address[key] as AddressListMenu;
-          const Interface: AddressListMenu["Interface"] = {
-            _object: false,
-            _type: "xsd:string",
-            _value: interfaceName,
-            _timestamp: Date.now().toString(),
-            _writable: false,
-          };
-          const prefix = ipaddr.IPv4.parse(
-            value.SubnetMask._value
-          ).prefixLengthFromSubnetMask();
-          const cidr = `${value.IPAddress._value}/${prefix}`;
-          const network = ipaddr.IPv4.networkAddressFromCIDR(cidr);
-          const Network: AddressListMenu["Network"] = {
-            _object: false,
-            _type: "xsd:string",
-            _value: network.toNormalizedString(),
-            _timestamp: Date.now().toString(),
-            _writable: false,
-          };
-          const CIDR: AddressListMenu["CIDR"] = {
-            _object: false,
-            _type: "xsd:string",
-            _value: cidr,
-            _timestamp: Date.now().toString(),
-            _writable: false,
-          };
-
-          Object.assign(value, { Interface, Network, CIDR });
-
-          result.push({
-            key: `${interfaces.key}.IPv4Address.${key}`,
-            value: value,
-          });
-        });
-    });
-
-    return result;
-  }
-
-  getEthernetInterface(): InterfacesRow[] {
-    return Object.keys(this.device.Device.Ethernet.Interface)
-      .filter((val) => !val.includes("_"))
-      .map((item) => {
-        const key = Number(item);
-        return {
-          key: `Device.Ethernet.Interface.${key}`,
-          value: this.device.Device.Ethernet.Interface[key],
-        };
-      });
-  }
-
-  getInterfaces(): InterfacesRow[] {
-    const result = this.getEthernetInterface();
-
-    return result;
-  }
-
-  findEthernetInterface(id?: string): InterfaceMenu | undefined {
-    return this.getEthernetInterface().find((value) => value.key === id)?.value;
-  }
-
-  getEthernetLink(): { key: string; value: LinkMenu }[] {
-    return Object.keys(this.device.Device.Ethernet.Link)
-      .filter((val) => !val.includes("_"))
-      .map((item) => {
-        const key = Number(item);
-        return {
-          key: `Device.Ethernet.Link.${key}`,
-          value: this.device.Device.Ethernet.Link[key],
-        };
-      });
-  }
-
-  findEthernetLink(id: string): LinkMenu | undefined {
-    return this.getEthernetLink().find((value) => value.key === id)?.value;
-  }
-
-  getInterfaceGeneric(): { key: string; value: GenericMenu }[] {
-    return Object.keys(this.device.Device.X_MIKROTIK_Interface.Generic)
-      .filter((val) => !val.includes("_"))
-      .map((item) => {
-        const key = Number(item);
-        return {
-          key: `Device.X_MIKROTIK_Interface.Generic.${key}`,
-          value: this.device.Device.X_MIKROTIK_Interface.Generic[key],
-        };
-      });
-  }
-
-  findInterfaceGeneric(id: string): GenericMenu | undefined {
-    return this.getInterfaceGeneric().find((value) => value.key === id)?.value;
-  }
-
-  getDeviceInfo(): BasicTable {
-    const deviceInfo = [] as BasicTable;
-
-    deviceInfo.push({
-      field: "Description",
-      value: this.device.Device.DeviceInfo.Description._value,
-    });
-    deviceInfo.push({
-      field: "Hardware Version",
-      value: this.device.Device.DeviceInfo.HardwareVersion._value,
-    });
-    deviceInfo.push({
-      field: "Manufacturer",
-      value: this.device.Device.DeviceInfo.Manufacturer._value,
-    });
-    deviceInfo.push({
-      field: "Manufacturer OUI",
-      value: this.device.Device.DeviceInfo.ManufacturerOUI._value,
-    });
-    deviceInfo.push({
-      field: "Total Memory",
-      value: this.device.Device.DeviceInfo.MemoryStatus.Total._value,
-    });
-    deviceInfo.push({
-      field: "Free Memory",
-      value: this.device.Device.DeviceInfo.MemoryStatus.Free._value,
-    });
-    deviceInfo.push({
-      field: "Model Name",
-      value: this.device.Device.DeviceInfo.ModelName._value,
-    });
-    deviceInfo.push({
-      field: "Serial Number",
-      value: this.device.Device.DeviceInfo.SerialNumber._value,
-    });
-    deviceInfo.push({
-      field: "Software Version",
-      value: this.device.Device.DeviceInfo.SoftwareVersion._value,
-    });
-    deviceInfo.push({
-      field: "Up Time",
-      value: this.device.Device.DeviceInfo.UpTime._value,
-    });
-    Object.keys(this.device.Device.DeviceInfo.VendorConfigFile)
-      .filter((key) => !key.includes("_"))
-      .forEach((key) => {
-        const item = parseInt(key, 10);
-        deviceInfo.push({
-          field: `Vendor Config File ${item} Name`,
-          value:
-            this.device.Device.DeviceInfo.VendorConfigFile[item].Name._value,
-        });
-        deviceInfo.push({
-          field: `Vendor Config File ${item} Description`,
-          value:
-            this.device.Device.DeviceInfo.VendorConfigFile[item].Description
-              ._value,
-        });
-        deviceInfo.push({
-          field: `Vendor Config File ${item} Use For Backup Restore`,
-          value:
-            this.device.Device.DeviceInfo.VendorConfigFile[item]
-              .UseForBackupRestore._value,
-        });
-      });
-
-    return deviceInfo;
-  }
-
-  getEthernets(): BasicTable {
-    const ethernets = [] as BasicTable;
-
-    Object.keys(this.device.Device.Ethernet.Interface)
-      .filter((key) => !key.includes("_"))
-      .forEach((key) => {
-        const item = parseInt(key, 10);
-        ethernets.push({
-          field: `Interface ${item} Name`,
-          value:
-            this.device.Device.Ethernet.Interface[item].X_MIKROTIK_Name._value,
-        });
-        ethernets.push({
-          field: `Interface ${item} MAC Address`,
-          value: this.device.Device.Ethernet.Interface[item].MACAddress._value,
-        });
-        ethernets.push({
-          field: `Interface ${item} Current Bit Rate`,
-          value:
-            this.device.Device.Ethernet.Interface[item].CurrentBitRate._value,
-        });
-        ethernets.push({
-          field: `Interface ${item} Enable`,
-          value: this.device.Device.Ethernet.Interface[item].Enable._value,
-        });
-        ethernets.push({
-          field: `Interface ${item} Status`,
-          value: this.device.Device.Ethernet.Interface[item].Status._value,
-        });
-        ethernets.push({
-          field: `Interface ${item} Comment`,
-          value:
-            this.device.Device.Ethernet.Interface[item].X_MIKROTIK_Comment
-              ._value,
-        });
-      });
-
-    return ethernets;
-  }
-
   getMenuItem(): AppMenuItem {
     const deviceID = encodeURIComponent(this.device._id);
+
     const menu = {
       label: this.device.Device.DeviceInfo.X_MIKROTIK_SystemIdentity._value,
       icon: "pi pi-fw pi-cog",
@@ -311,16 +35,59 @@ export class Mikrotik {
         {
           label: "Interfaces",
           icon: "pi pi-fw pi-list",
-          to: `/devices/${deviceID}/interfaces`,
+          items: [
+            {
+              label: "Ethernet",
+              icon: "pi pi-fw pi-list",
+              to: `/devices/mikrotik/${deviceID}/interfaces/ethernet`,
+            },
+            {
+              label: "Radio",
+              icon: "pi pi-fw pi-wifi",
+              to: `/devices/mikrotik/${deviceID}/interfaces/radio`,
+            },
+            {
+              label: "Generic",
+              icon: "pi pi-fw pi-list",
+              to: `/devices/mikrotik/${deviceID}/interfaces/generic`,
+            },
+          ],
+        },
+        {
+          label: "WiFi",
+          icon: "pi pi-fw pi-wifi",
+          items: [
+            {
+              label: "SSID",
+              icon: "pi pi-fw pi-list",
+              to: `/devices/mikrotik/${deviceID}/wifi/ssid`,
+            },
+          ],
+        },
+        {
+          label: "Ethernet",
+          icon: "pi pi-fw pi-list",
+          items: [
+            {
+              label: "Link",
+              icon: "pi pi-fw pi-list",
+              to: `/devices/mikrotik/${deviceID}/ethernet/link`,
+            },
+          ],
         },
         {
           label: "IP",
           icon: "pi pi-fw pi-desktop",
           items: [
             {
+              label: "Interface",
+              icon: "pi pi-fw pi-list",
+              to: `/devices/mikrotik/${deviceID}/ip/interface`,
+            },
+            {
               label: "Address",
               icon: "pi pi-fw pi-globe",
-              to: `/devices/${deviceID}/ip/address`,
+              to: `/devices/mikrotik/${deviceID}/ip/address`,
             },
           ],
         },
@@ -331,12 +98,12 @@ export class Mikrotik {
             {
               label: "Reboot",
               icon: "pi pi-fw pi-refresh",
-              to: `/devices/${deviceID}/system/reboot`,
+              to: `/devices/mikrotik/${deviceID}/system/reboot`,
             },
             {
               label: "Resources",
               icon: "pi pi-fw pi-database",
-              to: `/devices/${deviceID}/system/resources`,
+              to: `/devices/mikrotik/${deviceID}/system/resources`,
             },
           ],
         },
@@ -366,5 +133,438 @@ export class Mikrotik {
     });
 
     return resources;
+  }
+
+  findAllInterfaceGeneric(): InterfaceGeneric[] {
+    const generic = this.device.Device.X_MIKROTIK_Interface.Generic;
+    const ids = Object.keys(generic).filter((v) => !v.includes("_"));
+
+    return ids.map((id) => {
+      const key = Number(id);
+      return {
+        Id: {
+          _object: false,
+          _type: "xsd:string",
+          _value: `Device.X_MIKROTIK_Interface.Generic.${key}`,
+          _timestamp: Date.now().toString(),
+          _writable: false,
+        },
+        Enable: generic[key].Enable,
+        LowerLayers: generic[key].LowerLayers,
+        Name: generic[key].Name,
+        Status: generic[key].Status,
+        _timestamp: generic[key]._timestamp,
+        _object: generic[key]._object,
+        _writable: generic[key]._writable,
+      };
+    });
+  }
+
+  findByIdInterfaceGeneric(id: string): InterfaceGeneric {
+    const data = this.findAllInterfaceGeneric().find(
+      ({ Id }) => Id._value === id
+    );
+
+    if (!data) {
+      throw new Error(`Interface Generic with id "${id}" not found`);
+    }
+
+    return data;
+  }
+
+  findByIdInterfaceGenericV2(id: MenuString): InterfaceGeneric | undefined {
+    const data = this.findAllInterfaceGeneric().find(
+      ({ Id }) => Id._value === id._value
+    );
+
+    return data;
+  }
+
+  findAllEthernetInterface(): EthernetInterface[] {
+    const ethernet = this.device.Device.Ethernet.Interface;
+    const ids = Object.keys(ethernet).filter((v) => !v.includes("_"));
+
+    return ids.map((id) => {
+      const key = Number(id);
+      return {
+        Id: {
+          _object: false,
+          _type: "xsd:string",
+          _value: `Device.Ethernet.Interface.${key}`,
+          _timestamp: Date.now().toString(),
+          _writable: false,
+        },
+        Enable: ethernet[key].Enable,
+        LowerLayers: ethernet[key].LowerLayers,
+        Status: ethernet[key].Status,
+        CurrentBitRate: ethernet[key].CurrentBitRate,
+        MACAddress: ethernet[key].MACAddress,
+        Stats: ethernet[key].Stats,
+        X_MIKROTIK_Comment: ethernet[key].X_MIKROTIK_Comment,
+        X_MIKROTIK_LinkDowns: ethernet[key].X_MIKROTIK_LinkDowns,
+        X_MIKROTIK_Name: ethernet[key].X_MIKROTIK_Name,
+        _timestamp: ethernet[key]._timestamp,
+        _object: ethernet[key]._object,
+        _writable: ethernet[key]._writable,
+      };
+    });
+  }
+
+  findByIdEthernetInterface(id: string): EthernetInterface {
+    const data = this.findAllEthernetInterface().find(
+      ({ Id }) => Id._value === id
+    );
+
+    if (!data) {
+      throw new Error(`Ethernet Interface with id "${id}" not found`);
+    }
+
+    return data;
+  }
+
+  findByIdEthernetInterfaceV2(id: MenuString): EthernetInterface | undefined {
+    const data = this.findAllEthernetInterface().find(
+      ({ Id }) => Id._value === id._value
+    );
+
+    return data;
+  }
+
+  findAllEthernetLink(): EthernetLink[] {
+    const link = this.device.Device.Ethernet.Link;
+    const ids = Object.keys(link).filter((v) => !v.includes("_"));
+
+    return ids.map((id) => {
+      const key = Number(id);
+      return {
+        Id: {
+          _object: false,
+          _type: "xsd:string",
+          _value: `Device.Ethernet.Link.${key}`,
+          _timestamp: Date.now().toString(),
+          _writable: false,
+        },
+        Enable: link[key].Enable,
+        LowerLayers: link[key].LowerLayers,
+        Status: link[key].Status,
+        _timestamp: link[key]._timestamp,
+        _object: link[key]._object,
+        _writable: link[key]._writable,
+      };
+    });
+  }
+
+  findByIdEthernetLink(id: string): EthernetLink {
+    const data = this.findAllEthernetLink().find(({ Id }) => Id._value === id);
+
+    if (!data) {
+      throw new Error(`Ethernet Link with id "${id}" not found`);
+    }
+
+    return data;
+  }
+
+  findByIdEthernetLinkV2(id: MenuString): EthernetLink | undefined {
+    const data = this.findAllEthernetLink().find(
+      ({ Id }) => Id._value === id._value
+    );
+
+    return data;
+  }
+
+  findEmptyEthernetLink(): EthernetLink | undefined {
+    const data = this.findAllEthernetLink().find(
+      ({ Enable, LowerLayers }) =>
+        Enable._value === false && LowerLayers._value === ""
+    );
+
+    return data;
+  }
+
+  findByLowerLayersEthernetLink(
+    lowerLayers: MenuString
+  ): EthernetLink | undefined {
+    const data = this.findAllEthernetLink().find(
+      ({ LowerLayers }) => LowerLayers._value === lowerLayers._value
+    );
+
+    return data;
+  }
+
+  findAllIPInterface(): IPInterface[] {
+    const ip = this.device.Device.IP.Interface;
+    const ids = Object.keys(ip).filter((v) => !v.includes("_"));
+
+    return ids.map((id) => {
+      const key = Number(id);
+      return {
+        Id: {
+          _object: false,
+          _type: "xsd:string",
+          _value: `Device.IP.Interface.${key}`,
+          _timestamp: Date.now().toString(),
+          _writable: false,
+        },
+        Enable: ip[key].Enable,
+        LowerLayers: ip[key].LowerLayers,
+        Status: ip[key].Status,
+        IPv4Address: ip[key].IPv4Address,
+        IPv4AddressNumberOfEntries: ip[key].IPv4AddressNumberOfEntries,
+        Type: ip[key].Type,
+        _timestamp: ip[key]._timestamp,
+        _object: ip[key]._object,
+        _writable: ip[key]._writable,
+      };
+    });
+  }
+
+  findByIdIPInterface(id: string): IPInterface {
+    const data = this.findAllIPInterface().find(({ Id }) => Id._value === id);
+
+    if (!data) {
+      throw new Error(`IP Interface with id "${id}" not found`);
+    }
+
+    return data;
+  }
+
+  findByLowerLayersIPInterface(
+    lowerLayers: MenuString
+  ): IPInterface | undefined {
+    const data = this.findAllIPInterface().find(
+      ({ LowerLayers }) => LowerLayers._value === lowerLayers._value
+    );
+
+    return data;
+  }
+
+  findAllIPAddress(): IPAddress[] {
+    const IPInterfaces = this.device.Device.IP.Interface;
+    const IdInterfaces = Object.keys(IPInterfaces).filter(
+      (v) => !v.includes("_")
+    );
+
+    return IdInterfaces.map((idInterface) => {
+      const IdInterface = Number(idInterface);
+      const IPAddresses = IPInterfaces[IdInterface].IPv4Address;
+      const IdIPAddresses = Object.keys(IPAddresses).filter(
+        (v) => !v.includes("_")
+      );
+
+      const result = IdIPAddresses.map((idIPAddress): IPAddress => {
+        const IdIPAddress = Number(idIPAddress);
+
+        const prefix = ipaddr.IPv4.parse(
+          IPAddresses[IdIPAddress].SubnetMask._value
+        ).prefixLengthFromSubnetMask();
+        const cidr = `${IPAddresses[IdIPAddress].IPAddress._value}/${prefix}`;
+        const network =
+          ipaddr.IPv4.networkAddressFromCIDR(cidr).toNormalizedString();
+        const IPInterface = this.findByIdIPInterface(
+          `Device.IP.Interface.${IdInterface}`
+        );
+
+        let HWInterfaceName: MenuString;
+        let HWInterfaceId: MenuString;
+
+        if (IPInterface.LowerLayers._value.includes("Device.Ethernet.Link")) {
+          const EthernetLink = this.findByIdEthernetLink(
+            IPInterface.LowerLayers._value
+          );
+
+          if (EthernetLink.LowerLayers._value.includes("Device.WiFi.SSID")) {
+            const WiFiSSID = this.findByIdWiFiSSID(
+              EthernetLink.LowerLayers._value
+            );
+            const WiFiRadio = this.findByIdWiFiRadio(
+              WiFiSSID.LowerLayers._value
+            );
+            const ids = WiFiRadio.Id._value.split(".");
+            const id = ids[ids.length - 1];
+
+            HWInterfaceId = WiFiRadio.Id;
+            HWInterfaceName = { ...WiFiRadio.Id, _value: `wlan${id}` };
+          } else {
+            const EthernetInterface = this.findByIdEthernetInterface(
+              EthernetLink.LowerLayers._value
+            );
+            HWInterfaceId = EthernetInterface.Id;
+            HWInterfaceName = EthernetInterface.X_MIKROTIK_Name;
+          }
+        } else {
+          const InterfaceGeneric = this.findByIdInterfaceGeneric(
+            IPInterface.LowerLayers._value
+          );
+          HWInterfaceId = InterfaceGeneric.Id;
+          HWInterfaceName = InterfaceGeneric.Name;
+        }
+
+        return {
+          Id: {
+            _object: false,
+            _type: "xsd:string",
+            _value: `Device.IP.Interface.${IdInterface}.IPv4Address.${IdIPAddress}`,
+            _timestamp: Date.now().toString(),
+            _writable: false,
+          },
+          CIDR: {
+            _object: false,
+            _type: "xsd:string",
+            _value: cidr,
+            _timestamp: Date.now().toString(),
+            _writable: true,
+          },
+          Network: {
+            _object: false,
+            _type: "xsd:string",
+            _value: network,
+            _timestamp: Date.now().toString(),
+            _writable: true,
+          },
+          HWInterface: {
+            Id: HWInterfaceId,
+            Name: HWInterfaceName,
+          },
+          IPInterface: IPInterface.Id,
+          AddressingType: IPAddresses[IdIPAddress].AddressingType,
+          Enable: IPAddresses[IdIPAddress].Enable,
+          IPAddress: IPAddresses[IdIPAddress].IPAddress,
+          Status: IPAddresses[IdIPAddress].Status,
+          SubnetMask: IPAddresses[IdIPAddress].SubnetMask,
+          _timestamp: IPAddresses[IdIPAddress]._timestamp,
+          _object: IPAddresses[IdIPAddress]._object,
+          _writable: IPAddresses[IdIPAddress]._writable,
+        };
+      });
+
+      return result;
+    }).flat();
+  }
+
+  findByIdIPAddress(id: MenuString): IPAddress | undefined {
+    const data = this.findAllIPAddress().find(
+      ({ Id }) => Id._value === id._value
+    );
+
+    return data;
+  }
+
+  findByIPInterfaceIPAddress(ipInterface: MenuString): IPAddress[] | undefined {
+    const data = this.findAllIPAddress().filter(
+      ({ IPInterface }) => IPInterface._value === ipInterface._value
+    );
+
+    return data;
+  }
+
+  findAllWiFiRadio(): WiFiRadio[] {
+    const WiFiRadios = this.device.Device.WiFi.Radio;
+    const IdWiFiRadios = Object.keys(WiFiRadios).filter(
+      (v) => !v.includes("_")
+    );
+
+    return IdWiFiRadios.map((idWiFiRadio) => {
+      const IdWiFiRadio = Number(idWiFiRadio);
+
+      return {
+        Id: {
+          _object: false,
+          _type: "xsd:string",
+          _value: `Device.WiFi.Radio.${IdWiFiRadio}`,
+          _timestamp: Date.now().toString(),
+          _writable: false,
+        },
+        Enable: WiFiRadios[IdWiFiRadio].Enable,
+        LowerLayers: WiFiRadios[IdWiFiRadio].LowerLayers,
+        Status: WiFiRadios[IdWiFiRadio].Status,
+        AutoChannelEnable: WiFiRadios[IdWiFiRadio].AutoChannelEnable,
+        AutoChannelSupported: WiFiRadios[IdWiFiRadio].AutoChannelSupported,
+        Channel: WiFiRadios[IdWiFiRadio].Channel,
+        OperatingFrequencyBand: WiFiRadios[IdWiFiRadio].OperatingFrequencyBand,
+        OperatingStandards: WiFiRadios[IdWiFiRadio].OperatingStandards,
+        PossibleChannels: WiFiRadios[IdWiFiRadio].PossibleChannels,
+        Stats: WiFiRadios[IdWiFiRadio].Stats,
+        SupportedFrequencyBands:
+          WiFiRadios[IdWiFiRadio].SupportedFrequencyBands,
+        SupportedStandards: WiFiRadios[IdWiFiRadio].SupportedStandards,
+        X_MIKROTIK_Stats: WiFiRadios[IdWiFiRadio].X_MIKROTIK_Stats,
+        _timestamp: WiFiRadios[IdWiFiRadio]._timestamp,
+        _object: WiFiRadios[IdWiFiRadio]._object,
+        _writable: WiFiRadios[IdWiFiRadio]._writable,
+      };
+    });
+  }
+
+  findByIdWiFiRadio(id: string): WiFiRadio {
+    const data = this.findAllWiFiRadio().find(({ Id }) => Id._value === id);
+
+    if (!data) {
+      throw new Error(`WiFi Radio with id "${id}" not found`);
+    }
+
+    return data;
+  }
+
+  findByIdWiFiRadioV2(id: MenuString): WiFiRadio | undefined {
+    const data = this.findAllWiFiRadio().find(
+      ({ Id }) => Id._value === id._value
+    );
+
+    return data;
+  }
+
+  findAllWiFiSSID(): WiFiSSID[] {
+    const WiFiSSIDs = this.device.Device.WiFi.SSID;
+    const IdWiFiSSIDs = Object.keys(WiFiSSIDs).filter((v) => !v.includes("_"));
+
+    return IdWiFiSSIDs.map((idWiFiSSID) => {
+      const IdWiFiSSID = Number(idWiFiSSID);
+
+      return {
+        Id: {
+          _object: false,
+          _type: "xsd:string",
+          _value: `Device.WiFi.SSID.${IdWiFiSSID}`,
+          _timestamp: Date.now().toString(),
+          _writable: false,
+        },
+        Enable: WiFiSSIDs[IdWiFiSSID].Enable,
+        LowerLayers: WiFiSSIDs[IdWiFiSSID].LowerLayers,
+        Status: WiFiSSIDs[IdWiFiSSID].Status,
+        Stats: WiFiSSIDs[IdWiFiSSID].Stats,
+        BSSID: WiFiSSIDs[IdWiFiSSID].BSSID,
+        MACAddress: WiFiSSIDs[IdWiFiSSID].MACAddress,
+        SSID: WiFiSSIDs[IdWiFiSSID].SSID,
+        _timestamp: WiFiSSIDs[IdWiFiSSID]._timestamp,
+        _object: WiFiSSIDs[IdWiFiSSID]._object,
+        _writable: WiFiSSIDs[IdWiFiSSID]._writable,
+      };
+    });
+  }
+
+  findByIdWiFiSSID(id: string): WiFiSSID {
+    const data = this.findAllWiFiSSID().find(({ Id }) => Id._value === id);
+
+    if (!data) {
+      throw new Error(`WiFi SSID with id "${id}" not found`);
+    }
+
+    return data;
+  }
+
+  findByIdWiFiSSIDV2(id: MenuString): WiFiSSID | undefined {
+    const data = this.findAllWiFiSSID().find(
+      ({ Id }) => Id._value === id._value
+    );
+
+    return data;
+  }
+
+  findByLowerLayersWiFiSSID(lowerLayers: MenuString): WiFiSSID | undefined {
+    const data = this.findAllWiFiSSID().find(
+      ({ LowerLayers }) => LowerLayers._value === lowerLayers._value
+    );
+
+    return data;
   }
 }

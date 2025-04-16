@@ -47,6 +47,7 @@ export interface LayoutContextProps {
   setLayoutState: Dispatch<SetStateAction<LayoutState>>;
   onMenuToggle: () => void;
   showProfileSidebar: () => void;
+  toast: RefObject<Toast | null>;
 }
 
 export interface MenuContextProps {

@@ -49,7 +49,6 @@ export interface DeviceObjectDiscovery extends DeviceObjectBase {
 }
 
 export type DeviceObject =
-  | DeviceObjectDiscovery
   | DeviceObjectMikrotik
   | DeviceObjectRuijie
   | DeviceObjectYealink;

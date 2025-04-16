@@ -1,7 +1,8 @@
 "use client";
 import { LayoutConfig, LayoutContextProps, LayoutState } from "@/types/layout";
 import { ChildContainerProps } from "@/types/types";
-import React, { useState, createContext } from "react";
+import { Toast } from "primereact/toast";
+import React, { useState, createContext, useRef } from "react";
 export const LayoutContext = createContext({} as LayoutContextProps);
 
 export const LayoutProvider = ({ children }: ChildContainerProps) => {
@@ -22,6 +23,8 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
     staticMenuMobileActive: false,
     menuHoverActive: false,
   });
+
+  const toast = useRef<Toast>(null);
 
   const onMenuToggle = () => {
     if (isOverlay()) {
@@ -66,6 +69,7 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
     setLayoutState,
     onMenuToggle,
     showProfileSidebar,
+    toast,
   };
 
   return (

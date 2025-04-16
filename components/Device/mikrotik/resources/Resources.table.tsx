@@ -1,20 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { Mikrotik } from "@/service/parser/Mikrotik";
-import { DeviceObjectMikrotik } from "@/types/genieacs";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
+import { MikrotikContext } from "../Mikrotik.context";
+import { Skeleton } from "primereact/skeleton";
 
-interface ResourcesTableProps {
-  device: DeviceObjectMikrotik;
-}
+export function ResourcesTable() {
+  const { device } = useContext(MikrotikContext);
 
-export function ResourcesTable({ device }: ResourcesTableProps) {
-  const value = new Mikrotik(device).getResources();
+  if (!device) {
+    return <Skeleton height="51rem"></Skeleton>;
+  }
 
   return (
-    <DataTable value={value} tableStyle={{ minWidth: "50rem" }}>
+    <DataTable
+      value={new Mikrotik(device).getResources()}
+      tableStyle={{ minWidth: "50rem" }}
+    >
       <Column field="field"></Column>
       <Column field="value"></Column>
     </DataTable>

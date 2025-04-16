@@ -5,7 +5,7 @@ import { MenuContext } from "@/components/layout/context/menucontext";
 import { DevicesCard } from "./Devices.card";
 import { DevicesTable } from "./Devices.table";
 
-export default function DevicesPage() {
+export function DevicesPage() {
   const { setActiveListMenu } = useContext(MenuContext);
 
   useEffect(() => {

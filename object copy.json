@@ -1,0 +1,4729 @@
+{
+  "_id": "E48D8C-RB951%2D2n-4779029543CA",
+  "Device": {
+    "DeviceInfo": {
+      "HardwareVersion": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:49:15.051Z",
+        "_type": "xsd:string",
+        "_value": "v1.0",
+        "_writable": false
+      },
+      "ProvisioningCode": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:49:15.051Z",
+        "_type": "xsd:string",
+        "_value": "",
+        "_writable": true
+      },
+      "SoftwareVersion": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:49:15.051Z",
+        "_type": "xsd:string",
+        "_value": "6.49.18",
+        "_writable": false
+      },
+      "_object": true,
+      "Description": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "MikroTik Routers and Wireless, http://mikrotik.com",
+        "_writable": false
+      },
+      "Manufacturer": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "MikroTik",
+        "_writable": false
+      },
+      "ManufacturerOUI": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "E48D8C",
+        "_writable": false
+      },
+      "MemoryStatus": {
+        "Free": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 39504,
+          "_writable": false
+        },
+        "Total": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 65536,
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "ModelName": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "RB951-2n",
+        "_writable": false
+      },
+      "ProcessStatus": {
+        "CPUUsage": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 6,
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "ProductClass": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "RB951-2n",
+        "_writable": false
+      },
+      "SerialNumber": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "4779029543CA",
+        "_writable": false
+      },
+      "UpTime": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 1089816,
+        "_writable": false
+      },
+      "VendorConfigFile": {
+        "1": {
+          "Description": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Currently applied ROS configuration which will return dynamic /export output when Uploaded.",
+            "_writable": false
+          },
+          "Name": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Current ROS configuration",
+            "_writable": false
+          },
+          "UseForBackupRestore": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": false,
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "VendorConfigFileNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 1,
+        "_writable": false
+      },
+      "X_MIKROTIK_ArchName": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "mipsbe",
+        "_writable": false
+      },
+      "X_MIKROTIK_AutosupoutTime": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:dateTime",
+        "_value": "0001-01-01T00:00:00.000Z",
+        "_writable": false
+      },
+      "X_MIKROTIK_BrandingPckgBuildTime": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:dateTime",
+        "_value": "0001-01-01T00:00:00.000Z",
+        "_writable": false
+      },
+      "X_MIKROTIK_SystemIdentity": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "CPE-Public-01",
+        "_writable": true
+      },
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "ManagementServer": {
+      "AliasBasedAddressing": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:49:15.051Z",
+        "_type": "xsd:boolean",
+        "_value": false,
+        "_writable": false
+      },
+      "ConnectionRequestPassword": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:19:13.825Z",
+        "_type": "xsd:string",
+        "_value": "2581gdaghb7",
+        "_writable": true
+      },
+      "ConnectionRequestURL": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:49:15.051Z",
+        "_type": "xsd:string",
+        "_value": "http://60.253.106.5:7547/c4ff84210f42389fb1402b1948b6fbafba05",
+        "_writable": false
+      },
+      "ConnectionRequestUsername": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:19:13.824Z",
+        "_type": "xsd:string",
+        "_value": "E48D8C-RB951%2D2n-4779029543CA",
+        "_writable": true
+      },
+      "InformParameter": {
+        "_object": true,
+        "_writable": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z"
+      },
+      "InformParameterNumberOfEntries": {
+        "_object": false,
+        "_writable": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 0
+      },
+      "ParameterKey": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:49:15.051Z",
+        "_type": "xsd:string",
+        "_value": "",
+        "_writable": false
+      },
+      "Password": {
+        "_object": false,
+        "_writable": true,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": ""
+      },
+      "PeriodicInformEnable": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:19:13.824Z",
+        "_type": "xsd:boolean",
+        "_value": true,
+        "_writable": true
+      },
+      "PeriodicInformInterval": {
+        "_object": false,
+        "_timestamp": "2025-04-09T23:19:13.824Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 300,
+        "_writable": true
+      },
+      "URL": {
+        "_object": false,
+        "_writable": true,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "http://60.253.103.102:7547"
+      },
+      "Username": {
+        "_object": false,
+        "_writable": true,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:string",
+        "_value": "jala"
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "RootDataModelVersion": {
+      "_object": false,
+      "_timestamp": "2025-04-09T23:49:15.051Z",
+      "_type": "xsd:string",
+      "_value": "2.11",
+      "_writable": false
+    },
+    "_object": true,
+    "_writable": false,
+    "Cellular": {
+      "AccessPoint": {
+        "1": {
+          "APN": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "internet",
+            "_writable": true
+          },
+          "Password": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "Username": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": true
+      },
+      "AccessPointNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 1,
+        "_writable": false
+      },
+      "Interface": {
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "InterfaceNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 0,
+        "_writable": false
+      },
+      "X_MIKROTIK_CellDiagnostics": {
+        "DiagnosticsState": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "None",
+          "_writable": true
+        },
+        "Interface": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "",
+          "_writable": true
+        },
+        "Result": {
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "ResultNumberOfEntries": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 0,
+          "_writable": false
+        },
+        "Seconds": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 10,
+          "_writable": true
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "DHCPv4": {
+      "Client": {
+        "1": {
+          "DHCPServer": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "60.253.106.1",
+            "_writable": false
+          },
+          "DHCPStatus": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Bound",
+            "_writable": false
+          },
+          "DNSServers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "8.8.8.8",
+            "_writable": false
+          },
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "IPAddress": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "60.253.106.5",
+            "_writable": false
+          },
+          "IPRouters": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "60.253.106.1",
+            "_writable": false
+          },
+          "Interface": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.IP.Interface.2",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Enabled",
+            "_writable": false
+          },
+          "SubnetMask": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "255.255.255.248",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": true
+      },
+      "ClientNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 1,
+        "_writable": false
+      },
+      "Server": {
+        "Pool": {
+          "1": {
+            "Client": {
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": false
+            },
+            "ClientNumberOfEntries": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DNSServers": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "",
+              "_writable": true
+            },
+            "DomainName": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "",
+              "_writable": true
+            },
+            "Enable": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:boolean",
+              "_value": true,
+              "_writable": true
+            },
+            "IPRouters": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "172.20.10.1",
+              "_writable": true
+            },
+            "Interface": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "Device.IP.Interface.1",
+              "_writable": true
+            },
+            "LeaseTime": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:int",
+              "_value": 600,
+              "_writable": true
+            },
+            "MaxAddress": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "172.20.10.254",
+              "_writable": true
+            },
+            "MinAddress": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "172.20.10.2",
+              "_writable": true
+            },
+            "StaticAddress": {
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "StaticAddressNumberOfEntries": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "Status": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "Enabled",
+              "_writable": false
+            },
+            "SubnetMask": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "255.255.255.0",
+              "_writable": true
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "PoolNumberOfEntries": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 1,
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "DNS": {
+      "Client": {
+        "Server": {
+          "1": {
+            "DNSServer": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "202.51.232.114",
+              "_writable": true
+            },
+            "Enable": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:boolean",
+              "_value": true,
+              "_writable": true
+            },
+            "Status": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "Enabled",
+              "_writable": false
+            },
+            "Type": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "Static",
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "2": {
+            "DNSServer": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "60.253.96.40",
+              "_writable": true
+            },
+            "Enable": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:boolean",
+              "_value": true,
+              "_writable": true
+            },
+            "Status": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "Enabled",
+              "_writable": false
+            },
+            "Type": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "Static",
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "30": {
+            "DNSServer": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "8.8.8.8",
+              "_writable": true
+            },
+            "Enable": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:boolean",
+              "_value": true,
+              "_writable": true
+            },
+            "Status": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "Enabled",
+              "_writable": false
+            },
+            "Type": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "X_MIKROTIK_Dynamic",
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "ServerNumberOfEntries": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 3,
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "DeviceSummary": {
+      "_object": false,
+      "_timestamp": "2025-04-09T22:54:11.188Z",
+      "_type": "xsd:string",
+      "_value": "Device:2.11[](Download:1, DownloadTCP:1, Upload:1, UploadTCP:1, MemoryStatus:1, IPInterface:1, EthernetLink:1, EthernetInterface:1, CellularInterfaceBase:1, WiFiRadio:1, WiFiSSID:1, WiFiAccessPoint:1, Hosts:1, DHCPv4Client:1, IPPingDetailed:1, IPPing:1, TraceRoute:1, InformParameters:1, Baseline:1)",
+      "_writable": false
+    },
+    "Ethernet": {
+      "Interface": {
+        "1": {
+          "CurrentBitRate": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 100,
+            "_writable": false
+          },
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": false
+          },
+          "MACAddress": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "D4:CA:6D:EF:9C:4E",
+            "_writable": false
+          },
+          "Stats": {
+            "BytesReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 171695362,
+              "_writable": false
+            },
+            "BytesSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 71198053,
+              "_writable": false
+            },
+            "DiscardPacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DiscardPacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "PacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 2330043,
+              "_writable": false
+            },
+            "PacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 574387,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "X_MIKROTIK_Comment": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "X_MIKROTIK_LinkDowns": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 7,
+            "_writable": false
+          },
+          "X_MIKROTIK_Name": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "ether1",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "2": {
+          "CurrentBitRate": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": false
+          },
+          "MACAddress": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "D4:CA:6D:EF:9C:4F",
+            "_writable": false
+          },
+          "Stats": {
+            "BytesReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "BytesSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DiscardPacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DiscardPacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "PacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "PacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Down",
+            "_writable": false
+          },
+          "X_MIKROTIK_Comment": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "X_MIKROTIK_LinkDowns": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "X_MIKROTIK_Name": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "ether2",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "3": {
+          "CurrentBitRate": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": false
+          },
+          "MACAddress": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "D4:CA:6D:EF:9C:50",
+            "_writable": false
+          },
+          "Stats": {
+            "BytesReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "BytesSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DiscardPacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DiscardPacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "PacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "PacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Down",
+            "_writable": false
+          },
+          "X_MIKROTIK_Comment": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "X_MIKROTIK_LinkDowns": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "X_MIKROTIK_Name": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "ether3",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "4": {
+          "CurrentBitRate": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": false
+          },
+          "MACAddress": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "D4:CA:6D:EF:9C:51",
+            "_writable": false
+          },
+          "Stats": {
+            "BytesReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "BytesSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DiscardPacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DiscardPacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "PacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "PacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Down",
+            "_writable": false
+          },
+          "X_MIKROTIK_Comment": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "X_MIKROTIK_LinkDowns": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "X_MIKROTIK_Name": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "ether4",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "5": {
+          "CurrentBitRate": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 100,
+            "_writable": false
+          },
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": false
+          },
+          "MACAddress": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "D4:CA:6D:EF:9C:52",
+            "_writable": false
+          },
+          "Stats": {
+            "BytesReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 2899137971,
+              "_writable": false
+            },
+            "BytesSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 1928639752,
+              "_writable": false
+            },
+            "DiscardPacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DiscardPacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "PacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 32577744,
+              "_writable": false
+            },
+            "PacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 2170124,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "X_MIKROTIK_Comment": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "X_MIKROTIK_LinkDowns": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "X_MIKROTIK_Name": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "ether5",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "InterfaceNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 5,
+        "_writable": false
+      },
+      "Link": {
+        "1": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Interface.1",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "2": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Interface.2",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "LowerLayerDown",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "3": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Interface.3",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "LowerLayerDown",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "4": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Interface.5",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "5": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.WiFi.SSID.1",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "LowerLayerDown",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "6": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.190Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.190Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Interface.4",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.190Z",
+            "_type": "xsd:string",
+            "_value": "LowerLayerDown",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": true
+      },
+      "LinkNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 6,
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "Firewall": {
+      "X_MIKROTIK_ConnTrack": {
+        "TotalEntries": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 14,
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "X_MIKROTIK_Filter": {
+        "Chain": {
+          "1": {
+            "Enable": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:boolean",
+              "_value": true,
+              "_writable": true
+            },
+            "Name": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "input",
+              "_writable": true
+            },
+            "Rule": {
+              "1": {
+                "ConnState": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "ConnStateExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "Description": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "DestIPExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "DestIPRange": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "DestInterface": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "DestInterfaceExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "DestInterfaceGroup": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "all",
+                  "_writable": true
+                },
+                "DestPortExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "DestPortList": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "Enable": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": true,
+                  "_writable": true
+                },
+                "Log": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "Order": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:unsignedInt",
+                  "_value": 2,
+                  "_writable": true
+                },
+                "Protocol": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:int",
+                  "_value": -1,
+                  "_writable": true
+                },
+                "ProtocolExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourceIPExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourceIPRange": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "SourceInterface": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "SourceInterfaceExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourceInterfaceGroup": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "all",
+                  "_writable": true
+                },
+                "SourcePortExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourcePortList": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "Target": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "Drop",
+                  "_writable": true
+                },
+                "TargetChain": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "_object": true,
+                "_timestamp": "2025-04-09T22:54:11.186Z",
+                "_writable": true
+              },
+              "2": {
+                "ConnState": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "ConnStateExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "Description": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "DestIPExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "DestIPRange": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "DestInterface": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "DestInterfaceExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "DestInterfaceGroup": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "all",
+                  "_writable": true
+                },
+                "DestPortExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "DestPortList": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "Enable": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": true,
+                  "_writable": true
+                },
+                "Log": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "Order": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:unsignedInt",
+                  "_value": 1,
+                  "_writable": true
+                },
+                "Protocol": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:int",
+                  "_value": 1,
+                  "_writable": true
+                },
+                "ProtocolExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourceIPExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourceIPRange": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "SourceInterface": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "SourceInterfaceExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourceInterfaceGroup": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "all",
+                  "_writable": true
+                },
+                "SourcePortExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourcePortList": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "Target": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "Accept",
+                  "_writable": true
+                },
+                "TargetChain": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "_object": true,
+                "_timestamp": "2025-04-09T22:54:11.186Z",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "RuleNumberOfEntries": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 2,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "2": {
+            "Enable": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:boolean",
+              "_value": true,
+              "_writable": true
+            },
+            "Name": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "forward",
+              "_writable": true
+            },
+            "Rule": {
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "RuleNumberOfEntries": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "3": {
+            "Enable": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:boolean",
+              "_value": true,
+              "_writable": true
+            },
+            "Name": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "output",
+              "_writable": true
+            },
+            "Rule": {
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "RuleNumberOfEntries": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "ChainNumberOfEntries": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 3,
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "X_MIKROTIK_NAT": {
+        "Chain": {
+          "1": {
+            "Enable": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:boolean",
+              "_value": true,
+              "_writable": true
+            },
+            "Name": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "srcnat",
+              "_writable": true
+            },
+            "Rule": {
+              "1": {
+                "Description": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "DestIPExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "DestIPRange": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "DestInterface": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "DestInterfaceExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "DestInterfaceGroup": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "all",
+                  "_writable": true
+                },
+                "DestPortExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "DestPortList": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "Enable": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": true,
+                  "_writable": true
+                },
+                "Log": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "Order": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:unsignedInt",
+                  "_value": 1,
+                  "_writable": true
+                },
+                "Protocol": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:int",
+                  "_value": -1,
+                  "_writable": true
+                },
+                "ProtocolExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourceIPExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourceIPRange": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "172.20.10.0/24",
+                  "_writable": true
+                },
+                "SourceInterface": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "SourceInterfaceExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourceInterfaceGroup": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "all",
+                  "_writable": true
+                },
+                "SourcePortExclude": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:boolean",
+                  "_value": false,
+                  "_writable": true
+                },
+                "SourcePortList": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "Target": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "SourceNAT",
+                  "_writable": true
+                },
+                "TargetChain": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "ToAddresses": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "60.253.106.9",
+                  "_writable": true
+                },
+                "ToPorts": {
+                  "_object": false,
+                  "_timestamp": "2025-04-09T22:54:11.188Z",
+                  "_type": "xsd:string",
+                  "_value": "",
+                  "_writable": true
+                },
+                "_object": true,
+                "_timestamp": "2025-04-09T22:54:11.186Z",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "RuleNumberOfEntries": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 1,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "2": {
+            "Enable": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:boolean",
+              "_value": true,
+              "_writable": true
+            },
+            "Name": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "dstnat",
+              "_writable": true
+            },
+            "Rule": {
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "RuleNumberOfEntries": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "ChainNumberOfEntries": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 2,
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "Hosts": {
+      "Host": {
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "HostNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 0,
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "IP": {
+      "Diagnostics": {
+        "DownloadDiagnostics": {
+          "BOMTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "DSCP": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": true
+          },
+          "DiagnosticsState": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "None",
+            "_writable": true
+          },
+          "DownloadDiagnosticMaxConnections": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 4,
+            "_writable": false
+          },
+          "DownloadURL": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "EOMTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "EnablePerConnectionResults": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": false,
+            "_writable": true
+          },
+          "EthernetPriority": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": true
+          },
+          "NumberOfConnections": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 1,
+            "_writable": true
+          },
+          "PerConnectionResult": {
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "PerConnectionResultNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "PeriodOfFullLoading": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "ROMTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "TCPOpenRequestTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "TCPOpenResponseTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "TestBytesReceived": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "TestBytesReceivedUnderFullLoading": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "TotalBytesReceived": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "TotalBytesReceivedUnderFullLoading": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": "",
+            "_writable": false
+          },
+          "TotalBytesSent": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": "",
+            "_writable": false
+          },
+          "TotalBytesSentUnderFullLoading": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": "",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "IPPing": {
+          "AverageResponseTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "AverageResponseTimeDetailed": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "DSCP": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": true
+          },
+          "DataBlockSize": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 64,
+            "_writable": true
+          },
+          "DiagnosticsState": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "None",
+            "_writable": true
+          },
+          "FailureCount": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "Host": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "Interface": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "MaximumResponseTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "MaximumResponseTimeDetailed": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "MinimumResponseTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "MinimumResponseTimeDetailed": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "NumberOfRepetitions": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 4,
+            "_writable": true
+          },
+          "SuccessCount": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "Timeout": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 5000,
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "TraceRoute": {
+          "DSCP": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": true
+          },
+          "DataBlockSize": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 38,
+            "_writable": true
+          },
+          "DiagnosticsState": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "None",
+            "_writable": true
+          },
+          "Host": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "Interface": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "MaxHopCount": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 30,
+            "_writable": true
+          },
+          "NumberOfTries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 3,
+            "_writable": true
+          },
+          "ResponseTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "RouteHops": {
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "RouteHopsNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "Timeout": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 5000,
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "UploadDiagnostics": {
+          "BOMTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "DSCP": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": true
+          },
+          "DiagnosticsState": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "None",
+            "_writable": true
+          },
+          "EOMTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "EnablePerConnectionResults": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": false,
+            "_writable": true
+          },
+          "EthernetPriority": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": true
+          },
+          "NumberOfConnections": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 1,
+            "_writable": true
+          },
+          "PerConnectionResult": {
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "PerConnectionResultNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "PeriodOfFullLoading": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "ROMTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "TCPOpenRequestTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "TCPOpenResponseTime": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:dateTime",
+            "_value": "",
+            "_writable": false
+          },
+          "TestBytesSent": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "TestBytesSentUnderFullLoading": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "TestFileLength": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": true
+          },
+          "TotalBytesReceived": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": "",
+            "_writable": false
+          },
+          "TotalBytesReceivedUnderFullLoading": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": "",
+            "_writable": false
+          },
+          "TotalBytesSent": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "TotalBytesSentUnderFullLoading": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": "",
+            "_writable": false
+          },
+          "UploadDiagnosticsMaxConnections": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 4,
+            "_writable": false
+          },
+          "UploadURL": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": true
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "Interface": {
+        "1": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "IPv4Address": {
+            "1": {
+              "AddressingType": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Static",
+                "_writable": false
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "IPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "60.253.106.9",
+                "_writable": true
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "SubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.252",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "2": {
+              "AddressingType": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Static",
+                "_writable": false
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "IPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.10.1",
+                "_writable": true
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "SubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "IPv4AddressNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 2,
+            "_writable": false
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.X_MIKROTIK_Interface.Generic.1",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "Type": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Normal",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "2": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "IPv4Address": {
+            "28": {
+              "AddressingType": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Dynamic",
+                "_writable": false
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "IPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "60.253.106.5",
+                "_writable": true
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "SubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.248",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "IPv4AddressNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 1,
+            "_writable": false
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Link.1",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "Type": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Normal",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "3": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "IPv4Address": {
+            "1": {
+              "AddressingType": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Static",
+                "_writable": false
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "IPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.11.1",
+                "_writable": true
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "SubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "IPv4AddressNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 1,
+            "_writable": false
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Link.2",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "LowerLayerDown",
+            "_writable": false
+          },
+          "Type": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Normal",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "4": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "IPv4Address": {
+            "1": {
+              "AddressingType": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Static",
+                "_writable": false
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "IPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.12.1",
+                "_writable": true
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "SubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "IPv4AddressNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 1,
+            "_writable": false
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Link.3",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "LowerLayerDown",
+            "_writable": false
+          },
+          "Type": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Normal",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "5": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "IPv4Address": {
+            "1": {
+              "AddressingType": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Static",
+                "_writable": false
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "IPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.14.1",
+                "_writable": true
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "SubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "IPv4AddressNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 1,
+            "_writable": false
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Link.4",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "Type": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Normal",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "6": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "IPv4Address": {
+            "1": {
+              "AddressingType": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Static",
+                "_writable": false
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "IPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.15.1",
+                "_writable": true
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "SubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "IPv4AddressNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 1,
+            "_writable": false
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Link.5",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "LowerLayerDown",
+            "_writable": false
+          },
+          "Type": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Normal",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "7": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.190Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "IPv4Address": {
+            "1": {
+              "AddressingType": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "Static",
+                "_writable": false
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "IPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "172.20.13.1",
+                "_writable": true
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "SubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "IPv4AddressNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.190Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 1,
+            "_writable": false
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.190Z",
+            "_type": "xsd:string",
+            "_value": "Device.Ethernet.Link.6",
+            "_writable": true
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.190Z",
+            "_type": "xsd:string",
+            "_value": "LowerLayerDown",
+            "_writable": false
+          },
+          "Type": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.190Z",
+            "_type": "xsd:string",
+            "_value": "Normal",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": true
+      },
+      "InterfaceNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 7,
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "InterfaceStack": {
+      "1": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.WiFi.SSID.1",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.WiFi.Radio.1",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "2": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.IP.Interface.1",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.X_MIKROTIK_Interface.Generic.1",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "3": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.IP.Interface.2",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.1",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "4": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.1",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Interface.1",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "5": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.IP.Interface.3",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.2",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "6": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.2",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Interface.2",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "7": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.IP.Interface.4",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.3",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "8": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.3",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Interface.3",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "9": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.IP.Interface.5",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.4",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "10": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.4",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Interface.5",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "11": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.IP.Interface.6",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.5",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "12": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.5",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "Device.WiFi.SSID.1",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "13": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.190Z",
+          "_type": "xsd:string",
+          "_value": "Device.IP.Interface.7",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.190Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.6",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "14": {
+        "HigherLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.190Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Link.6",
+          "_writable": false
+        },
+        "LowerLayer": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.190Z",
+          "_type": "xsd:string",
+          "_value": "Device.Ethernet.Interface.4",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "InterfaceStackNumberOfEntries": {
+      "_object": false,
+      "_timestamp": "2025-04-09T22:54:11.188Z",
+      "_type": "xsd:unsignedInt",
+      "_value": 14,
+      "_writable": false
+    },
+    "PPP": {
+      "Interface": {
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": true
+      },
+      "InterfaceNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 0,
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "Routing": {
+      "Router": {
+        "1": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": false
+          },
+          "IPv4Forwarding": {
+            "52": {
+              "DestIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "60.253.106.8",
+                "_writable": true
+              },
+              "DestSubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.252",
+                "_writable": true
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "GatewayIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "Interface": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Device.IP.Interface.1",
+                "_writable": true
+              },
+              "Origin": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Connect",
+                "_writable": false
+              },
+              "StaticRoute": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": false,
+                "_writable": false
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "53": {
+              "DestIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.10.0",
+                "_writable": true
+              },
+              "DestSubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "GatewayIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "Interface": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Device.IP.Interface.1",
+                "_writable": true
+              },
+              "Origin": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Connect",
+                "_writable": false
+              },
+              "StaticRoute": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": false,
+                "_writable": false
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "66": {
+              "DestIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "DestSubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "GatewayIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "60.253.106.1",
+                "_writable": true
+              },
+              "Interface": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Device.IP.Interface.2",
+                "_writable": true
+              },
+              "Origin": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Dynamic_Static",
+                "_writable": false
+              },
+              "StaticRoute": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": false
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "67": {
+              "DestIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "60.253.106.0",
+                "_writable": true
+              },
+              "DestSubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.248",
+                "_writable": true
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "GatewayIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "Interface": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Device.IP.Interface.2",
+                "_writable": true
+              },
+              "Origin": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Connect",
+                "_writable": false
+              },
+              "StaticRoute": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": false,
+                "_writable": false
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "68": {
+              "DestIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.11.0",
+                "_writable": true
+              },
+              "DestSubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "GatewayIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "Interface": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Device.IP.Interface.1",
+                "_writable": true
+              },
+              "Origin": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Connect",
+                "_writable": false
+              },
+              "StaticRoute": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": false,
+                "_writable": false
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "69": {
+              "DestIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.12.0",
+                "_writable": true
+              },
+              "DestSubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "GatewayIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "Interface": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Device.IP.Interface.1",
+                "_writable": true
+              },
+              "Origin": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Connect",
+                "_writable": false
+              },
+              "StaticRoute": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": false,
+                "_writable": false
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "70": {
+              "DestIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.14.0",
+                "_writable": true
+              },
+              "DestSubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "GatewayIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "Interface": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Device.IP.Interface.5",
+                "_writable": true
+              },
+              "Origin": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Connect",
+                "_writable": false
+              },
+              "StaticRoute": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": false,
+                "_writable": false
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "71": {
+              "DestIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "172.20.15.0",
+                "_writable": true
+              },
+              "DestSubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "GatewayIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "Interface": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Device.IP.Interface.1",
+                "_writable": true
+              },
+              "Origin": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Connect",
+                "_writable": false
+              },
+              "StaticRoute": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:boolean",
+                "_value": false,
+                "_writable": false
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.188Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "72": {
+              "DestIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "172.20.13.0",
+                "_writable": true
+              },
+              "DestSubnetMask": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "255.255.255.0",
+                "_writable": true
+              },
+              "Enable": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:boolean",
+                "_value": true,
+                "_writable": true
+              },
+              "GatewayIPAddress": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "",
+                "_writable": true
+              },
+              "Interface": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "Device.IP.Interface.1",
+                "_writable": true
+              },
+              "Origin": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "X_MIKROTIK_Connect",
+                "_writable": false
+              },
+              "StaticRoute": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:boolean",
+                "_value": false,
+                "_writable": false
+              },
+              "Status": {
+                "_object": false,
+                "_timestamp": "2025-04-09T22:54:11.190Z",
+                "_type": "xsd:string",
+                "_value": "Enabled",
+                "_writable": false
+              },
+              "_object": true,
+              "_timestamp": "2025-04-09T22:54:11.186Z",
+              "_writable": true
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": true
+          },
+          "IPv4ForwardingNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 9,
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Enabled",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "RouterNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 1,
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "WiFi": {
+      "AccessPoint": {
+        "1": {
+          "AssociatedDevice": {
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "AssociatedDeviceNumberOfEntries": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 0,
+            "_writable": false
+          },
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "SSIDAdvertisementEnabled": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "SSIDReference": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.WiFi.SSID.1",
+            "_writable": true
+          },
+          "Security": {
+            "KeyPassphrase": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "",
+              "_writable": true
+            },
+            "ModeEnabled": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "WPA2-Personal",
+              "_writable": true
+            },
+            "ModesSupported": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:string",
+              "_value": "None,WPA-Personal,WPA2-Personal,WPA-WPA2-Personal,WPA-Enterprise,WPA2-Enterprise,WPA-WPA2-Enterprise,X_MIKROTIK_Specific",
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Enabled",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": true
+      },
+      "AccessPointNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 1,
+        "_writable": false
+      },
+      "NeighboringWiFiDiagnostic": {
+        "DiagnosticsState": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:string",
+          "_value": "None",
+          "_writable": true
+        },
+        "Result": {
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "ResultNumberOfEntries": {
+          "_object": false,
+          "_timestamp": "2025-04-09T22:54:11.188Z",
+          "_type": "xsd:unsignedInt",
+          "_value": 0,
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "Radio": {
+        "1": {
+          "AutoChannelEnable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": false,
+            "_writable": true
+          },
+          "AutoChannelSupported": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": false
+          },
+          "Channel": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:unsignedInt",
+            "_value": 1,
+            "_writable": true
+          },
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": false
+          },
+          "OperatingFrequencyBand": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "2.4GHz",
+            "_writable": true
+          },
+          "OperatingStandards": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "b,g",
+            "_writable": true
+          },
+          "PossibleChannels": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "1,2,3,4,5,6,7,8,9,10,11,12,13,",
+            "_writable": false
+          },
+          "Stats": {
+            "Noise": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:int",
+              "_value": -111,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "SupportedFrequencyBands": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "2.4GHz",
+            "_writable": false
+          },
+          "SupportedStandards": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "b,g,n",
+            "_writable": false
+          },
+          "X_MIKROTIK_Stats": {
+            "OverallTxCCQ": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 17,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "RadioNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 1,
+        "_writable": false
+      },
+      "SSID": {
+        "1": {
+          "BSSID": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "D4:CA:6D:EF:9C:53",
+            "_writable": false
+          },
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": true
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Device.WiFi.Radio.1",
+            "_writable": true
+          },
+          "MACAddress": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "D4:CA:6D:EF:9C:53",
+            "_writable": false
+          },
+          "SSID": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "CPE-Publik-01",
+            "_writable": true
+          },
+          "Stats": {
+            "BytesReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 11062,
+              "_writable": false
+            },
+            "BytesSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 2267,
+              "_writable": false
+            },
+            "DiscardPacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "DiscardPacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "ErrorsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 0,
+              "_writable": false
+            },
+            "PacketsReceived": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 34,
+              "_writable": false
+            },
+            "PacketsSent": {
+              "_object": false,
+              "_timestamp": "2025-04-09T22:54:11.188Z",
+              "_type": "xsd:unsignedInt",
+              "_value": 29,
+              "_writable": false
+            },
+            "_object": true,
+            "_timestamp": "2025-04-09T22:54:11.186Z",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Down",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": true
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": true
+      },
+      "SSIDNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 1,
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "X_MIKROTIK_Interface": {
+      "Generic": {
+        "1": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": false
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": false
+          },
+          "Name": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "bridge1",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "2": {
+          "Enable": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:boolean",
+            "_value": true,
+            "_writable": false
+          },
+          "LowerLayers": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "",
+            "_writable": false
+          },
+          "Name": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "bridge2",
+            "_writable": false
+          },
+          "Status": {
+            "_object": false,
+            "_timestamp": "2025-04-09T22:54:11.188Z",
+            "_type": "xsd:string",
+            "_value": "Up",
+            "_writable": false
+          },
+          "_object": true,
+          "_timestamp": "2025-04-09T22:54:11.186Z",
+          "_writable": false
+        },
+        "_object": true,
+        "_timestamp": "2025-04-09T22:54:11.186Z",
+        "_writable": false
+      },
+      "GenericNumberOfEntries": {
+        "_object": false,
+        "_timestamp": "2025-04-09T22:54:11.188Z",
+        "_type": "xsd:unsignedInt",
+        "_value": 2,
+        "_writable": false
+      },
+      "_object": true,
+      "_timestamp": "2025-04-09T22:54:11.186Z",
+      "_writable": false
+    },
+    "_timestamp": "2025-04-09T22:54:11.186Z"
+  },
+  "_deviceId": {
+    "_Manufacturer": "MikroTik",
+    "_OUI": "E48D8C",
+    "_ProductClass": "RB951-2n",
+    "_SerialNumber": "4779029543CA"
+  },
+  "_lastInform": "2025-04-09T23:49:15.050Z",
+  "_registered": "2025-03-14T01:38:45.859Z",
+  "_timestamp": "2025-04-09T23:19:13.820Z",
+  "Reboot": {
+    "_object": false,
+    "_timestamp": "2025-03-28T08:10:27.487Z",
+    "_type": "xsd:dateTime",
+    "_value": "2025-03-28T08:10:27.484Z"
+  },
+  "_lastBoot": "2025-03-28T08:11:28.139Z",
+  "_tags": []
+}

@@ -4,6 +4,10 @@ import { IPv4AddressMenuMikrotik } from "../genieacs/ip/interface/interfaceMenu/
 export interface AddressListMenu extends IPv4AddressMenuMikrotik {
   Network: MenuString;
   Interface: MenuString;
+  InterfacePath: {
+    code: string;
+    name: string;
+  };
   CIDR: MenuString;
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FilterMatchMode } from "primereact/api";
 import {
   DataTable,
@@ -11,19 +11,20 @@ import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
-import { Device } from "@/types/table";
-import { DeviceService } from "@/service/DeviceService";
 import { Tag } from "primereact/tag";
 import { Skeleton } from "primereact/skeleton";
+import Link from "next/link";
+import { DevicesContext } from "./Devices.context";
+import { Device, Table } from "@/service/parser/Table";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 };
 
 export function DevicesTable() {
-  const [devices, setDevices] = useState<Device[]>([]);
+  const { devices } = useContext(DevicesContext);
+
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
-  const [loading, setLoading] = useState<boolean>(true);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
 
   const getSeverity = (status: string) => {
@@ -40,10 +41,6 @@ export function DevicesTable() {
   };
 
   useEffect(() => {
-    DeviceService.getData().then((data: Device[]) => {
-      setDevices(data);
-      setLoading(false);
-    });
     initFilters();
   }, []);
 
@@ -77,32 +74,36 @@ export function DevicesTable() {
     );
   };
 
-  const statusBodyTemplate = (rowData: Device) => {
+  const serialNumberBodyTemplate = ({
+    serialNumber,
+    id,
+    manufacturer,
+  }: Device) => {
+    let vendor = manufacturer.toLowerCase();
+    if (manufacturer === "Ruijie Networks Co., Ltd") {
+      vendor = "ruijie";
+    }
+
     return (
-      <Tag value={rowData.status} severity={getSeverity(rowData.status)} />
+      <Link href={`/devices/${vendor}/${encodeURIComponent(id)}`}>
+        {serialNumber}
+      </Link>
     );
   };
 
-  const serialNumberBodyTemplate = (rowData: Device) => {
-    return (
-      <a
-        href={`/devices/${encodeURIComponent(rowData.id)}`}
-        rel="noopener noreferrer"
-      >
-        {rowData.serialNumber}
-      </a>
-    );
+  const statusBodyTemplate = ({ status }: Device) => {
+    return <Tag value={status} severity={getSeverity(status)} />;
   };
 
   const header = renderHeader();
 
-  if (loading) {
+  if (!devices) {
     return <Skeleton height="51rem"></Skeleton>;
   }
 
   return (
     <DataTable
-      value={devices}
+      value={new Table(devices).getDevices()}
       paginator
       showGridlines
       rows={10}
