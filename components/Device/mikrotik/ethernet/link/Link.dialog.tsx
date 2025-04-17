@@ -40,7 +40,6 @@ export function LinkDialog() {
     setIsLoading(true);
 
     if (formData.LowerLayers._value.trim()) {
-      console.log("Enable", formData.Enable._value);
       const response = await new EthernetLinkService().update(
         device._id,
         formData

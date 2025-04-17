@@ -153,8 +153,6 @@ export function LinkTable() {
     );
   };
 
-  console.log("Ethernet Link", new Mikrotik(device).findAllEthernetLink());
-
   return (
     <DataTable
       value={new Mikrotik(device).findAllEthernetLink()}

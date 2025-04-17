@@ -432,7 +432,6 @@ export const DeviceService = {
   //     device,
   //     newIP.HWInterface.Id
   //   );
-  //   console.log("IPInterface", IPInterface);
   //   const IPAddresses = await this.findIPAddresses(device, IPInterface.Id);
   //   const IPAddress = await this.findIPAddress({
   //     device,

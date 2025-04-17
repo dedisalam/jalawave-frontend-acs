@@ -34,7 +34,6 @@ export class IPAddressService {
     IPInterface: MenuString,
     data: IPAddress
   ): Promise<AxiosResponse> {
-    console.log(data.Id);
     const ip = ipaddr.IPv4.parseCIDR(data.CIDR._value);
     const subnet = ipaddr.IPv4.subnetMaskFromPrefixLength(ip[1]);
 

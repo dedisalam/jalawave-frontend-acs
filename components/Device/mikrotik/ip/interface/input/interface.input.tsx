@@ -103,7 +103,6 @@ export function InterfaceInput() {
         return false;
       })
       .filter(({ id }) => {
-        console.log(id);
         const ethernetLink = mikrotik.findByIdEthernetLinkV2({
           _object: false,
           _type: "xsd:string",
