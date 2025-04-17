@@ -46,7 +46,7 @@ export function IPInterfaceInput() {
     return `IP Interface ${id}`;
   };
 
-  const findAllInterfaceNames = (): {
+  const findAll = (): {
     id: string;
     name: string;
   }[] => {
@@ -60,6 +60,14 @@ export function IPInterfaceInput() {
           name: nameIPInterface(Id),
         };
       });
+
+    const selected = mikrotik.findByIdIPInterfaceV2(formData.Id);
+    if (selected && selected.LowerLayers._value !== "") {
+      ipInterfaces.push({
+        id: selected.LowerLayers._value,
+        name: nameIPInterface(selected.LowerLayers),
+      });
+    }
 
     return ipInterfaces.sort((a, b) => {
       if (a.name < b.name) {
@@ -81,7 +89,7 @@ export function IPInterfaceInput() {
           name: nameIPInterface(formData.IPInterface),
         }}
         onChange={onChange}
-        options={findAllInterfaceNames()}
+        options={findAll()}
         optionLabel="name"
         placeholder="Select Interface"
         className={classNameInvalid()}

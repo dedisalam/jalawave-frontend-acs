@@ -14,15 +14,19 @@ import { InputText } from "primereact/inputtext";
 import React, { useContext, useEffect, useState } from "react";
 import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { InterfaceGeneric } from "@/types/mikrotik";
+import { EthernetInterface } from "@/types/mikrotik";
 import { Tag } from "primereact/tag";
+import { Button } from "primereact/button";
+import { InterfaceContext } from "./Interface.context";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 };
 
-export function GenericTable() {
+export function InterfaceTable() {
   const { device } = useContext(MikrotikContext);
+  const { setFormData, setDialog, setDialogHeader } =
+    useContext(InterfaceContext);
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
 
@@ -49,6 +53,12 @@ export function GenericTable() {
     }
   };
 
+  const edit = (data: EthernetInterface) => {
+    setFormData(data);
+    setDialog(true);
+    setDialogHeader("Ethernet Interface Details");
+  };
+
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const _filters = { ...filters };
@@ -72,20 +82,31 @@ export function GenericTable() {
     </div>
   );
 
-  const idBodyTemplate = (rowData: InterfaceGeneric) => {
-    const arrOfId = rowData.Id._value.split(".");
+  const idBodyTemplate = (data: EthernetInterface) => {
+    const arrOfId = data.Id._value.split(".");
     const id = arrOfId[arrOfId.length - 1];
 
     return id;
   };
 
-  const statusBodyTemplate = ({ Status }: InterfaceGeneric) => {
+  const statusBodyTemplate = ({ Status }: EthernetInterface) => {
     return <Tag value={Status._value} severity={getSeverity(Status._value)} />;
+  };
+
+  const actionBodyTemplate = (data: EthernetInterface) => {
+    return (
+      <Button
+        icon="pi pi-pencil"
+        rounded
+        severity="success"
+        onClick={() => edit(data)}
+      />
+    );
   };
 
   return (
     <DataTable
-      value={new Mikrotik(device).findAllInterfaceGeneric()}
+      value={new Mikrotik(device).findAllEthernetInterface()}
       filters={filters}
       globalFilterFields={["name"]}
       header={header}
@@ -96,13 +117,21 @@ export function GenericTable() {
         header="Id"
         body={idBodyTemplate}
       ></Column>
-      <Column sortable field="Name._value" header="Name"></Column>
+      <Column sortable field="X_MIKROTIK_Name._value" header="Name"></Column>
+      <Column sortable field="Enable._value" header="Enable"></Column>
+      <Column sortable field="MACAddress._value" header="MAC Address"></Column>
+      <Column
+        sortable
+        field="CurrentBitRate._value"
+        header="Current Bit Rate"
+      ></Column>
       <Column
         sortable
         field="Status._value"
         body={statusBodyTemplate}
         header="Status"
       ></Column>
+      <Column body={actionBodyTemplate}></Column>
     </DataTable>
   );
 }

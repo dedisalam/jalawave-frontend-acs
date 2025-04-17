@@ -123,13 +123,14 @@ export function SSIDTable() {
         header="Id"
         body={idBodyTemplate}
       ></Column>
-      <Column sortable field="SSID._value" header="SSID"></Column>
       <Column
         sortable
         field="LowerLayers._value"
         body={lowerLayersBodyTemplate}
         header="Interface"
       ></Column>
+      <Column sortable field="SSID._value" header="SSID"></Column>
+      <Column sortable field="Enable._value" header="Enable"></Column>
       <Column
         sortable
         field="Status._value"

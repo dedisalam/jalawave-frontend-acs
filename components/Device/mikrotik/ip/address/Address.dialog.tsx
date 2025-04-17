@@ -8,10 +8,10 @@ import { IPInput } from "./input/ip.input";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import * as ipaddr from "ipaddr.js";
-import { DeviceService } from "@/service/DeviceService";
 import { emptyIPAddress } from "@/service/data/ip/address";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
 import { EnableInput } from "./input/enable.input";
+import { IPAddressService } from "@/service/IPAddressService";
 
 export function AddressDialog() {
   const { toast } = useContext(LayoutContext);
@@ -36,31 +36,37 @@ export function AddressDialog() {
     setDialog(false);
   };
 
-  const saveIP = async () => {
+  const save = async () => {
     setSubmitted(true);
     setIsLoading(true);
 
     if (formData.CIDR._value.trim()) {
       if (ipaddr.IPv4.isValidCIDR(formData.CIDR._value)) {
-        try {
-          const result = await DeviceService.updateIpAddress(device, formData);
-          if (result?.status === 200) {
-            toast.current?.show({
-              severity: "success",
-              summary: "Success",
-              detail: "Success Change IP",
-            });
-          }
-        } catch (error) {
-          console.log(error);
+        const response = await new IPAddressService().update(
+          device._id,
+          formData.IPInterface,
+          formData
+        );
+        if (response.status === 200) {
+          toast.current?.show({
+            severity: "success",
+            summary: "Success",
+            detail: "Success Change IP Address",
+          });
+
+          setIsLoading(false);
+          setRefresh(true);
+          setDialog(false);
+          setFormData(emptyIPAddress);
+        } else {
+          toast.current?.show({
+            severity: "danger",
+            summary: "Error",
+            detail: `Error ${response.status} Code`,
+          });
         }
       }
     }
-
-    setIsLoading(false);
-    setRefresh(true);
-    setDialog(false);
-    setFormData(emptyIPAddress);
   };
 
   const Footer = () => {
@@ -72,7 +78,7 @@ export function AddressDialog() {
             label="Save"
             icon="pi pi-check"
             text
-            onClick={saveIP}
+            onClick={save}
             loading={isLoading}
           />
         </>

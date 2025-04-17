@@ -10,6 +10,12 @@ import { InterfaceContext } from "./Interface.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
 import { EthernetInterfaceService } from "@/service/EthernetInterfaceService";
 import { emptyEthInterface } from "@/service/data/ethernet/interface";
+import { EnableInput } from "./input/enable.input";
+import { CurrentBitRateInput } from "./input/curBitRate.input";
+import { MACAddressInput } from "./input/macAddress.input";
+import { StatusInput } from "./input/status.input";
+import { CommentInput } from "./input/comment.input";
+import { LinkDownsInput } from "./input/linkDowns.input";
 
 export function InterfaceDialog() {
   const { toast } = useContext(LayoutContext);
@@ -34,7 +40,7 @@ export function InterfaceDialog() {
     setDialog(false);
   };
 
-  const saveIP = async () => {
+  const save = async () => {
     setSubmitted(true);
     setIsLoading(true);
 
@@ -47,12 +53,19 @@ export function InterfaceDialog() {
         toast.current?.show({
           severity: "success",
           summary: "Success",
-          detail: "Success Change Interface",
+          detail: "Success Change Ethernet Interface",
         });
+
         setIsLoading(false);
         setRefresh(true);
         setDialog(false);
         setFormData(emptyEthInterface);
+      } else {
+        toast.current?.show({
+          severity: "danger",
+          summary: "Error",
+          detail: `Error ${response.status} Code`,
+        });
       }
     }
   };
@@ -65,7 +78,7 @@ export function InterfaceDialog() {
           label="Save"
           icon="pi pi-check"
           text
-          onClick={saveIP}
+          onClick={save}
           loading={isLoading}
         />
       </>
@@ -82,7 +95,13 @@ export function InterfaceDialog() {
       footer={Footer}
       onHide={hide}
     >
+      <EnableInput />
       <NameInput />
+      <CommentInput />
+      <CurrentBitRateInput />
+      <MACAddressInput />
+      <StatusInput />
+      <LinkDownsInput />
     </Dialog>
   );
 }

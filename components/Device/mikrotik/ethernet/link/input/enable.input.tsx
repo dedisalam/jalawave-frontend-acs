@@ -3,10 +3,10 @@
 import React, { useContext } from "react";
 import { DropdownChangeEvent } from "primereact/dropdown";
 import { InputSwitch } from "primereact/inputswitch";
-import { AddressContext } from "../Address.context";
+import { LinkContext } from "../Link.context";
 
 export function EnableInput() {
-  const { formData, setFormData } = useContext(AddressContext);
+  const { formData, setFormData } = useContext(LinkContext);
 
   const onChange = (e: DropdownChangeEvent) => {
     const val = e.target && e.target.value;
@@ -22,18 +22,12 @@ export function EnableInput() {
     });
   };
 
-  const isDynamic = formData.AddressingType._value === "X_MIKROTIK_Dynamic";
-
   return (
     <div className="field">
       <label htmlFor="enable" className="block mb-2">
         Enable
       </label>
-      <InputSwitch
-        disabled={isDynamic}
-        checked={formData.Enable._value}
-        onChange={onChange}
-      />
+      <InputSwitch checked={formData.Enable._value} onChange={onChange} />
     </div>
   );
 }

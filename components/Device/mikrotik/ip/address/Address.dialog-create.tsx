@@ -34,26 +34,33 @@ export function AddressDialogCreate() {
     setDialogCreate(false);
   };
 
-  const saveIP = async () => {
+  const save = async () => {
     setSubmitted(true);
     setIsLoading(true);
 
     if (formData.IPInterface._value.trim()) {
-      new IPAddressService()
-        .create(device._id, formData.IPInterface)
-        .then((response) => {
-          if (response.status === 200) {
-            toast.current?.show({
-              severity: "success",
-              summary: "Success",
-              detail: "Success Add IP Address",
-            });
-            setIsLoading(false);
-            setRefresh(true);
-            setDialogCreate(false);
-            setFormData(emptyIPAddress);
-          }
+      const response = await new IPAddressService().create(
+        device._id,
+        formData.IPInterface
+      );
+      if (response.status === 200) {
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Success Change IP Address",
         });
+
+        setIsLoading(false);
+        setRefresh(true);
+        setDialogCreate(false);
+        setFormData(emptyIPAddress);
+      } else {
+        toast.current?.show({
+          severity: "danger",
+          summary: "Error",
+          detail: `Error ${response.status} Code`,
+        });
+      }
     }
   };
 
@@ -65,7 +72,7 @@ export function AddressDialogCreate() {
           label="Save"
           icon="pi pi-check"
           text
-          onClick={saveIP}
+          onClick={save}
           loading={isLoading}
         />
       </>

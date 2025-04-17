@@ -65,7 +65,7 @@ export function InterfaceInput() {
     return "";
   };
 
-  const findAllLinkGeneric = (): {
+  const findAll = (): {
     id: string;
     name: string;
   }[] => {
@@ -89,17 +89,39 @@ export function InterfaceInput() {
         };
       });
 
-    const linkGeneric = [link, generic].flat().filter(({ id }) => {
-      const ethlink = mikrotik.findByLowerLayersIPInterface({
-        _object: false,
-        _type: "xsd:string",
-        _value: id,
+    const linkGeneric = [link, generic]
+      .flat()
+      .filter(({ id }) => {
+        const ethlink = mikrotik.findByLowerLayersIPInterface({
+          _object: false,
+          _type: "xsd:string",
+          _value: id,
+        });
+        if (!ethlink) {
+          return true;
+        }
+        return false;
+      })
+      .filter(({ id }) => {
+        console.log(id);
+        const ethernetLink = mikrotik.findByIdEthernetLinkV2({
+          _object: false,
+          _type: "xsd:string",
+          _value: id,
+        });
+        if (ethernetLink && ethernetLink.Enable._value) {
+          return true;
+        }
+        return false;
       });
-      if (!ethlink) {
-        return true;
-      }
-      return false;
-    });
+
+    const selected = mikrotik.findByIdIPInterfaceV2(formData.Id);
+    if (selected && selected.LowerLayers._value !== "") {
+      linkGeneric.push({
+        id: selected.LowerLayers._value,
+        name: name(selected.LowerLayers),
+      });
+    }
 
     return linkGeneric.sort((a, b) => {
       if (a.name < b.name) {
@@ -121,7 +143,7 @@ export function InterfaceInput() {
           name: name(formData.LowerLayers),
         }}
         onChange={onChange}
-        options={findAllLinkGeneric()}
+        options={findAll()}
         optionLabel="name"
         placeholder="Select Link / Interface Generic"
         className={classNameInvalid()}

@@ -9,7 +9,7 @@ import { Skeleton } from "primereact/skeleton";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { MenuString } from "@/types/genieacs/base";
 
-export function InterfaceInput() {
+export function SSIDEthernetInput() {
   const { device } = useContext(MikrotikContext);
   const { formData, submitted, setFormData } = useContext(LinkContext);
 
@@ -27,7 +27,7 @@ export function InterfaceInput() {
         ...data,
         LowerLayers: {
           ...data.LowerLayers,
-          _value: val,
+          _value: val.id,
         },
       };
     });
@@ -37,14 +37,35 @@ export function InterfaceInput() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const nameRadio = (Id: MenuString): string => {
-    const ids = Id._value.split(".");
-    const id = ids[ids.length - 1];
-
-    return `wlan${id}`;
+  const nameSSID = (Id: MenuString): string | undefined => {
+    const mikrotik = new Mikrotik(device);
+    const SSID = mikrotik.findByIdWiFiSSIDV2(Id);
+    if (SSID) {
+      return SSID.SSID._value;
+    }
   };
 
-  const findAllRadio = (): {
+  const nameEthernet = (Id: MenuString): string | undefined => {
+    const mikrotik = new Mikrotik(device);
+    const Ethernet = mikrotik.findByIdEthernetInterfaceV2(Id);
+    if (Ethernet) {
+      return Ethernet.X_MIKROTIK_Name._value;
+    }
+  };
+
+  const name = (Id: MenuString): string => {
+    if (Id._value.includes("Device.WiFi.SSID")) {
+      return nameSSID(Id) || "";
+    }
+
+    if (Id._value.includes("Device.Ethernet.Interface")) {
+      return nameEthernet(Id) || "";
+    }
+
+    return "";
+  };
+
+  const findAll = (): {
     id: string;
     name: string;
   }[] => {
@@ -80,7 +101,23 @@ export function InterfaceInput() {
       return false;
     });
 
-    return etherssid;
+    const selected = mikrotik.findByIdEthernetLinkV2(formData.Id);
+    if (selected && selected.LowerLayers._value !== "") {
+      etherssid.push({
+        id: selected.LowerLayers._value,
+        name: name(selected.LowerLayers),
+      });
+    }
+
+    return etherssid.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    });
   };
 
   return (
@@ -89,10 +126,10 @@ export function InterfaceInput() {
       <Dropdown
         value={{
           id: formData.LowerLayers._value,
-          name: nameRadio(formData.LowerLayers),
+          name: name(formData.LowerLayers),
         }}
         onChange={onChange}
-        options={findAllRadio()}
+        options={findAll()}
         optionLabel="name"
         placeholder="Select Interface"
         className={classNameInvalid()}

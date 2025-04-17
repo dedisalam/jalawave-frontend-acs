@@ -21,26 +21,32 @@ export function AddressToolbar() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const openNew = () => {
+  const create = () => {
     setFormData(emptyIPAddress);
     setSubmitted(false);
     setDialogCreate(true);
     setDialogCreateHeader("Add New Address List");
   };
 
-  const onRefresh = () => {
+  const refresh = async () => {
     setIsRefreshLoading(true);
-    new IPInterfaceService().refresh(device._id).then((response) => {
-      if (response.status === 200) {
-        toast.current?.show({
-          severity: "success",
-          summary: "Success",
-          detail: "Success Refresh IP Address",
-        });
-        setIsRefreshLoading(false);
-        setRefresh(true);
-      }
-    });
+    const response = await new IPInterfaceService().refresh(device._id);
+    if (response.status === 200) {
+      toast.current?.show({
+        severity: "success",
+        summary: "Success",
+        detail: "Success Refresh IP Address",
+      });
+
+      setIsRefreshLoading(false);
+      setRefresh(true);
+    } else {
+      toast.current?.show({
+        severity: "danger",
+        summary: "Error",
+        detail: `Error ${response.status} Code`,
+      });
+    }
   };
 
   const startToolbarTemplate = () => {
@@ -51,7 +57,7 @@ export function AddressToolbar() {
           icon="pi pi-plus"
           severity="success"
           className="mr-2"
-          onClick={openNew}
+          onClick={create}
         />
       </div>
     );
@@ -64,7 +70,7 @@ export function AddressToolbar() {
           label="Refresh"
           icon="pi pi-refresh"
           severity="warning"
-          onClick={onRefresh}
+          onClick={refresh}
           loading={isRefreshLoading}
         />
       </div>

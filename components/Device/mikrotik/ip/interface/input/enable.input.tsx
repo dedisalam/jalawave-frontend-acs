@@ -9,7 +9,7 @@ export function EnableInput() {
   const { formData, setFormData } = useContext(InterfaceContext);
 
   const onChange = (e: DropdownChangeEvent) => {
-    const val = (e.target && e.target.value) || "";
+    const val = e.target && e.target.value;
 
     setFormData((data) => {
       return {

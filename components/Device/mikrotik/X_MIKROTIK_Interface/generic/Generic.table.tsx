@@ -14,19 +14,17 @@ import { InputText } from "primereact/inputtext";
 import React, { useContext, useEffect, useState } from "react";
 import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { EthernetInterface } from "@/types/mikrotik";
+import { InterfaceGeneric } from "@/types/mikrotik";
 import { Tag } from "primereact/tag";
-import { Button } from "primereact/button";
-import { InterfaceContext } from "./Interface.context";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 };
 
-export function InterfaceTable() {
+export function GenericTable() {
   const { device } = useContext(MikrotikContext);
-  const { setFormData, setDialog, setDialogHeader } =
-    useContext(InterfaceContext);
+  // const { setFormData, setDialog, setDialogHeader } =
+  //   useContext(GenericContext);
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
 
@@ -53,11 +51,11 @@ export function InterfaceTable() {
     }
   };
 
-  const editInterface = (rowData: EthernetInterface) => {
-    setFormData(rowData);
-    setDialog(true);
-    setDialogHeader(`Interface <${rowData.X_MIKROTIK_Name._value}>`);
-  };
+  // const edit = (data: InterfaceGeneric) => {
+  //   setFormData(data);
+  //   setDialog(true);
+  //   setDialogHeader("Interface Generic Details");
+  // };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -67,13 +65,6 @@ export function InterfaceTable() {
 
     setFilters(_filters);
     setGlobalFilterValue(value);
-  };
-
-  const idBodyTemplate = (rowData: EthernetInterface) => {
-    const arrOfId = rowData.Id._value.split(".");
-    const id = arrOfId[arrOfId.length - 1];
-
-    return id;
   };
 
   const header = (
@@ -89,24 +80,31 @@ export function InterfaceTable() {
     </div>
   );
 
-  const statusBodyTemplate = ({ Status }: EthernetInterface) => {
+  const idBodyTemplate = (rowData: InterfaceGeneric) => {
+    const arrOfId = rowData.Id._value.split(".");
+    const id = arrOfId[arrOfId.length - 1];
+
+    return id;
+  };
+
+  const statusBodyTemplate = ({ Status }: InterfaceGeneric) => {
     return <Tag value={Status._value} severity={getSeverity(Status._value)} />;
   };
 
-  const actionBodyTemplate = (rowData: EthernetInterface) => {
-    return (
-      <Button
-        icon="pi pi-pencil"
-        rounded
-        severity="success"
-        onClick={() => editInterface(rowData)}
-      />
-    );
-  };
+  // const actionBodyTemplate = (data: InterfaceGeneric) => {
+  //   return (
+  //     <Button
+  //       icon="pi pi-pencil"
+  //       rounded
+  //       severity="success"
+  //       onClick={() => edit(data)}
+  //     />
+  //   );
+  // };
 
   return (
     <DataTable
-      value={new Mikrotik(device).findAllEthernetInterface()}
+      value={new Mikrotik(device).findAllInterfaceGeneric()}
       filters={filters}
       globalFilterFields={["name"]}
       header={header}
@@ -117,20 +115,15 @@ export function InterfaceTable() {
         header="Id"
         body={idBodyTemplate}
       ></Column>
-      <Column sortable field="X_MIKROTIK_Name._value" header="Name"></Column>
-      <Column sortable field="MACAddress._value" header="MAC Address"></Column>
-      <Column
-        sortable
-        field="CurrentBitRate._value"
-        header="Current Bit Rate"
-      ></Column>
+      <Column sortable field="Name._value" header="Name"></Column>
+      <Column sortable field="Enable._value" header="Enable"></Column>
       <Column
         sortable
         field="Status._value"
         body={statusBodyTemplate}
         header="Status"
       ></Column>
-      <Column body={actionBodyTemplate}></Column>
+      {/* <Column body={actionBodyTemplate}></Column> */}
     </DataTable>
   );
 }

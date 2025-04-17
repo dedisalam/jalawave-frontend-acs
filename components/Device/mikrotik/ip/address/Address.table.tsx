@@ -46,32 +46,33 @@ export function AddressTable() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const editIP = (data: IPAddress) => {
+  const edit = (data: IPAddress) => {
     setFormData(data);
     setDialog(true);
-    setDialogHeader(`Address <${data.CIDR._value}>`);
+    setDialogHeader("IP Address Details");
   };
 
-  const removeIP = (data: IPAddress) => {
-    new IPAddressService()
-      .remove(device._id, data.IPInterface, data)
-      .then((response) => {
-        if (response.status === 200) {
-          toast.current?.show({
-            severity: "success",
-            summary: "Success",
-            detail: "Success Remove IP Address",
-          });
-
-          setRefresh(true);
-        } else {
-          toast.current?.show({
-            severity: "danger",
-            summary: "Error",
-            detail: "Error Remove IP",
-          });
-        }
+  const remove = async (data: IPAddress) => {
+    const response = await new IPAddressService().remove(
+      device._id,
+      data.IPInterface,
+      data
+    );
+    if (response.status === 200) {
+      toast.current?.show({
+        severity: "success",
+        summary: "Success",
+        detail: "Success Remove IP Address",
       });
+
+      setRefresh(true);
+    } else {
+      toast.current?.show({
+        severity: "danger",
+        summary: "Error",
+        detail: `Error ${response.status} Code`,
+      });
+    }
   };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,12 +98,12 @@ export function AddressTable() {
     </div>
   );
 
-  const idBodyTemplate = (rowData: IPAddress) => {
-    const arrOfId = rowData.Id._value.split(".");
+  const idBodyTemplate = (data: IPAddress) => {
+    const arrOfId = data.Id._value.split(".");
     const id = arrOfId[arrOfId.length - 1];
     const idInterface = arrOfId[arrOfId.length - 3];
 
-    return `IP Interface ${idInterface}.${id}`;
+    return `${idInterface}.${id}`;
   };
 
   const flagBodyTemplate = ({ AddressingType }: IPAddress) => {
@@ -111,8 +112,8 @@ export function AddressTable() {
     }
   };
 
-  const actionBodyTemplate = (rowData: IPAddress) => {
-    const isDynamic = rowData.AddressingType._value === "X_MIKROTIK_Dynamic";
+  const actionBodyTemplate = (data: IPAddress) => {
+    const isDynamic = data.AddressingType._value === "X_MIKROTIK_Dynamic";
 
     return (
       <>
@@ -120,14 +121,14 @@ export function AddressTable() {
           icon="pi pi-pencil"
           rounded
           severity="success"
-          onClick={() => editIP(rowData)}
+          onClick={() => edit(data)}
         />
         {!isDynamic && (
           <Button
             icon="pi pi-trash"
             rounded
             severity="danger"
-            onClick={() => removeIP(rowData)}
+            onClick={() => remove(data)}
             className="ml-3"
           />
         )}
@@ -160,6 +161,7 @@ export function AddressTable() {
         field="HWInterface.Name._value"
         header="Hardware Interface"
       ></Column>
+      <Column sortable field="Enable._value" header="Enable"></Column>
       <Column body={actionBodyTemplate}></Column>
     </DataTable>
   );

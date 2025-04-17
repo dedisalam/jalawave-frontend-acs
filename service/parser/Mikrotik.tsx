@@ -160,17 +160,17 @@ export class Mikrotik {
     });
   }
 
-  findByIdInterfaceGeneric(id: string): InterfaceGeneric {
-    const data = this.findAllInterfaceGeneric().find(
-      ({ Id }) => Id._value === id
-    );
+  // findByIdInterfaceGeneric(id: string): InterfaceGeneric {
+  //   const data = this.findAllInterfaceGeneric().find(
+  //     ({ Id }) => Id._value === id
+  //   );
 
-    if (!data) {
-      throw new Error(`Interface Generic with id "${id}" not found`);
-    }
+  //   if (!data) {
+  //     throw new Error(`Interface Generic with id "${id}" not found`);
+  //   }
 
-    return data;
-  }
+  //   return data;
+  // }
 
   findByIdInterfaceGenericV2(id: MenuString): InterfaceGeneric | undefined {
     const data = this.findAllInterfaceGeneric().find(
@@ -210,17 +210,17 @@ export class Mikrotik {
     });
   }
 
-  findByIdEthernetInterface(id: string): EthernetInterface {
-    const data = this.findAllEthernetInterface().find(
-      ({ Id }) => Id._value === id
-    );
+  // findByIdEthernetInterface(id: string): EthernetInterface {
+  //   const data = this.findAllEthernetInterface().find(
+  //     ({ Id }) => Id._value === id
+  //   );
 
-    if (!data) {
-      throw new Error(`Ethernet Interface with id "${id}" not found`);
-    }
+  //   if (!data) {
+  //     throw new Error(`Ethernet Interface with id "${id}" not found`);
+  //   }
 
-    return data;
-  }
+  //   return data;
+  // }
 
   findByIdEthernetInterfaceV2(id: MenuString): EthernetInterface | undefined {
     const data = this.findAllEthernetInterface().find(
@@ -254,15 +254,15 @@ export class Mikrotik {
     });
   }
 
-  findByIdEthernetLink(id: string): EthernetLink {
-    const data = this.findAllEthernetLink().find(({ Id }) => Id._value === id);
+  // findByIdEthernetLink(id: string): EthernetLink {
+  //   const data = this.findAllEthernetLink().find(({ Id }) => Id._value === id);
 
-    if (!data) {
-      throw new Error(`Ethernet Link with id "${id}" not found`);
-    }
+  //   if (!data) {
+  //     throw new Error(`Ethernet Link with id "${id}" not found`);
+  //   }
 
-    return data;
-  }
+  //   return data;
+  // }
 
   findByIdEthernetLinkV2(id: MenuString): EthernetLink | undefined {
     const data = this.findAllEthernetLink().find(
@@ -318,12 +318,20 @@ export class Mikrotik {
     });
   }
 
-  findByIdIPInterface(id: string): IPInterface {
-    const data = this.findAllIPInterface().find(({ Id }) => Id._value === id);
+  // findByIdIPInterface(id: string): IPInterface {
+  //   const data = this.findAllIPInterface().find(({ Id }) => Id._value === id);
 
-    if (!data) {
-      throw new Error(`IP Interface with id "${id}" not found`);
-    }
+  //   if (!data) {
+  //     throw new Error(`IP Interface with id "${id}" not found`);
+  //   }
+
+  //   return data;
+  // }
+
+  findByIdIPInterfaceV2(id: MenuString): IPInterface | undefined {
+    const data = this.findAllIPInterface().find(
+      ({ Id }) => Id._value === id._value
+    );
 
     return data;
   }
@@ -360,43 +368,69 @@ export class Mikrotik {
         const cidr = `${IPAddresses[IdIPAddress].IPAddress._value}/${prefix}`;
         const network =
           ipaddr.IPv4.networkAddressFromCIDR(cidr).toNormalizedString();
-        const IPInterface = this.findByIdIPInterface(
-          `Device.IP.Interface.${IdInterface}`
-        );
+        const IPInterface = this.findByIdIPInterfaceV2({
+          _type: "xsd:string",
+          _value: `Device.IP.Interface.${IdInterface}`,
+          _object: false,
+        });
 
-        let HWInterfaceName: MenuString;
-        let HWInterfaceId: MenuString;
+        let IdIPInterface: MenuString = {
+          _type: "xsd:string",
+          _value: "",
+          _object: false,
+        };
+        let HWInterfaceName: MenuString = {
+          _type: "xsd:string",
+          _value: "",
+          _object: false,
+        };
+        let HWInterfaceId: MenuString = {
+          _type: "xsd:string",
+          _value: "",
+          _object: false,
+        };
 
-        if (IPInterface.LowerLayers._value.includes("Device.Ethernet.Link")) {
-          const EthernetLink = this.findByIdEthernetLink(
-            IPInterface.LowerLayers._value
-          );
-
-          if (EthernetLink.LowerLayers._value.includes("Device.WiFi.SSID")) {
-            const WiFiSSID = this.findByIdWiFiSSID(
-              EthernetLink.LowerLayers._value
+        if (IPInterface) {
+          IdIPInterface = IPInterface.Id;
+          if (IPInterface.LowerLayers._value.includes("Device.Ethernet.Link")) {
+            const EthernetLink = this.findByIdEthernetLinkV2(
+              IPInterface.LowerLayers
             );
-            const WiFiRadio = this.findByIdWiFiRadio(
-              WiFiSSID.LowerLayers._value
-            );
-            const ids = WiFiRadio.Id._value.split(".");
-            const id = ids[ids.length - 1];
 
-            HWInterfaceId = WiFiRadio.Id;
-            HWInterfaceName = { ...WiFiRadio.Id, _value: `wlan${id}` };
+            if (EthernetLink) {
+              if (
+                EthernetLink.LowerLayers._value.includes("Device.WiFi.SSID")
+              ) {
+                const WiFiSSID = this.findByIdWiFiSSID(
+                  EthernetLink.LowerLayers._value
+                );
+                const WiFiRadio = this.findByIdWiFiRadio(
+                  WiFiSSID.LowerLayers._value
+                );
+                const ids = WiFiRadio.Id._value.split(".");
+                const id = ids[ids.length - 1];
+
+                HWInterfaceId = WiFiRadio.Id;
+                HWInterfaceName = { ...WiFiRadio.Id, _value: `wlan${id}` };
+              } else {
+                const EthernetInterface = this.findByIdEthernetInterfaceV2(
+                  EthernetLink.LowerLayers
+                );
+                if (EthernetInterface) {
+                  HWInterfaceId = EthernetInterface.Id;
+                  HWInterfaceName = EthernetInterface.X_MIKROTIK_Name;
+                }
+              }
+            }
           } else {
-            const EthernetInterface = this.findByIdEthernetInterface(
-              EthernetLink.LowerLayers._value
+            const InterfaceGeneric = this.findByIdInterfaceGenericV2(
+              IPInterface.LowerLayers
             );
-            HWInterfaceId = EthernetInterface.Id;
-            HWInterfaceName = EthernetInterface.X_MIKROTIK_Name;
+            if (InterfaceGeneric) {
+              HWInterfaceId = InterfaceGeneric.Id;
+              HWInterfaceName = InterfaceGeneric.Name;
+            }
           }
-        } else {
-          const InterfaceGeneric = this.findByIdInterfaceGeneric(
-            IPInterface.LowerLayers._value
-          );
-          HWInterfaceId = InterfaceGeneric.Id;
-          HWInterfaceName = InterfaceGeneric.Name;
         }
 
         return {
@@ -425,7 +459,7 @@ export class Mikrotik {
             Id: HWInterfaceId,
             Name: HWInterfaceName,
           },
-          IPInterface: IPInterface.Id,
+          IPInterface: IdIPInterface,
           AddressingType: IPAddresses[IdIPAddress].AddressingType,
           Enable: IPAddresses[IdIPAddress].Enable,
           IPAddress: IPAddresses[IdIPAddress].IPAddress,

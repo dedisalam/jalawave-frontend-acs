@@ -1,8 +1,8 @@
-import { EthernetInterface } from "@/types/mikrotik";
+import { InterfaceGeneric } from "@/types/mikrotik";
 import { GenieService } from "./GenieService";
 import { AxiosResponse } from "axios";
 
-export class EthernetInterfaceService {
+export class InterfaceGenericService {
   private genieService: GenieService;
   constructor() {
     this.genieService = new GenieService();
@@ -11,18 +11,13 @@ export class EthernetInterfaceService {
   async refresh(id: string): Promise<AxiosResponse> {
     return await this.genieService.refreshObject(
       id,
-      "Device.Ethernet.Interface"
+      "Device.X_MIKROTIK_Interface.Generic"
     );
   }
 
-  async update(id: string, data: EthernetInterface) {
+  async update(id: string, data: InterfaceGeneric): Promise<AxiosResponse> {
     const response = await this.genieService.setParameterValues(id, [
       [`${data.Id._value}.Enable`, data.Enable._value, data.Enable._type],
-      [
-        `${data.Id._value}.X_MIKROTIK_Name`,
-        data.X_MIKROTIK_Name._value,
-        data.X_MIKROTIK_Name._type,
-      ],
     ]);
 
     await this.refresh(id);

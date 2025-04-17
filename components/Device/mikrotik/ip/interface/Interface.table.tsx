@@ -101,7 +101,7 @@ export function InterfaceTable() {
     const arrOfId = rowData.Id._value.split(".");
     const id = arrOfId[arrOfId.length - 1];
 
-    return `IP Interface ${id}`;
+    return id;
   };
 
   const lowerLayersBodyTemplate = ({ LowerLayers }: IPInterface) => {
@@ -172,17 +172,17 @@ export function InterfaceTable() {
         header="Id"
         body={idBodyTemplate}
       ></Column>
-      <Column sortable field="Enable._value" header="Enable"></Column>
-      <Column
-        sortable
-        field="IPv4AddressNumberOfEntries._value"
-        header="Total IP"
-      ></Column>
       <Column
         sortable
         field="LowerLayers._value"
         header="Link / Interface Generic"
         body={lowerLayersBodyTemplate}
+      ></Column>
+      <Column sortable field="Enable._value" header="Enable"></Column>
+      <Column
+        sortable
+        field="IPv4AddressNumberOfEntries._value"
+        header="Total IP"
       ></Column>
       <Column
         sortable

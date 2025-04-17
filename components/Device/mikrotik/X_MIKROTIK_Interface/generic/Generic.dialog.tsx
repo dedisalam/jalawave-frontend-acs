@@ -5,14 +5,13 @@ import React, { useContext } from "react";
 import { Button } from "primereact/button";
 import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { InterfaceContext } from "./Interface.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { IPInterfaceService } from "@/service/IPInterfaceService";
-import { emptyInterface } from "@/service/data/ip/interface";
-import { InterfaceInput } from "./input/interface.input";
 import { EnableInput } from "./input/enable.input";
+import { InterfaceGenericService } from "@/service/InterfaceGenericService";
+import { GenericContext } from "./Generic.context";
+import { emptyInterfaceGeneric } from "@/service/data/x_mikrotik_interface/generic";
 
-export function InterfaceDialog() {
+export function GenericDialog() {
   const { toast } = useContext(LayoutContext);
   const { device, setRefresh } = useContext(MikrotikContext);
   const {
@@ -24,7 +23,7 @@ export function InterfaceDialog() {
     setIsLoading,
     formData,
     setFormData,
-  } = useContext(InterfaceContext);
+  } = useContext(GenericContext);
 
   if (!device) {
     return <Skeleton height="8rem"></Skeleton>;
@@ -39,29 +38,27 @@ export function InterfaceDialog() {
     setSubmitted(true);
     setIsLoading(true);
 
-    if (formData.LowerLayers._value.trim()) {
-      const response = await new IPInterfaceService().update(
-        device._id,
-        formData
-      );
-      if (response.status === 200) {
-        toast.current?.show({
-          severity: "success",
-          summary: "Success",
-          detail: "Success Change IP Interface",
-        });
+    const response = await new InterfaceGenericService().update(
+      device._id,
+      formData
+    );
+    if (response.status === 200) {
+      toast.current?.show({
+        severity: "success",
+        summary: "Success",
+        detail: "Success Change Interface Generic",
+      });
 
-        setIsLoading(false);
-        setRefresh(true);
-        setDialog(false);
-        setFormData(emptyInterface);
-      } else {
-        toast.current?.show({
-          severity: "danger",
-          summary: "Error",
-          detail: `Error ${response.status} Code`,
-        });
-      }
+      setIsLoading(false);
+      setRefresh(true);
+      setDialog(false);
+      setFormData(emptyInterfaceGeneric);
+    } else {
+      toast.current?.show({
+        severity: "danger",
+        summary: "Error",
+        detail: `Error ${response.status} Code`,
+      });
     }
   };
 
@@ -91,7 +88,6 @@ export function InterfaceDialog() {
       onHide={hide}
     >
       <EnableInput />
-      <InterfaceInput />
     </Dialog>
   );
 }

@@ -1,5 +1,10 @@
-import { RadioPage } from "@/components/Device/mikrotik/interfaces/radio/Radio.page";
+import { RadioProvider } from "@/components/Device/mikrotik/wifi/radio/Radio.context";
+import { RadioPage } from "@/components/Device/mikrotik/wifi/radio/Radio.page";
 
 export default function Page() {
-  return <RadioPage />;
+  return (
+    <RadioProvider>
+      <RadioPage />
+    </RadioProvider>
+  );
 }

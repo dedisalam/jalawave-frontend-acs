@@ -1,29 +1,27 @@
 "use client";
 
-import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
-import React, { useContext } from "react";
+import React, { ChangeEvent, useContext } from "react";
 import { InterfaceContext } from "../Interface.context";
+import { InputText } from "primereact/inputtext";
 
-export function NameInput() {
+export function StatusInput() {
   const { formData, submitted, setFormData } = useContext(InterfaceContext);
 
   const classNameInvalid = () => {
     return classNames({
-      "p-invalid": submitted && !formData.X_MIKROTIK_Name._value,
+      "p-invalid": submitted && !formData.Status._value,
     });
   };
 
-  const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const val = (e.target && e.target.value) || "";
 
     setFormData((data) => {
       return {
         ...data,
-        X_MIKROTIK_Name: {
-          ...data.X_MIKROTIK_Name,
+        Status: {
+          ...data.Status,
           _value: val,
         },
       };
@@ -32,16 +30,18 @@ export function NameInput() {
 
   return (
     <div className="field">
-      <label htmlFor="name">Name</label>
+      <label htmlFor="Status">Status</label>
       <InputText
-        value={formData.X_MIKROTIK_Name._value}
+        value={formData.Status._value}
         onChange={onChange}
         required
         autoFocus
         className={classNameInvalid()}
+        disabled={!formData.Status._writable}
+        name="Status"
       />
-      {submitted && !formData.X_MIKROTIK_Name._value && (
-        <small className="p-error">Name is not valid.</small>
+      {submitted && !formData.Status._value && (
+        <small className="p-error">Status is not valid.</small>
       )}
     </div>
   );

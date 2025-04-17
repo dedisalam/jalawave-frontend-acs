@@ -7,9 +7,10 @@ import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { LinkContext } from "./Link.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { InterfaceInput } from "./input/interface.input";
 import { emptyLink } from "@/service/data/ethernet/link";
 import { EthernetLinkService } from "@/service/EthernetLinkService";
+import { SSIDEthernetInput } from "./input/ssidEthernet.input";
+import { EnableInput } from "./input/enable.input";
 
 export function LinkDialog() {
   const { toast } = useContext(LayoutContext);
@@ -34,11 +35,12 @@ export function LinkDialog() {
     setDialog(false);
   };
 
-  const saveIP = async () => {
+  const save = async () => {
     setSubmitted(true);
     setIsLoading(true);
 
     if (formData.LowerLayers._value.trim()) {
+      console.log("Enable", formData.Enable._value);
       const response = await new EthernetLinkService().update(
         device._id,
         formData
@@ -49,10 +51,17 @@ export function LinkDialog() {
           summary: "Success",
           detail: "Success Change Link",
         });
+
         setIsLoading(false);
         setRefresh(true);
         setDialog(false);
         setFormData(emptyLink);
+      } else {
+        toast.current?.show({
+          severity: "danger",
+          summary: "Error",
+          detail: `Error ${response.status} Code`,
+        });
       }
     }
   };
@@ -65,7 +74,7 @@ export function LinkDialog() {
           label="Save"
           icon="pi pi-check"
           text
-          onClick={saveIP}
+          onClick={save}
           loading={isLoading}
         />
       </>
@@ -82,7 +91,8 @@ export function LinkDialog() {
       footer={Footer}
       onHide={hide}
     >
-      <InterfaceInput />
+      <EnableInput />
+      <SSIDEthernetInput />
     </Dialog>
   );
 }
