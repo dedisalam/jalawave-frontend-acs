@@ -23,6 +23,11 @@ export class EthernetInterfaceService {
         data.X_MIKROTIK_Name._value,
         data.X_MIKROTIK_Name._type,
       ],
+      [
+        `${data.Id._value}.X_MIKROTIK_Comment`,
+        data.X_MIKROTIK_Comment._value,
+        data.X_MIKROTIK_Comment._type,
+      ],
     ]);
 
     await this.refresh(id);

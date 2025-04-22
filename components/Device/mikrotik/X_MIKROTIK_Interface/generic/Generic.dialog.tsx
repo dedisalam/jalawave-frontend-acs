@@ -49,7 +49,7 @@ export function GenericDialog() {
         detail: "Success Change Interface Generic",
       });
 
-      setIsLoading(false);
+      setSubmitted(false);
       setRefresh(true);
       setDialog(false);
       setFormData(emptyInterfaceGeneric);
@@ -60,6 +60,8 @@ export function GenericDialog() {
         detail: `Error ${response.status} Code`,
       });
     }
+
+    setIsLoading(false);
   };
 
   const Footer = () => {

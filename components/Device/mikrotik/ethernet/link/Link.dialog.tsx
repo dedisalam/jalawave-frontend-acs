@@ -51,7 +51,7 @@ export function LinkDialog() {
           detail: "Success Change Link",
         });
 
-        setIsLoading(false);
+        setSubmitted(false);
         setRefresh(true);
         setDialog(false);
         setFormData(emptyLink);
@@ -63,6 +63,8 @@ export function LinkDialog() {
         });
       }
     }
+
+    setIsLoading(false);
   };
 
   const Footer = () => {

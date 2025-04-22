@@ -54,7 +54,7 @@ export function AddressDialog() {
             detail: "Success Change IP Address",
           });
 
-          setIsLoading(false);
+          setSubmitted(false);
           setRefresh(true);
           setDialog(false);
           setFormData(emptyIPAddress);
@@ -67,6 +67,8 @@ export function AddressDialog() {
         }
       }
     }
+
+    setIsLoading(false);
   };
 
   const Footer = () => {

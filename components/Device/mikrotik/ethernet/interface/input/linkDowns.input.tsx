@@ -1,18 +1,11 @@
 "use client";
 
-import { classNames } from "primereact/utils";
 import React, { useContext } from "react";
 import { InterfaceContext } from "../Interface.context";
 import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
 
 export function LinkDownsInput() {
-  const { formData, submitted, setFormData } = useContext(InterfaceContext);
-
-  const classNameInvalid = () => {
-    return classNames({
-      "p-invalid": submitted && !formData.X_MIKROTIK_LinkDowns._value,
-    });
-  };
+  const { formData, setFormData } = useContext(InterfaceContext);
 
   const onChange = (e: InputNumberChangeEvent) => {
     const val = e.value || 0;
@@ -36,13 +29,9 @@ export function LinkDownsInput() {
         onChange={onChange}
         required
         autoFocus
-        className={classNameInvalid()}
         disabled={!formData.X_MIKROTIK_LinkDowns._writable}
         name="Link Downs"
       />
-      {submitted && !formData.X_MIKROTIK_LinkDowns._value && (
-        <small className="p-error">Link Downs is not valid.</small>
-      )}
     </div>
   );
 }

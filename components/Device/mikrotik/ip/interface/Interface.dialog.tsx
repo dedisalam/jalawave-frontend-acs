@@ -51,7 +51,7 @@ export function InterfaceDialog() {
           detail: "Success Change IP Interface",
         });
 
-        setIsLoading(false);
+        setSubmitted(false);
         setRefresh(true);
         setDialog(false);
         setFormData(emptyInterface);
@@ -63,6 +63,8 @@ export function InterfaceDialog() {
         });
       }
     }
+
+    setIsLoading(false);
   };
 
   const Footer = () => {

@@ -47,12 +47,15 @@ export function SSIDDialog() {
           summary: "Success",
           detail: "Success Change SSID",
         });
-        setIsLoading(false);
+
+        setSubmitted(false);
         setRefresh(true);
         setDialog(false);
         setFormData(emptyWiFiSSID);
       }
     }
+
+    setIsLoading(false);
   };
 
   const Footer = () => {

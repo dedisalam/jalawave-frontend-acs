@@ -56,7 +56,7 @@ export function InterfaceDialog() {
           detail: "Success Change Ethernet Interface",
         });
 
-        setIsLoading(false);
+        setSubmitted(false);
         setRefresh(true);
         setDialog(false);
         setFormData(emptyEthInterface);
@@ -68,6 +68,8 @@ export function InterfaceDialog() {
         });
       }
     }
+
+    setIsLoading(false);
   };
 
   const Footer = () => {

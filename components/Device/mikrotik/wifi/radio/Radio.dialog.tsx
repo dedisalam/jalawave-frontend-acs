@@ -46,7 +46,7 @@ export function RadioDialog() {
         detail: "Success Change WiFi Radio",
       });
 
-      setIsLoading(false);
+      setSubmitted(false);
       setRefresh(true);
       setDialog(false);
       setFormData(emptyWiFiRadio);
@@ -57,6 +57,8 @@ export function RadioDialog() {
         detail: `Error ${response.status} Code`,
       });
     }
+
+    setIsLoading(false);
   };
 
   const Footer = () => {
