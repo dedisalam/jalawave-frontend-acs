@@ -1,6 +1,6 @@
-import { WiFiRadio } from "@/types/mikrotik";
+import { Data } from "./Radio";
 
-export const emptyWiFiRadio: WiFiRadio = {
+export const emptyData: Data = {
   Id: {
     _type: "xsd:string",
     _value: "",

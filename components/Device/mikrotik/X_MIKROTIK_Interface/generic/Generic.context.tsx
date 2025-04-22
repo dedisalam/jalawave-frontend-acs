@@ -1,6 +1,4 @@
 "use client";
-import { emptyInterfaceGeneric } from "@/service/data/x_mikrotik_interface/generic";
-import { InterfaceGeneric } from "@/types/mikrotik";
 import {
   useState,
   createContext,
@@ -8,14 +6,16 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { Data } from "./Generic";
+import { emptyData } from "./Generic.data";
 
 interface GenericContextProps {
   dialog: boolean;
   setDialog: Dispatch<SetStateAction<boolean>>;
   dialogHeader: string;
   setDialogHeader: Dispatch<SetStateAction<string>>;
-  formData: InterfaceGeneric;
-  setFormData: Dispatch<SetStateAction<InterfaceGeneric>>;
+  formData: Data;
+  setFormData: Dispatch<SetStateAction<Data>>;
   submitted: boolean;
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
@@ -31,9 +31,7 @@ interface GenericProviderProps {
 export const GenericProvider = ({ children }: GenericProviderProps) => {
   const [dialog, setDialog] = useState(false);
   const [dialogHeader, setDialogHeader] = useState<string>("");
-  const [formData, setFormData] = useState<InterfaceGeneric>(
-    emptyInterfaceGeneric
-  );
+  const [formData, setFormData] = useState<Data>(emptyData);
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

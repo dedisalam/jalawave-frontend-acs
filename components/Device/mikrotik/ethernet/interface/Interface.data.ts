@@ -1,19 +1,33 @@
-import { WiFiSSID } from "@/types/mikrotik";
+import { Data } from "./Interface";
 
-export const emptyWiFiSSID: WiFiSSID = {
+export const emptyData: Data = {
   Id: {
+    _object: false,
     _type: "xsd:string",
     _value: "",
+    _timestamp: Date.now().toString(),
+    _writable: false,
+  },
+  CurrentBitRate: {
+    _type: "xsd:unsignedInt",
+    _value: 0,
     _object: false,
     _timestamp: Date.now().toString(),
     _writable: false,
   },
-  BSSID: {
+  Enable: {
+    _type: "xsd:boolean",
+    _value: false,
+    _object: false,
+    _timestamp: Date.now().toString(),
+    _writable: true,
+  },
+  LowerLayers: {
     _type: "xsd:string",
     _value: "",
     _object: false,
     _timestamp: Date.now().toString(),
-    _writable: false,
+    _writable: true,
   },
   MACAddress: {
     _type: "xsd:string",
@@ -83,27 +97,6 @@ export const emptyWiFiSSID: WiFiSSID = {
     _timestamp: Date.now().toString(),
     _writable: false,
   },
-  Enable: {
-    _type: "xsd:boolean",
-    _value: true,
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _writable: true,
-  },
-  LowerLayers: {
-    _type: "xsd:string",
-    _value: "",
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _writable: true,
-  },
-  SSID: {
-    _type: "xsd:string",
-    _value: "",
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _writable: true,
-  },
   Status: {
     _type: "xsd:string",
     _value: "",
@@ -111,7 +104,28 @@ export const emptyWiFiSSID: WiFiSSID = {
     _timestamp: Date.now().toString(),
     _writable: false,
   },
-  _object: true,
+  X_MIKROTIK_Comment: {
+    _type: "xsd:string",
+    _value: "",
+    _object: false,
+    _timestamp: Date.now().toString(),
+    _writable: true,
+  },
+  X_MIKROTIK_LinkDowns: {
+    _type: "xsd:unsignedInt",
+    _value: 0,
+    _object: false,
+    _timestamp: Date.now().toString(),
+    _writable: false,
+  },
+  X_MIKROTIK_Name: {
+    _type: "xsd:string",
+    _value: "",
+    _object: false,
+    _timestamp: Date.now().toString(),
+    _writable: true,
+  },
+  _object: false,
   _timestamp: Date.now().toString(),
   _writable: false,
 };

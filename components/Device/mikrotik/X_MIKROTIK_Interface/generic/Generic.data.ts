@@ -1,6 +1,6 @@
-import { InterfaceGeneric } from "@/types/mikrotik";
+import { Data } from "./Generic";
 
-export const emptyInterfaceGeneric: InterfaceGeneric = {
+export const emptyData: Data = {
   Id: {
     _type: "xsd:string",
     _value: "",

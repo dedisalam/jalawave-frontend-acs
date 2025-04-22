@@ -8,14 +8,14 @@ import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { InterfaceContext } from "./Interface.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { EthernetInterfaceService } from "@/service/EthernetInterfaceService";
-import { emptyEthInterface } from "@/service/data/ethernet/interface";
 import { EnableInput } from "./input/enable.input";
 import { CurrentBitRateInput } from "./input/curBitRate.input";
 import { MACAddressInput } from "./input/macAddress.input";
 import { StatusInput } from "./input/status.input";
 import { CommentInput } from "./input/comment.input";
 import { LinkDownsInput } from "./input/linkDowns.input";
+import { InterfaceService } from "./Interface.service";
+import { emptyData } from "./Interface.data";
 
 export function InterfaceDialog() {
   const { toast } = useContext(LayoutContext);
@@ -45,7 +45,7 @@ export function InterfaceDialog() {
     setIsLoading(true);
 
     if (formData.X_MIKROTIK_Name._value.trim()) {
-      const response = await new EthernetInterfaceService().update(
+      const response = await new InterfaceService().update(
         device._id,
         formData
       );
@@ -59,7 +59,7 @@ export function InterfaceDialog() {
         setSubmitted(false);
         setRefresh(true);
         setDialog(false);
-        setFormData(emptyEthInterface);
+        setFormData(emptyData);
       } else {
         toast.current?.show({
           severity: "danger",

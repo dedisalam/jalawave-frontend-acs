@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { WiFiRadioService } from "@/service/WiFiRadioService";
+import { RadioService } from "./Radio.service";
 
 export function RadioToolbar() {
   const { toast } = useContext(LayoutContext);
@@ -19,7 +19,7 @@ export function RadioToolbar() {
 
   const onRefresh = () => {
     setIsRefreshLoading(true);
-    new WiFiRadioService().refresh(device._id).then((response) => {
+    new RadioService().refresh(device._id).then((response) => {
       if (response.status === 200) {
         toast.current?.show({
           severity: "success",

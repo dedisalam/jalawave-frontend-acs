@@ -1,8 +1,8 @@
+import { GenieService } from "@/service/GenieService";
 import { InterfaceGeneric } from "@/types/mikrotik";
-import { GenieService } from "./GenieService";
 import { AxiosResponse } from "axios";
 
-export class InterfaceGenericService {
+export class GenericService {
   private genieService: GenieService;
   constructor() {
     this.genieService = new GenieService();

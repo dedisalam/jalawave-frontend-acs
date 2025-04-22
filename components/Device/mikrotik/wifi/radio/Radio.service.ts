@@ -1,8 +1,8 @@
-import { WiFiRadio } from "@/types/mikrotik";
-import { GenieService } from "./GenieService";
+import { GenieService } from "@/service/GenieService";
 import { AxiosResponse } from "axios";
+import { Data } from "./Radio";
 
-export class WiFiRadioService {
+export class RadioService {
   private genieService: GenieService;
   constructor() {
     this.genieService = new GenieService();
@@ -12,7 +12,7 @@ export class WiFiRadioService {
     return await this.genieService.refreshObject(id, "Device.WiFi.Radio");
   }
 
-  async update(id: string, data: WiFiRadio): Promise<AxiosResponse> {
+  async update(id: string, data: Data): Promise<AxiosResponse> {
     const response = await this.genieService.setParameterValues(id, [
       [`${data.Id._value}.Enable`, data.Enable._value, data.Enable._type],
     ]);

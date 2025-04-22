@@ -8,8 +8,8 @@ import { MikrotikContext } from "../../Mikrotik.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
 import { EnableInput } from "./input/enable.input";
 import { RadioContext } from "./Radio.context";
-import { emptyWiFiRadio } from "@/service/data/wifi/radio";
-import { WiFiRadioService } from "@/service/WiFiRadioService";
+import { RadioService } from "./Radio.service";
+import { emptyData } from "./Radio.data";
 
 export function RadioDialog() {
   const { toast } = useContext(LayoutContext);
@@ -38,7 +38,7 @@ export function RadioDialog() {
     setSubmitted(true);
     setIsLoading(true);
 
-    const response = await new WiFiRadioService().update(device._id, formData);
+    const response = await new RadioService().update(device._id, formData);
     if (response.status === 200) {
       toast.current?.show({
         severity: "success",
@@ -49,7 +49,7 @@ export function RadioDialog() {
       setSubmitted(false);
       setRefresh(true);
       setDialog(false);
-      setFormData(emptyWiFiRadio);
+      setFormData(emptyData);
     } else {
       toast.current?.show({
         severity: "danger",

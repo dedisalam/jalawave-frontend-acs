@@ -1,6 +1,5 @@
 "use client";
 
-import { Mikrotik } from "@/service/parser/Mikrotik";
 import { FilterMatchMode } from "primereact/api";
 import { Column } from "primereact/column";
 import {
@@ -14,12 +13,13 @@ import { InputText } from "primereact/inputtext";
 import React, { useContext, useEffect, useState } from "react";
 import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { IPInterface } from "@/types/mikrotik";
+import { TBIPInterface } from "@/types/mikrotik";
 import { Tag } from "primereact/tag";
 import { Button } from "primereact/button";
 import { InterfaceContext } from "./Interface.context";
 import { IPInterfaceService } from "@/service/IPInterfaceService";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
+import { Interface as IpInterface } from "@/service/parser/mikrotik/ip/interface";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -56,22 +56,28 @@ export function InterfaceTable() {
     }
   };
 
-  const editInterface = (rowData: IPInterface) => {
-    setFormData(rowData);
-    setDialog(true);
-    setDialogHeader(`Interface <${rowData.LowerLayers._value}>`);
+  const editInterface = (rowData: TBIPInterface) => {
+    const ipInterface = new IpInterface(device).findById(rowData.Id);
+    if (ipInterface) {
+      setFormData(ipInterface);
+      setDialog(true);
+      setDialogHeader(`Interface <${rowData.HWInterface.Name._value}>`);
+    }
   };
 
-  const removeInterface = (rowData: IPInterface) => {
-    new IPInterfaceService().remove(device._id, rowData).then(() => {
-      toast.current?.show({
-        severity: "success",
-        summary: "Success",
-        detail: "Success Remove IP Interface",
-      });
+  const removeInterface = (rowData: TBIPInterface) => {
+    const ipInterface = new IpInterface(device).findById(rowData.Id);
+    if (ipInterface) {
+      new IPInterfaceService().remove(device._id, ipInterface).then(() => {
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Success Remove IP Interface",
+        });
 
-      setRefresh(true);
-    });
+        setRefresh(true);
+      });
+    }
   };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,45 +103,27 @@ export function InterfaceTable() {
     </div>
   );
 
-  const idBodyTemplate = (rowData: IPInterface) => {
-    const arrOfId = rowData.Id._value.split(".");
-    const id = arrOfId[arrOfId.length - 1];
+  const enableBodyTemplate = ({ Enable }: TBIPInterface) => {
+    switch (Enable._value) {
+      case "Enabled":
+        return <Tag value={Enable._value} severity="success" />;
+        break;
 
-    return id;
+      case "Disabled":
+        return <Tag value={Enable._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Enable._value} />;
+        break;
+    }
   };
 
-  const lowerLayersBodyTemplate = ({ LowerLayers }: IPInterface) => {
-    if (LowerLayers._value === "") {
-      return LowerLayers._value;
-    }
-
-    if (LowerLayers._value.includes("Device.Ethernet.Link")) {
-      const ids = LowerLayers._value.split(".");
-      const id = ids[ids.length - 1];
-      const name = ids[ids.length - 2];
-
-      return `${name} ${id}`;
-    }
-
-    if (LowerLayers._value.includes("Device.X_MIKROTIK_Interface.Generic")) {
-      const generic = new Mikrotik(device).findByIdInterfaceGenericV2(
-        LowerLayers
-      );
-      if (!generic) {
-        return "";
-      }
-
-      return generic.Name._value;
-    }
-
-    return LowerLayers._value;
-  };
-
-  const statusBodyTemplate = ({ Status }: IPInterface) => {
+  const statusBodyTemplate = ({ Status }: TBIPInterface) => {
     return <Tag value={Status._value} severity={getSeverity(Status._value)} />;
   };
 
-  const actionBodyTemplate = (rowData: IPInterface) => {
+  const actionBodyTemplate = (rowData: TBIPInterface) => {
     const isEmpty = rowData.IPv4AddressNumberOfEntries._value === 0;
 
     return (
@@ -161,24 +149,27 @@ export function InterfaceTable() {
 
   return (
     <DataTable
-      value={new Mikrotik(device).findAllIPInterface()}
+      value={new IpInterface(device).getTables()}
       filters={filters}
-      globalFilterFields={["name"]}
+      globalFilterFields={[
+        "HWInterface.Name._value",
+        "Enable._value",
+        "IPv4AddressNumberOfEntries._value",
+        "Status._value",
+      ]}
       header={header}
     >
       <Column
         sortable
-        field="Id._value"
-        header="Id"
-        body={idBodyTemplate}
+        field="HWInterface.Name._value"
+        header="Interface"
       ></Column>
       <Column
         sortable
-        field="LowerLayers._value"
-        header="Link / Interface Generic"
-        body={lowerLayersBodyTemplate}
+        field="Enable._value"
+        header="Enable"
+        body={enableBodyTemplate}
       ></Column>
-      <Column sortable field="Enable._value" header="Enable"></Column>
       <Column
         sortable
         field="IPv4AddressNumberOfEntries._value"

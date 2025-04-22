@@ -8,7 +8,7 @@ import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { SSIDContext } from "./ssid.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { emptyWiFiSSID } from "@/service/data/wifi/ssid";
+import { emptyWiFiSSID } from "@/components/Device/mikrotik/wifi/ssid/ssid.data";
 import { WiFiSSIDService } from "@/service/WiFiSSIDService";
 import { InterfaceInput } from "./input/interface.input";
 

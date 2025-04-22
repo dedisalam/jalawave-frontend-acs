@@ -1,8 +1,8 @@
-import { EthernetInterface } from "@/types/mikrotik";
-import { GenieService } from "./GenieService";
+import { GenieService } from "@/service/GenieService";
 import { AxiosResponse } from "axios";
+import { Data } from "./Interface";
 
-export class EthernetInterfaceService {
+export class InterfaceService {
   private genieService: GenieService;
   constructor() {
     this.genieService = new GenieService();
@@ -15,7 +15,7 @@ export class EthernetInterfaceService {
     );
   }
 
-  async update(id: string, data: EthernetInterface) {
+  async update(id: string, data: Data) {
     const response = await this.genieService.setParameterValues(id, [
       [`${data.Id._value}.Enable`, data.Enable._value, data.Enable._type],
       [

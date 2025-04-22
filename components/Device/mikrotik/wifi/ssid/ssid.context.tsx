@@ -1,5 +1,5 @@
 "use client";
-import { emptyWiFiSSID } from "@/service/data/wifi/ssid";
+import { emptyWiFiSSID } from "@/components/Device/mikrotik/wifi/ssid/ssid.data";
 import { WiFiSSID } from "@/types/mikrotik";
 import {
   useState,

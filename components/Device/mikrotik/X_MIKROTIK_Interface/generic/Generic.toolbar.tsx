@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { InterfaceGenericService } from "@/service/InterfaceGenericService";
+import { GenericService } from "./Generic.service";
 
 export function GenericToolbar() {
   const { toast } = useContext(LayoutContext);
@@ -19,7 +19,7 @@ export function GenericToolbar() {
 
   const onRefresh = () => {
     setIsRefreshLoading(true);
-    new InterfaceGenericService().refresh(device._id).then((response) => {
+    new GenericService().refresh(device._id).then((response) => {
       if (response.status === 200) {
         toast.current?.show({
           severity: "success",

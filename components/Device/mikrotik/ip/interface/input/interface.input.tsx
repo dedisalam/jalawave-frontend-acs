@@ -2,12 +2,14 @@
 
 import { classNames } from "primereact/utils";
 import React, { useContext } from "react";
-import { Mikrotik } from "@/service/parser/Mikrotik";
 import { MikrotikContext } from "../../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { MenuString } from "@/types/genieacs/base";
 import { InterfaceContext } from "../Interface.context";
+import { Link } from "@/service/parser/mikrotik/ethernet/link";
+import { Interface as IpInterface } from "@/service/parser/mikrotik/ip/interface";
+import { SSID } from "@/service/parser/mikrotik/wifi/ssid";
 
 export function InterfaceInput() {
   const { device } = useContext(MikrotikContext);
@@ -38,7 +40,7 @@ export function InterfaceInput() {
   }
 
   const nameGeneric = (Id: MenuString): string => {
-    const generic = new Mikrotik(device).findByIdInterfaceGenericV2(Id);
+    const generic = new Generic(device).findById(Id);
     if (!generic) {
       return "";
     }
@@ -47,10 +49,37 @@ export function InterfaceInput() {
   };
 
   const nameLink = (Id: MenuString): string => {
-    const ids = Id._value.split(".");
-    const id = ids[ids.length - 1];
+    const ethernetLink = new Link(device).findById(Id);
+    if (!ethernetLink) {
+      return "";
+    }
+    const lowerLayers = ethernetLink.LowerLayers._value;
+    const isSSID = lowerLayers.includes("Device.WiFi.SSID");
+    if (isSSID) {
+      const ssid = new SSID(device).findById(ethernetLink.LowerLayers);
+      if (!ssid) {
+        return "";
+      }
+      const isRadio = ssid.LowerLayers._value.includes("Device.WiFi.Radio");
+      if (isRadio) {
+        const radio = new Radio(device).findById(ssid.LowerLayers);
+        if (!radio) {
+          return "";
+        }
+        const ids = radio.Id._value.split(".");
+        return `wlan${ids[ids.length - 1]}`;
+      }
+    }
+    const isEthernet = lowerLayers.includes("Device.Ethernet.Interface");
+    if (isEthernet) {
+      const ethernet = new Interface(device).findById(ethernetLink.LowerLayers);
+      if (!ethernet) {
+        return "";
+      }
+      return ethernet.X_MIKROTIK_Name._value;
+    }
 
-    return `Link ${id}`;
+    return "";
   };
 
   const name = (Id: MenuString): string => {
@@ -69,10 +98,8 @@ export function InterfaceInput() {
     id: string;
     name: string;
   }[] => {
-    const mikrotik = new Mikrotik(device);
-
-    const link = mikrotik
-      .findAllEthernetLink()
+    const link = new Link(device)
+      .findAll()
       .map(({ Id }): { id: string; name: string } => {
         return {
           id: Id._value,
@@ -80,8 +107,8 @@ export function InterfaceInput() {
         };
       });
 
-    const generic = mikrotik
-      .findAllInterfaceGeneric()
+    const generic = new Generic(device)
+      .findAll()
       .map(({ Id, Name }): { id: string; name: string } => {
         return {
           id: Id._value,
@@ -92,7 +119,7 @@ export function InterfaceInput() {
     const linkGeneric = [link, generic]
       .flat()
       .filter(({ id }) => {
-        const ethlink = mikrotik.findByLowerLayersIPInterface({
+        const ethlink = new IpInterface(device).findById({
           _object: false,
           _type: "xsd:string",
           _value: id,
@@ -103,7 +130,7 @@ export function InterfaceInput() {
         return false;
       })
       .filter(({ id }) => {
-        const ethernetLink = mikrotik.findByIdEthernetLinkV2({
+        const ethernetLink = new Link(device).findById({
           _object: false,
           _type: "xsd:string",
           _value: id,
@@ -114,7 +141,7 @@ export function InterfaceInput() {
         return false;
       });
 
-    const selected = mikrotik.findByIdIPInterfaceV2(formData.Id);
+    const selected = new IpInterface(device).findById(formData.Id);
     if (selected && selected.LowerLayers._value !== "") {
       linkGeneric.push({
         id: selected.LowerLayers._value,

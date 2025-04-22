@@ -1,33 +1,17 @@
-import { EthernetInterface } from "@/types/mikrotik";
-
-export const emptyEthInterface: EthernetInterface = {
+export const emptyData: Data = {
   Id: {
-    _object: false,
-    _type: "xsd:string",
-    _value: "",
-    _timestamp: Date.now().toString(),
-    _writable: false,
-  },
-  CurrentBitRate: {
-    _type: "xsd:unsignedInt",
-    _value: 0,
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _writable: false,
-  },
-  Enable: {
-    _type: "xsd:boolean",
-    _value: false,
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _writable: true,
-  },
-  LowerLayers: {
     _type: "xsd:string",
     _value: "",
     _object: false,
     _timestamp: Date.now().toString(),
-    _writable: true,
+    _writable: false,
+  },
+  BSSID: {
+    _type: "xsd:string",
+    _value: "",
+    _object: false,
+    _timestamp: Date.now().toString(),
+    _writable: false,
   },
   MACAddress: {
     _type: "xsd:string",
@@ -97,6 +81,27 @@ export const emptyEthInterface: EthernetInterface = {
     _timestamp: Date.now().toString(),
     _writable: false,
   },
+  Enable: {
+    _type: "xsd:boolean",
+    _value: true,
+    _object: false,
+    _timestamp: Date.now().toString(),
+    _writable: true,
+  },
+  LowerLayers: {
+    _type: "xsd:string",
+    _value: "",
+    _object: false,
+    _timestamp: Date.now().toString(),
+    _writable: true,
+  },
+  SSID: {
+    _type: "xsd:string",
+    _value: "",
+    _object: false,
+    _timestamp: Date.now().toString(),
+    _writable: true,
+  },
   Status: {
     _type: "xsd:string",
     _value: "",
@@ -104,28 +109,7 @@ export const emptyEthInterface: EthernetInterface = {
     _timestamp: Date.now().toString(),
     _writable: false,
   },
-  X_MIKROTIK_Comment: {
-    _type: "xsd:string",
-    _value: "",
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _writable: true,
-  },
-  X_MIKROTIK_LinkDowns: {
-    _type: "xsd:unsignedInt",
-    _value: 0,
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _writable: false,
-  },
-  X_MIKROTIK_Name: {
-    _type: "xsd:string",
-    _value: "",
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _writable: true,
-  },
-  _object: false,
+  _object: true,
   _timestamp: Date.now().toString(),
   _writable: false,
 };

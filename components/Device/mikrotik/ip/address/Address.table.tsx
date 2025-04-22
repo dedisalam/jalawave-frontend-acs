@@ -1,7 +1,6 @@
 "use client";
 
 import { AddressContext } from "@/components/Device/mikrotik/ip/address/Address.context";
-import { Mikrotik } from "@/service/parser/Mikrotik";
 import { FilterMatchMode } from "primereact/api";
 import { Button } from "primereact/button";
 import { Column } from "primereact/column";
@@ -20,6 +19,7 @@ import { MikrotikContext } from "../../Mikrotik.context";
 import { IPAddress } from "@/types/mikrotik";
 import { IPAddressService } from "@/service/IPAddressService";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
+import { Address } from "@/service/parser/mikrotik/ip/address";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -98,17 +98,17 @@ export function AddressTable() {
     </div>
   );
 
-  const idBodyTemplate = (data: IPAddress) => {
-    const arrOfId = data.Id._value.split(".");
-    const id = arrOfId[arrOfId.length - 1];
-    const idInterface = arrOfId[arrOfId.length - 3];
-
-    return `${idInterface}.${id}`;
-  };
-
   const flagBodyTemplate = ({ AddressingType }: IPAddress) => {
     if (AddressingType._value === "X_MIKROTIK_Dynamic") {
       return <Tag value="D" severity="warning" />;
+    }
+  };
+
+  const enableBodyTemplate = ({ Enable }: IPAddress) => {
+    if (Enable._value) {
+      return <Tag value="Enabled" severity="success" />;
+    } else {
+      return <Tag value="Disabled" severity="danger" />;
     }
   };
 
@@ -138,7 +138,7 @@ export function AddressTable() {
 
   return (
     <DataTable
-      value={new Mikrotik(device).findAllIPAddress()}
+      value={new Address(device).findAll()}
       filters={filters}
       globalFilterFields={["ip", "network", "interface"]}
       header={header}
@@ -148,20 +148,19 @@ export function AddressTable() {
         headerStyle={{ width: "3rem" }}
         body={flagBodyTemplate}
       ></Column>
-      <Column
-        sortable
-        field="Id._value"
-        header="Id"
-        body={idBodyTemplate}
-      ></Column>
       <Column sortable field="CIDR._value" header="Address"></Column>
       <Column sortable field="Network._value" header="Network"></Column>
       <Column
         sortable
         field="HWInterface.Name._value"
-        header="Hardware Interface"
+        header="Interface"
       ></Column>
-      <Column sortable field="Enable._value" header="Enable"></Column>
+      <Column
+        sortable
+        field="Enable._value"
+        header="Status"
+        body={enableBodyTemplate}
+      ></Column>
       <Column body={actionBodyTemplate}></Column>
     </DataTable>
   );

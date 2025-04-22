@@ -1,6 +1,5 @@
 "use client";
 
-import { Mikrotik } from "@/service/parser/Mikrotik";
 import { FilterMatchMode } from "primereact/api";
 import { Column } from "primereact/column";
 import {
@@ -14,8 +13,9 @@ import { InputText } from "primereact/inputtext";
 import React, { useContext, useEffect, useState } from "react";
 import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { InterfaceGeneric } from "@/types/mikrotik";
 import { Tag } from "primereact/tag";
+import { GenericParser } from "./Generic.parser";
+import { Table } from "./Generic";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -23,8 +23,6 @@ const defaultFilters: DataTableFilterMeta = {
 
 export function GenericTable() {
   const { device } = useContext(MikrotikContext);
-  // const { setFormData, setDialog, setDialogHeader } =
-  //   useContext(GenericContext);
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
 
@@ -40,22 +38,6 @@ export function GenericTable() {
   if (!device) {
     return <Skeleton height="8rem"></Skeleton>;
   }
-
-  const getSeverity = (status: string) => {
-    switch (status) {
-      case "Up":
-        return "success";
-
-      case "Down":
-        return "danger";
-    }
-  };
-
-  // const edit = (data: InterfaceGeneric) => {
-  //   setFormData(data);
-  //   setDialog(true);
-  //   setDialogHeader("Interface Generic Details");
-  // };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -80,50 +62,58 @@ export function GenericTable() {
     </div>
   );
 
-  const idBodyTemplate = (rowData: InterfaceGeneric) => {
-    const arrOfId = rowData.Id._value.split(".");
-    const id = arrOfId[arrOfId.length - 1];
+  const enableBodyTemplate = ({ Enable }: Table) => {
+    switch (Enable._value) {
+      case "Enabled":
+        return <Tag value={Enable._value} severity="success" />;
+        break;
 
-    return id;
+      case "Disabled":
+        return <Tag value={Enable._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Enable._value} severity="info" />;
+        break;
+    }
   };
 
-  const statusBodyTemplate = ({ Status }: InterfaceGeneric) => {
-    return <Tag value={Status._value} severity={getSeverity(Status._value)} />;
-  };
+  const statusBodyTemplate = ({ Status }: Table) => {
+    switch (Status._value) {
+      case "Up":
+        return <Tag value={Status._value} severity="success" />;
+        break;
 
-  // const actionBodyTemplate = (data: InterfaceGeneric) => {
-  //   return (
-  //     <Button
-  //       icon="pi pi-pencil"
-  //       rounded
-  //       severity="success"
-  //       onClick={() => edit(data)}
-  //     />
-  //   );
-  // };
+      case "Down":
+        return <Tag value={Status._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Status._value} severity="info" />;
+        break;
+    }
+  };
 
   return (
     <DataTable
-      value={new Mikrotik(device).findAllInterfaceGeneric()}
+      value={new GenericParser(device).getTables()}
       filters={filters}
-      globalFilterFields={["name"]}
+      globalFilterFields={["Name._value", "Enable._value", "Status._value"]}
       header={header}
     >
+      <Column sortable field="Name._value" header="Name"></Column>
       <Column
         sortable
-        field="Id._value"
-        header="Id"
-        body={idBodyTemplate}
+        field="Enable._value"
+        header="Enable"
+        body={enableBodyTemplate}
       ></Column>
-      <Column sortable field="Name._value" header="Name"></Column>
-      <Column sortable field="Enable._value" header="Enable"></Column>
       <Column
         sortable
         field="Status._value"
         body={statusBodyTemplate}
         header="Status"
       ></Column>
-      {/* <Column body={actionBodyTemplate}></Column> */}
     </DataTable>
   );
 }

@@ -1,6 +1,4 @@
 "use client";
-import { emptyWiFiRadio } from "@/service/data/wifi/radio";
-import { WiFiRadio } from "@/types/mikrotik";
 import {
   useState,
   createContext,
@@ -8,14 +6,16 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { Data } from "./Radio";
+import { emptyData } from "./Radio.data";
 
 interface RadioContextProps {
   dialog: boolean;
   setDialog: Dispatch<SetStateAction<boolean>>;
   dialogHeader: string;
   setDialogHeader: Dispatch<SetStateAction<string>>;
-  formData: WiFiRadio;
-  setFormData: Dispatch<SetStateAction<WiFiRadio>>;
+  formData: Data;
+  setFormData: Dispatch<SetStateAction<Data>>;
   submitted: boolean;
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
@@ -31,7 +31,7 @@ interface RadioProviderProps {
 export const RadioProvider = ({ children }: RadioProviderProps) => {
   const [dialog, setDialog] = useState(false);
   const [dialogHeader, setDialogHeader] = useState<string>("");
-  const [formData, setFormData] = useState<WiFiRadio>(emptyWiFiRadio);
+  const [formData, setFormData] = useState<Data>(emptyData);
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

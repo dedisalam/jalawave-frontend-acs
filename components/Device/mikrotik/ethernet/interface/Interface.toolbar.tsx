@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { EthernetInterfaceService } from "@/service/EthernetInterfaceService";
+import { InterfaceService } from "./Interface.service";
 
 export function InterfaceToolbar() {
   const { toast } = useContext(LayoutContext);
@@ -19,7 +19,7 @@ export function InterfaceToolbar() {
 
   const refresh = async () => {
     setIsRefreshLoading(true);
-    const response = await new EthernetInterfaceService().refresh(device._id);
+    const response = await new InterfaceService().refresh(device._id);
     if (response.status === 200) {
       toast.current?.show({
         severity: "success",

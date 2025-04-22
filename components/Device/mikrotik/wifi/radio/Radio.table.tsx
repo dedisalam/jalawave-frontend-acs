@@ -1,6 +1,5 @@
 "use client";
 
-import { Mikrotik } from "@/service/parser/Mikrotik";
 import { FilterMatchMode } from "primereact/api";
 import { Column } from "primereact/column";
 import {
@@ -14,10 +13,11 @@ import { InputText } from "primereact/inputtext";
 import React, { useContext, useEffect, useState } from "react";
 import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { WiFiRadio } from "@/types/mikrotik";
 import { Tag } from "primereact/tag";
 import { Button } from "primereact/button";
 import { RadioContext } from "./Radio.context";
+import { RadioParser } from "./Radio.parser";
+import { Table } from "./Radio";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -42,20 +42,13 @@ export function RadioTable() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const getSeverity = (status: string) => {
-    switch (status) {
-      case "Up":
-        return "success";
-
-      case "Down":
-        return "danger";
+  const edit = (item: Table) => {
+    const data = new RadioParser(device).findById(item.Id);
+    if (data) {
+      setFormData(data);
+      setDialog(true);
+      setDialogHeader("WiFi Radio Details");
     }
-  };
-
-  const edit = (data: WiFiRadio) => {
-    setFormData(data);
-    setDialog(true);
-    setDialogHeader("WiFi Radio Details");
   };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,54 +74,74 @@ export function RadioTable() {
     </div>
   );
 
-  const idBodyTemplate = (rowData: WiFiRadio) => {
-    const arrOfId = rowData.Id._value.split(".");
-    const id = arrOfId[arrOfId.length - 1];
-
-    return id;
-  };
-
-  const nameBodyTemplate = ({ Id }: WiFiRadio) => {
+  const nameBodyTemplate = ({ Id }: Table) => {
     const arrOfId = Id._value.split(".");
     const id = arrOfId[arrOfId.length - 1];
     return `wlan${id}`;
   };
 
-  const statusBodyTemplate = ({ Status }: WiFiRadio) => {
-    return <Tag value={Status._value} severity={getSeverity(Status._value)} />;
+  const enableBodyTemplate = ({ Enable }: Table) => {
+    switch (Enable._value) {
+      case "Enabled":
+        return <Tag value={Enable._value} severity="success" />;
+        break;
+
+      case "Disabled":
+        return <Tag value={Enable._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Enable._value} severity="info" />;
+        break;
+    }
   };
 
-  const actionBodyTemplate = (data: WiFiRadio) => {
+  const statusBodyTemplate = ({ Status }: Table) => {
+    switch (Status._value) {
+      case "Up":
+        return <Tag value={Status._value} severity="success" />;
+        break;
+
+      case "Down":
+        return <Tag value={Status._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Status._value} severity="info" />;
+        break;
+    }
+  };
+
+  const actionBodyTemplate = (item: Table) => {
     return (
       <Button
         icon="pi pi-pencil"
         rounded
         severity="success"
-        onClick={() => edit(data)}
+        onClick={() => edit(item)}
       />
     );
   };
 
   return (
     <DataTable
-      value={new Mikrotik(device).findAllWiFiRadio()}
+      value={new RadioParser(device).getTables()}
       filters={filters}
-      globalFilterFields={["name"]}
+      globalFilterFields={["Id._value", "Enable._value", "Status._value"]}
       header={header}
     >
-      <Column
-        sortable
-        field="Id._value"
-        header="Id"
-        body={idBodyTemplate}
-      ></Column>
       <Column
         sortable
         field="Id._value"
         header="Name"
         body={nameBodyTemplate}
       ></Column>
-      <Column sortable field="Enable._value" header="Enable"></Column>
+      <Column
+        sortable
+        field="Enable._value"
+        header="Enable"
+        body={enableBodyTemplate}
+      ></Column>
       <Column
         sortable
         field="Status._value"

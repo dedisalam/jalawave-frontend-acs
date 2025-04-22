@@ -1,6 +1,4 @@
 "use client";
-import { emptyEthInterface } from "@/service/data/ethernet/interface";
-import { EthernetInterface } from "@/types/mikrotik";
 import {
   useState,
   createContext,
@@ -8,14 +6,16 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { Data } from "./Interface";
+import { emptyData } from "./Interface.data";
 
 interface InterfaceContextProps {
   dialog: boolean;
   setDialog: Dispatch<SetStateAction<boolean>>;
   dialogHeader: string;
   setDialogHeader: Dispatch<SetStateAction<string>>;
-  formData: EthernetInterface;
-  setFormData: Dispatch<SetStateAction<EthernetInterface>>;
+  formData: Data;
+  setFormData: Dispatch<SetStateAction<Data>>;
   submitted: boolean;
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
@@ -31,8 +31,7 @@ interface InterfaceProviderProps {
 export const InterfaceProvider = ({ children }: InterfaceProviderProps) => {
   const [dialog, setDialog] = useState(false);
   const [dialogHeader, setDialogHeader] = useState<string>("");
-  const [formData, setFormData] =
-    useState<EthernetInterface>(emptyEthInterface);
+  const [formData, setFormData] = useState<Data>(emptyData);
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
