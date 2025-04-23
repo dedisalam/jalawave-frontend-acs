@@ -8,10 +8,10 @@ import { IPInput } from "./input/ip.input";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import * as ipaddr from "ipaddr.js";
-import { emptyIPAddress } from "@/service/data/ip/address";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
 import { EnableInput } from "./input/enable.input";
-import { IPAddressService } from "@/service/IPAddressService";
+import { AddressService } from "./Address.service";
+import { emptyData } from "./Address.data";
 
 export function AddressDialog() {
   const { toast } = useContext(LayoutContext);
@@ -42,7 +42,7 @@ export function AddressDialog() {
 
     if (formData.CIDR._value.trim()) {
       if (ipaddr.IPv4.isValidCIDR(formData.CIDR._value)) {
-        const response = await new IPAddressService().update(
+        const response = await new AddressService().update(
           device._id,
           formData.IPInterface,
           formData
@@ -57,7 +57,7 @@ export function AddressDialog() {
           setSubmitted(false);
           setRefresh(true);
           setDialog(false);
-          setFormData(emptyIPAddress);
+          setFormData(emptyData);
         } else {
           toast.current?.show({
             severity: "danger",

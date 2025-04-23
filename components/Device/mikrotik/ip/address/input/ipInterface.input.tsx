@@ -7,8 +7,6 @@ import { Skeleton } from "primereact/skeleton";
 import { classNames } from "primereact/utils";
 import { MikrotikContext } from "../../../Mikrotik.context";
 import { MenuString } from "@/types/genieacs/base";
-import { Link } from "@/service/parser/mikrotik/ethernet/link";
-import { Interface as IpInterface } from "@/service/parser/mikrotik/ip/interface";
 
 export function IPInterfaceInput() {
   const { device } = useContext(MikrotikContext);

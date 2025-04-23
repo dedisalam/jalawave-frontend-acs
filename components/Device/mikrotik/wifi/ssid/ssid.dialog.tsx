@@ -8,9 +8,10 @@ import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { SSIDContext } from "./ssid.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { emptyWiFiSSID } from "@/components/Device/mikrotik/wifi/ssid/ssid.data";
-import { WiFiSSIDService } from "@/service/WiFiSSIDService";
-import { InterfaceInput } from "./input/interface.input";
+import { SSIDService } from "./ssid.service";
+import { emptyData } from "./ssid.data";
+import { EnableInput } from "./input/enable.input";
+import { LowerLayersInput } from "./input/lowerLayers.input";
 
 export function SSIDDialog() {
   const { toast } = useContext(LayoutContext);
@@ -40,7 +41,7 @@ export function SSIDDialog() {
     setIsLoading(true);
 
     if (formData.SSID._value.trim()) {
-      const response = await new WiFiSSIDService().update(device._id, formData);
+      const response = await new SSIDService().update(device._id, formData);
       if (response.status === 200) {
         toast.current?.show({
           severity: "success",
@@ -51,7 +52,13 @@ export function SSIDDialog() {
         setSubmitted(false);
         setRefresh(true);
         setDialog(false);
-        setFormData(emptyWiFiSSID);
+        setFormData(emptyData);
+      } else {
+        toast.current?.show({
+          severity: "danger",
+          summary: "Error",
+          detail: `Error ${response.status} Code`,
+        });
       }
     }
 
@@ -83,8 +90,9 @@ export function SSIDDialog() {
       footer={Footer}
       onHide={hide}
     >
+      <EnableInput />
       <NameInput />
-      <InterfaceInput />
+      <LowerLayersInput />
     </Dialog>
   );
 }

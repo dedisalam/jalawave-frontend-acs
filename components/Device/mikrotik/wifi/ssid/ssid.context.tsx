@@ -1,6 +1,4 @@
 "use client";
-import { emptyWiFiSSID } from "@/components/Device/mikrotik/wifi/ssid/ssid.data";
-import { WiFiSSID } from "@/types/mikrotik";
 import {
   useState,
   createContext,
@@ -8,14 +6,16 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { Data } from "./ssid";
+import { emptyData } from "./ssid.data";
 
 interface SSIDContextProps {
   dialog: boolean;
   setDialog: Dispatch<SetStateAction<boolean>>;
   dialogHeader: string;
   setDialogHeader: Dispatch<SetStateAction<string>>;
-  formData: WiFiSSID;
-  setFormData: Dispatch<SetStateAction<WiFiSSID>>;
+  formData: Data;
+  setFormData: Dispatch<SetStateAction<Data>>;
   submitted: boolean;
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
@@ -31,7 +31,7 @@ interface SSIDProviderProps {
 export const SSIDProvider = ({ children }: SSIDProviderProps) => {
   const [dialog, setDialog] = useState(false);
   const [dialogHeader, setDialogHeader] = useState<string>("");
-  const [formData, setFormData] = useState<WiFiSSID>(emptyWiFiSSID);
+  const [formData, setFormData] = useState<Data>(emptyData);
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

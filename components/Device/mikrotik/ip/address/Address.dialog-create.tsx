@@ -6,10 +6,10 @@ import { AddressContext } from "@/components/Device/mikrotik/ip/address/Address.
 import { Button } from "primereact/button";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
-import { emptyIPAddress } from "@/service/data/ip/address";
 import { IPInterfaceInput } from "./input/ipInterface.input";
-import { IPAddressService } from "@/service/IPAddressService";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
+import { AddressService } from "./Address.service";
+import { emptyData } from "./Address.data";
 
 export function AddressDialogCreate() {
   const { toast } = useContext(LayoutContext);
@@ -39,7 +39,7 @@ export function AddressDialogCreate() {
     setIsLoading(true);
 
     if (formData.IPInterface._value.trim()) {
-      const response = await new IPAddressService().create(
+      const response = await new AddressService().create(
         device._id,
         formData.IPInterface
       );
@@ -53,7 +53,7 @@ export function AddressDialogCreate() {
         setSubmitted(false);
         setRefresh(true);
         setDialogCreate(false);
-        setFormData(emptyIPAddress);
+        setFormData(emptyData);
       } else {
         toast.current?.show({
           severity: "danger",

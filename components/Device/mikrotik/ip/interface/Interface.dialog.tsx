@@ -7,10 +7,10 @@ import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { InterfaceContext } from "./Interface.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { IPInterfaceService } from "@/service/IPInterfaceService";
-import { emptyInterface } from "@/service/data/ip/interface";
-import { InterfaceInput } from "./input/interface.input";
 import { EnableInput } from "./input/enable.input";
+import { InterfaceService } from "./Interface.service";
+import { emptyData } from "./Interface.data";
+import { LowerLayersInput } from "./input/lowerLayers.input";
 
 export function InterfaceDialog() {
   const { toast } = useContext(LayoutContext);
@@ -40,7 +40,7 @@ export function InterfaceDialog() {
     setIsLoading(true);
 
     if (formData.LowerLayers._value.trim()) {
-      const response = await new IPInterfaceService().update(
+      const response = await new InterfaceService().update(
         device._id,
         formData
       );
@@ -54,7 +54,7 @@ export function InterfaceDialog() {
         setSubmitted(false);
         setRefresh(true);
         setDialog(false);
-        setFormData(emptyInterface);
+        setFormData(emptyData);
       } else {
         toast.current?.show({
           severity: "danger",
@@ -93,7 +93,7 @@ export function InterfaceDialog() {
       onHide={hide}
     >
       <EnableInput />
-      <InterfaceInput />
+      <LowerLayersInput />
     </Dialog>
   );
 }

@@ -1,6 +1,4 @@
 "use client";
-import { emptyLink } from "@/service/data/ethernet/link";
-import { EthernetLink } from "@/types/mikrotik";
 import {
   useState,
   createContext,
@@ -8,14 +6,16 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { Data } from "./Link";
+import { emptyData } from "./Link.data";
 
 interface LinkContextProps {
   dialog: boolean;
   setDialog: Dispatch<SetStateAction<boolean>>;
   dialogHeader: string;
   setDialogHeader: Dispatch<SetStateAction<string>>;
-  formData: EthernetLink;
-  setFormData: Dispatch<SetStateAction<EthernetLink>>;
+  formData: Data;
+  setFormData: Dispatch<SetStateAction<Data>>;
   submitted: boolean;
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
@@ -31,7 +31,7 @@ interface LinkProviderProps {
 export const LinkProvider = ({ children }: LinkProviderProps) => {
   const [dialog, setDialog] = useState(false);
   const [dialogHeader, setDialogHeader] = useState<string>("");
-  const [formData, setFormData] = useState<EthernetLink>(emptyLink);
+  const [formData, setFormData] = useState<Data>(emptyData);
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

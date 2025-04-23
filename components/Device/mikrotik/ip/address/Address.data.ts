@@ -1,6 +1,6 @@
-import { IPAddress } from "@/types/mikrotik";
+import { Data } from "./Address";
 
-export const emptyIPAddress: IPAddress = {
+export const emptyData: Data = {
   _object: true,
   AddressingType: {
     _object: false,
@@ -9,35 +9,12 @@ export const emptyIPAddress: IPAddress = {
     _value: "Static",
     _writable: true,
   },
-  CIDR: {
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _type: "xsd:string",
-    _value: "0.0.0.0/0",
-    _writable: true,
-  },
   Enable: {
     _object: false,
     _timestamp: Date.now().toString(),
     _type: "xsd:boolean",
     _value: false,
     _writable: true,
-  },
-  HWInterface: {
-    Id: {
-      _object: false,
-      _timestamp: Date.now().toString(),
-      _type: "xsd:string",
-      _value: "",
-      _writable: false,
-    },
-    Name: {
-      _object: false,
-      _timestamp: Date.now().toString(),
-      _type: "xsd:string",
-      _value: "",
-      _writable: true,
-    },
   },
   Id: {
     _object: false,
@@ -53,13 +30,6 @@ export const emptyIPAddress: IPAddress = {
     _value: "0.0.0.0",
     _writable: true,
   },
-  Network: {
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _type: "xsd:string",
-    _value: "0.0.0.0",
-    _writable: false,
-  },
   Status: {
     _object: false,
     _timestamp: Date.now().toString(),
@@ -73,12 +43,5 @@ export const emptyIPAddress: IPAddress = {
     _type: "xsd:string",
     _value: "255.255.255.0",
     _writable: true,
-  },
-  IPInterface: {
-    _object: false,
-    _timestamp: Date.now().toString(),
-    _type: "xsd:string",
-    _value: "",
-    _writable: false,
   },
 };

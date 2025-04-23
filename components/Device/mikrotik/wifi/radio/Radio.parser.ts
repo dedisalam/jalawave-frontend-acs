@@ -76,4 +76,12 @@ export class RadioParser {
 
     return Enable;
   }
+
+  getHardwareName(Id: MenuString): string | undefined {
+    const radio = this.findById(Id);
+    if (radio) {
+      const ids = radio.Id._value.split(".");
+      return `wlan${ids[ids.length - 1]}`;
+    }
+  }
 }

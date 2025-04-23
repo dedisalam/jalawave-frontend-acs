@@ -1,6 +1,5 @@
 "use client";
 
-import { emptyIPAddress } from "@/service/data/ip/address";
 import { Button } from "primereact/button";
 import { Toolbar } from "primereact/toolbar";
 import { useContext, useState } from "react";
@@ -8,7 +7,8 @@ import { AddressContext } from "./Address.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
-import { IPInterfaceService } from "@/service/IPInterfaceService";
+import { emptyData } from "./Address.data";
+import { InterfaceService } from "../interface/Interface.service";
 
 export function AddressToolbar() {
   const { toast } = useContext(LayoutContext);
@@ -22,7 +22,7 @@ export function AddressToolbar() {
   }
 
   const create = () => {
-    setFormData(emptyIPAddress);
+    setFormData(emptyData);
     setSubmitted(false);
     setDialogCreate(true);
     setDialogCreateHeader("Add New Address List");
@@ -30,7 +30,7 @@ export function AddressToolbar() {
 
   const refresh = async () => {
     setIsRefreshLoading(true);
-    const response = await new IPInterfaceService().refresh(device._id);
+    const response = await new InterfaceService().refresh(device._id);
     if (response.status === 200) {
       toast.current?.show({
         severity: "success",

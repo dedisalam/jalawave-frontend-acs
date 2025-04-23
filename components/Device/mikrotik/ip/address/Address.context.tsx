@@ -1,6 +1,4 @@
 "use client";
-import { emptyIPAddress } from "@/service/data/ip/address";
-import { IPAddress } from "@/types/mikrotik";
 import {
   useState,
   createContext,
@@ -8,6 +6,8 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { Data } from "./Address";
+import { emptyData } from "./Address.data";
 
 interface AddressContextProps {
   dialog: boolean;
@@ -18,8 +18,8 @@ interface AddressContextProps {
   setDialogCreate: Dispatch<SetStateAction<boolean>>;
   dialogCreateHeader: string;
   setDialogCreateHeader: Dispatch<SetStateAction<string>>;
-  formData: IPAddress;
-  setFormData: Dispatch<SetStateAction<IPAddress>>;
+  formData: Data;
+  setFormData: Dispatch<SetStateAction<Data>>;
   submitted: boolean;
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
@@ -38,7 +38,7 @@ export const AddressProvider = ({ children }: AddressProviderProps) => {
   const [dialogHeader, setDialogHeader] = useState<string>("");
   const [dialogCreate, setDialogCreate] = useState(false);
   const [dialogCreateHeader, setDialogCreateHeader] = useState<string>("");
-  const [formData, setFormData] = useState<IPAddress>(emptyIPAddress);
+  const [formData, setFormData] = useState<Data>(emptyData);
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

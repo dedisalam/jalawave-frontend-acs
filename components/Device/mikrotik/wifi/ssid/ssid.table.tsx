@@ -1,6 +1,5 @@
 "use client";
 
-import { Mikrotik } from "@/service/parser/Mikrotik";
 import { FilterMatchMode } from "primereact/api";
 import { Column } from "primereact/column";
 import {
@@ -14,10 +13,11 @@ import { InputText } from "primereact/inputtext";
 import React, { useContext, useEffect, useState } from "react";
 import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { WiFiSSID } from "@/types/mikrotik";
 import { Tag } from "primereact/tag";
 import { Button } from "primereact/button";
 import { SSIDContext } from "./ssid.context";
+import { Table } from "./ssid";
+import { SSIDParser } from "./ssid.parser";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -42,20 +42,13 @@ export function SSIDTable() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const getSeverity = (status: string) => {
-    switch (status) {
-      case "Up":
-        return "success";
-
-      case "Down":
-        return "danger";
+  const editSSID = ({ Id }: Table) => {
+    const ssid = new SSIDParser(device).findById(Id);
+    if (ssid) {
+      setFormData(ssid);
+      setDialog(true);
+      setDialogHeader("SSID Details");
     }
-  };
-
-  const editSSID = (rowData: WiFiSSID) => {
-    setFormData(rowData);
-    setDialog(true);
-    setDialogHeader(`SSID <${rowData.SSID._value}>`);
   };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,48 +74,63 @@ export function SSIDTable() {
     </div>
   );
 
-  const idBodyTemplate = (rowData: WiFiSSID) => {
-    const arrOfId = rowData.Id._value.split(".");
-    const id = arrOfId[arrOfId.length - 1];
+  const enableBodyTemplate = ({ Enable }: Table) => {
+    switch (Enable._value) {
+      case "Enabled":
+        return <Tag value={Enable._value} severity="success" />;
+        break;
 
-    return id;
+      case "Disabled":
+        return <Tag value={Enable._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Enable._value} severity="info" />;
+        break;
+    }
   };
 
-  const lowerLayersBodyTemplate = (rowData: WiFiSSID) => {
-    const arrOfId = rowData.LowerLayers._value.split(".");
+  const lowerLayersBodyTemplate = ({ LowerLayers }: Table) => {
+    const arrOfId = LowerLayers._value.split(".");
     const id = arrOfId[arrOfId.length - 1];
 
     return `wlan${id}`;
   };
 
-  const statusBodyTemplate = ({ Status }: WiFiSSID) => {
-    return <Tag value={Status._value} severity={getSeverity(Status._value)} />;
+  const statusBodyTemplate = ({ Status }: Table) => {
+    switch (Status._value) {
+      case "Up":
+        return <Tag value={Status._value} severity="success" />;
+        break;
+
+      case "Down":
+        return <Tag value={Status._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Status._value} severity="info" />;
+        break;
+    }
   };
 
-  const actionBodyTemplate = (rowData: WiFiSSID) => {
+  const actionBodyTemplate = (item: Table) => {
     return (
       <Button
         icon="pi pi-pencil"
         rounded
         severity="success"
-        onClick={() => editSSID(rowData)}
+        onClick={() => editSSID(item)}
       />
     );
   };
 
   return (
     <DataTable
-      value={new Mikrotik(device).findAllWiFiSSID()}
+      value={new SSIDParser(device).getTables()}
       filters={filters}
       globalFilterFields={["name"]}
       header={header}
     >
-      <Column
-        sortable
-        field="Id._value"
-        header="Id"
-        body={idBodyTemplate}
-      ></Column>
       <Column
         sortable
         field="LowerLayers._value"
@@ -130,7 +138,12 @@ export function SSIDTable() {
         header="Interface"
       ></Column>
       <Column sortable field="SSID._value" header="SSID"></Column>
-      <Column sortable field="Enable._value" header="Enable"></Column>
+      <Column
+        sortable
+        field="Enable._value"
+        header="Enable"
+        body={enableBodyTemplate}
+      ></Column>
       <Column
         sortable
         field="Status._value"

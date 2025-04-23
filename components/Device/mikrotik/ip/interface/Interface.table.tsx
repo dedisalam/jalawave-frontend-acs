@@ -13,13 +13,13 @@ import { InputText } from "primereact/inputtext";
 import React, { useContext, useEffect, useState } from "react";
 import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { TBIPInterface } from "@/types/mikrotik";
 import { Tag } from "primereact/tag";
 import { Button } from "primereact/button";
 import { InterfaceContext } from "./Interface.context";
-import { IPInterfaceService } from "@/service/IPInterfaceService";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { Interface as IpInterface } from "@/service/parser/mikrotik/ip/interface";
+import { InterfaceService } from "./Interface.service";
+import { Table } from "./Interface";
+import { InterfaceParser } from "./Interface.parser";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -56,19 +56,19 @@ export function InterfaceTable() {
     }
   };
 
-  const editInterface = (rowData: TBIPInterface) => {
-    const ipInterface = new IpInterface(device).findById(rowData.Id);
-    if (ipInterface) {
-      setFormData(ipInterface);
+  const editInterface = ({ Id }: Table) => {
+    const Interface = new InterfaceParser(device).findById(Id);
+    if (Interface) {
+      setFormData(Interface);
       setDialog(true);
-      setDialogHeader(`Interface <${rowData.HWInterface.Name._value}>`);
+      setDialogHeader("IP Interface Details");
     }
   };
 
-  const removeInterface = (rowData: TBIPInterface) => {
-    const ipInterface = new IpInterface(device).findById(rowData.Id);
-    if (ipInterface) {
-      new IPInterfaceService().remove(device._id, ipInterface).then(() => {
+  const removeInterface = ({ Id }: Table) => {
+    const Interface = new InterfaceParser(device).findById(Id);
+    if (Interface) {
+      new InterfaceService().remove(device._id, Interface).then(() => {
         toast.current?.show({
           severity: "success",
           summary: "Success",
@@ -103,7 +103,7 @@ export function InterfaceTable() {
     </div>
   );
 
-  const enableBodyTemplate = ({ Enable }: TBIPInterface) => {
+  const enableBodyTemplate = ({ Enable }: Table) => {
     switch (Enable._value) {
       case "Enabled":
         return <Tag value={Enable._value} severity="success" />;
@@ -119,11 +119,11 @@ export function InterfaceTable() {
     }
   };
 
-  const statusBodyTemplate = ({ Status }: TBIPInterface) => {
+  const statusBodyTemplate = ({ Status }: Table) => {
     return <Tag value={Status._value} severity={getSeverity(Status._value)} />;
   };
 
-  const actionBodyTemplate = (rowData: TBIPInterface) => {
+  const actionBodyTemplate = (rowData: Table) => {
     const isEmpty = rowData.IPv4AddressNumberOfEntries._value === 0;
 
     return (
@@ -149,21 +149,17 @@ export function InterfaceTable() {
 
   return (
     <DataTable
-      value={new IpInterface(device).getTables()}
+      value={new InterfaceParser(device).getTables()}
       filters={filters}
       globalFilterFields={[
-        "HWInterface.Name._value",
+        "Hardware._value",
         "Enable._value",
         "IPv4AddressNumberOfEntries._value",
         "Status._value",
       ]}
       header={header}
     >
-      <Column
-        sortable
-        field="HWInterface.Name._value"
-        header="Interface"
-      ></Column>
+      <Column sortable field="Hardware._value" header="Interface"></Column>
       <Column
         sortable
         field="Enable._value"

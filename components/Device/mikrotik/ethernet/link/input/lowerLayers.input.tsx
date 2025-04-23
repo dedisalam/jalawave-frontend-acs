@@ -3,13 +3,14 @@
 import { classNames } from "primereact/utils";
 import React, { useContext } from "react";
 import { LinkContext } from "../Link.context";
-import { Mikrotik } from "@/service/parser/Mikrotik";
 import { MikrotikContext } from "../../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
-import { MenuString } from "@/types/genieacs/base";
+import { LinkParser } from "../Link.parser";
+import { InterfaceParser } from "../../interface/Interface.parser";
+import { SSIDParser } from "../../../wifi/ssid/ssid.parser";
 
-export function SSIDEthernetInput() {
+export function LowerLayersInput() {
   const { device } = useContext(MikrotikContext);
   const { formData, submitted, setFormData } = useContext(LinkContext);
 
@@ -37,60 +38,30 @@ export function SSIDEthernetInput() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const nameSSID = (Id: MenuString): string | undefined => {
-    const mikrotik = new Mikrotik(device);
-    const SSID = mikrotik.findByIdWiFiSSIDV2(Id);
-    if (SSID) {
-      return SSID.SSID._value;
-    }
-  };
-
-  const nameEthernet = (Id: MenuString): string | undefined => {
-    const mikrotik = new Mikrotik(device);
-    const Ethernet = mikrotik.findByIdEthernetInterfaceV2(Id);
-    if (Ethernet) {
-      return Ethernet.X_MIKROTIK_Name._value;
-    }
-  };
-
-  const name = (Id: MenuString): string => {
-    if (Id._value.includes("Device.WiFi.SSID")) {
-      return nameSSID(Id) || "";
-    }
-
-    if (Id._value.includes("Device.Ethernet.Interface")) {
-      return nameEthernet(Id) || "";
-    }
-
-    return "";
-  };
-
   const findAll = (): {
     id: string;
     name: string;
   }[] => {
-    const mikrotik = new Mikrotik(device);
-
-    const ssid = mikrotik
-      .findAllWiFiSSID()
-      .map(({ Id, SSID }): { id: string; name: string } => {
+    const ssid = new SSIDParser(device)
+      .findAll()
+      .map(({ Id }): { id: string; name: string } => {
         return {
           id: Id._value,
-          name: SSID._value,
+          name: new SSIDParser(device).getHardwareName(Id) || "",
         };
       });
 
-    const ethernet = mikrotik
-      .findAllEthernetInterface()
-      .map(({ Id, X_MIKROTIK_Name }): { id: string; name: string } => {
+    const ethernet = new InterfaceParser(device)
+      .findAll()
+      .map(({ Id }): { id: string; name: string } => {
         return {
           id: Id._value,
-          name: X_MIKROTIK_Name._value,
+          name: new InterfaceParser(device).getHardwareName(Id) || "",
         };
       });
 
     const etherssid = [ssid, ethernet].flat().filter(({ id }) => {
-      const ethlink = mikrotik.findByLowerLayersEthernetLink({
+      const ethlink = new LinkParser(device).findByLowerLayers({
         _object: false,
         _type: "xsd:string",
         _value: id,
@@ -101,11 +72,11 @@ export function SSIDEthernetInput() {
       return false;
     });
 
-    const selected = mikrotik.findByIdEthernetLinkV2(formData.Id);
+    const selected = new LinkParser(device).findById(formData.Id);
     if (selected && selected.LowerLayers._value !== "") {
       etherssid.push({
         id: selected.LowerLayers._value,
-        name: name(selected.LowerLayers),
+        name: new LinkParser(device).getHardwareName(selected.Id) || "",
       });
     }
 
@@ -122,11 +93,11 @@ export function SSIDEthernetInput() {
 
   return (
     <div className="field">
-      <label htmlFor="ssid">SSID / Ethernet</label>
+      <label htmlFor="ssid">Interface</label>
       <Dropdown
         value={{
           id: formData.LowerLayers._value,
-          name: name(formData.LowerLayers),
+          name: new LinkParser(device).getHardwareName(formData.Id) || "",
         }}
         onChange={onChange}
         options={findAll()}

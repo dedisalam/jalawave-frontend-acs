@@ -1,6 +1,6 @@
-import { IPInterface } from "@/types/mikrotik";
+import { Data } from "./Interface";
 
-export const emptyInterface: IPInterface = {
+export const emptyData: Data = {
   Id: {
     _type: "xsd:string",
     _value: "",

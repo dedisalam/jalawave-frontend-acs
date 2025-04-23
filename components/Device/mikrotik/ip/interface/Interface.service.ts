@@ -1,8 +1,8 @@
-import { IPInterface } from "@/types/mikrotik";
-import { GenieService } from "./GenieService";
+import { GenieService } from "@/service/GenieService";
 import { AxiosResponse } from "axios";
+import { Data } from "./Interface";
 
-export class IPInterfaceService {
+export class InterfaceService {
   private genieService: GenieService;
 
   constructor() {
@@ -24,7 +24,7 @@ export class IPInterfaceService {
     return response;
   }
 
-  async update(id: string, data: IPInterface): Promise<AxiosResponse> {
+  async update(id: string, data: Data): Promise<AxiosResponse> {
     const response = await this.genieService.setParameterValues(id, [
       [`${data.Id._value}.Enable`, data.Enable._value, data.Enable._type],
       [
@@ -39,7 +39,7 @@ export class IPInterfaceService {
     return response;
   }
 
-  async remove(id: string, data: IPInterface): Promise<AxiosResponse> {
+  async remove(id: string, data: Data): Promise<AxiosResponse> {
     const response = await this.genieService.deleteObject(id, data.Id._value);
 
     await this.refresh(id);

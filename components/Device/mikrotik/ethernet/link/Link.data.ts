@@ -1,6 +1,6 @@
-import { EthernetLink } from "@/types/mikrotik";
+import { Data } from "./Link";
 
-export const emptyLink: EthernetLink = {
+export const emptyData: Data = {
   Id: {
     _type: "xsd:string",
     _value: "",

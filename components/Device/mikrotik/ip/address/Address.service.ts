@@ -1,10 +1,9 @@
-import { IPAddress } from "@/types/mikrotik";
-import { GenieService } from "./GenieService";
+import { GenieService } from "../../../../../service/GenieService";
 import { AxiosResponse } from "axios";
 import { MenuString } from "@/types/genieacs/base";
-import * as ipaddr from "ipaddr.js";
+import { Data } from "./Address";
 
-export class IPAddressService {
+export class AddressService {
   private genieService: GenieService;
 
   constructor() {
@@ -32,21 +31,18 @@ export class IPAddressService {
   async update(
     id: string,
     IPInterface: MenuString,
-    data: IPAddress
+    data: Data
   ): Promise<AxiosResponse> {
-    const ip = ipaddr.IPv4.parseCIDR(data.CIDR._value);
-    const subnet = ipaddr.IPv4.subnetMaskFromPrefixLength(ip[1]);
-
     const response = await this.genieService.setParameterValues(id, [
       [`${data.Id._value}.Enable`, data.Enable._value, data.Enable._type],
       [
         `${data.Id._value}.IPAddress`,
-        ip[0].toNormalizedString(),
+        data.IPAddress._value,
         data.IPAddress._type,
       ],
       [
         `${data.Id._value}.SubnetMask`,
-        subnet.toNormalizedString(),
+        data.SubnetMask._value,
         data.SubnetMask._type,
       ],
     ]);
@@ -59,7 +55,7 @@ export class IPAddressService {
   async remove(
     id: string,
     IPInterface: MenuString,
-    data: IPAddress
+    data: Data
   ): Promise<AxiosResponse> {
     const response = await this.genieService.deleteObject(id, data.Id._value);
 

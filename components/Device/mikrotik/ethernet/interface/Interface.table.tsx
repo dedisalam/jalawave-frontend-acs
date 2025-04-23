@@ -134,6 +134,11 @@ export function InterfaceTable() {
       <Column sortable field="X_MIKROTIK_Name._value" header="Name"></Column>
       <Column
         sortable
+        field="X_MIKROTIK_Comment._value"
+        header="Comment"
+      ></Column>
+      <Column
+        sortable
         field="Enable._value"
         header="Enable"
         body={enableBodyTemplate}

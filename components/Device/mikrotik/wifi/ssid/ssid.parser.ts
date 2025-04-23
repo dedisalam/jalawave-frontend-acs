@@ -1,8 +1,9 @@
 import { DeviceObjectMikrotik } from "@/types/genieacs";
 import { MenuString } from "@/types/genieacs/base";
-import { Data, Table } from "./Interface";
+import { Data, Table } from "./ssid";
+import { RadioParser } from "../radio/Radio.parser";
 
-export class InterfaceParser {
+export class SSIDParser {
   private device: DeviceObjectMikrotik;
 
   constructor(device: DeviceObjectMikrotik) {
@@ -10,27 +11,32 @@ export class InterfaceParser {
   }
 
   findAll(): Data[] {
-    const ethernetInterface = this.device.Device.Ethernet.Interface;
-    const ids = Object.keys(ethernetInterface).filter((v) => !v.includes("_"));
-
+    const ssid = this.device.Device.WiFi.SSID;
+    const ids = Object.keys(ssid).filter((v) => !v.includes("_"));
     const result = ids
       .map((id): Data => {
         const key = Number(id);
 
         return {
-          ...ethernetInterface[key],
+          ...ssid[key],
           Id: {
             _object: false,
             _type: "xsd:string",
-            _value: `Device.Ethernet.Interface.${key}`,
+            _value: `Device.WiFi.SSID.${key}`,
             _timestamp: Date.now().toString(),
             _writable: false,
           },
         };
       })
       .sort((a, b) => {
-        if (a.X_MIKROTIK_Name._value < b.X_MIKROTIK_Name._value) return -1;
-        if (a.X_MIKROTIK_Name._value > b.X_MIKROTIK_Name._value) return 1;
+        const aName = a.SSID._value.toLowerCase();
+        const bName = b.SSID._value.toLowerCase();
+        if (aName < bName) {
+          return -1;
+        }
+        if (aName > bName) {
+          return 1;
+        }
         return 0;
       });
 
@@ -39,6 +45,14 @@ export class InterfaceParser {
 
   findById(id: MenuString): Data | undefined {
     const data = this.findAll().find(({ Id }) => Id._value === id._value);
+
+    return data;
+  }
+
+  findByLowerLayers(lowerLayers: MenuString): Data | undefined {
+    const data = this.findAll().find(
+      ({ LowerLayers }) => LowerLayers._value === lowerLayers._value
+    );
 
     return data;
   }
@@ -54,7 +68,7 @@ export class InterfaceParser {
     return tables;
   }
 
-  private parseEnable(ethernetInterface: Table): MenuString {
+  private parseEnable(ssid: Data): MenuString {
     let Enable: MenuString = {
       _object: false,
       _type: "xsd:string",
@@ -63,7 +77,7 @@ export class InterfaceParser {
       _writable: false,
     };
 
-    if (ethernetInterface.Enable._value) {
+    if (ssid.Enable._value) {
       Enable = {
         ...Enable,
         _value: "Enabled",
@@ -79,9 +93,14 @@ export class InterfaceParser {
   }
 
   getHardwareName(Id: MenuString): string | undefined {
-    const ethernet = this.findById(Id);
-    if (ethernet) {
-      return ethernet.X_MIKROTIK_Name._value;
+    const ssid = this.findById(Id);
+    if (ssid) {
+      const radio = new RadioParser(this.device).getHardwareName(
+        ssid.LowerLayers
+      );
+      if (radio) {
+        return radio;
+      }
     }
   }
 }

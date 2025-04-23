@@ -1,6 +1,5 @@
 "use client";
 
-import { Mikrotik } from "@/service/parser/Mikrotik";
 import { FilterMatchMode } from "primereact/api";
 import { Column } from "primereact/column";
 import {
@@ -14,11 +13,14 @@ import { InputText } from "primereact/inputtext";
 import React, { useContext, useEffect, useState } from "react";
 import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { EthernetLink } from "@/types/mikrotik";
 import { Button } from "primereact/button";
 import { LinkContext } from "./Link.context";
-import { EthernetLinkService } from "@/service/EthernetLinkService";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
+import { Table } from "./Link";
+import { LinkParser } from "./Link.parser";
+import { LinkService } from "./Link.service";
+import { InterfaceParser as IPInterfaceParser } from "../../ip/interface/Interface.parser";
+import { Tag } from "primereact/tag";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -44,28 +46,34 @@ export function LinkTable() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const edit = (data: EthernetLink) => {
-    setFormData(data);
-    setDialog(true);
-    setDialogHeader(`Link Details`);
+  const edit = ({ Id }: Table) => {
+    const link = new LinkParser(device).findById(Id);
+    if (link) {
+      setFormData(link);
+      setDialog(true);
+      setDialogHeader(`Link Details`);
+    }
   };
 
-  const remove = async (data: EthernetLink) => {
-    const response = await new EthernetLinkService().remove(device._id, data);
-    if (response.status === 200) {
-      toast.current?.show({
-        severity: "success",
-        summary: "Success",
-        detail: "Success Remove IP Address",
-      });
+  const remove = async ({ Id }: Table) => {
+    const link = new LinkParser(device).findById(Id);
+    if (link) {
+      const response = await new LinkService().remove(device._id, link);
+      if (response.status === 200) {
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Success Remove IP Address",
+        });
 
-      setRefresh(true);
-    } else {
-      toast.current?.show({
-        severity: "danger",
-        summary: "Error",
-        detail: `Error ${response.status} Code`,
-      });
+        setRefresh(true);
+      } else {
+        toast.current?.show({
+          severity: "danger",
+          summary: "Error",
+          detail: `Error ${response.status} Code`,
+        });
+      }
     }
   };
 
@@ -92,44 +100,41 @@ export function LinkTable() {
     </div>
   );
 
-  const idBodyTemplate = (data: EthernetLink) => {
-    const arrOfId = data.Id._value.split(".");
-    const id = arrOfId[arrOfId.length - 1];
+  const enableBodyTemplate = ({ Enable }: Table) => {
+    switch (Enable._value) {
+      case "Enabled":
+        return <Tag value={Enable._value} severity="success" />;
+        break;
 
-    return id;
+      case "Disabled":
+        return <Tag value={Enable._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Enable._value} severity="info" />;
+        break;
+    }
   };
 
-  const lowerLayersBodyTemplate = ({ LowerLayers }: EthernetLink) => {
-    if (LowerLayers._value === "") {
-      return LowerLayers._value;
+  const statusBodyTemplate = ({ Status }: Table) => {
+    switch (Status._value) {
+      case "Up":
+        return <Tag value={Status._value} severity="success" />;
+        break;
+
+      case "Down":
+        return <Tag value={Status._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Status._value} severity="info" />;
+        break;
     }
-
-    if (LowerLayers._value.includes("Device.Ethernet.Interface")) {
-      const ethernet = new Mikrotik(device).findByIdEthernetInterfaceV2(
-        LowerLayers
-      );
-      if (!ethernet) {
-        return "";
-      }
-
-      return ethernet.X_MIKROTIK_Name._value;
-    }
-
-    if (LowerLayers._value.includes("Device.WiFi.SSID")) {
-      const ssid = new Mikrotik(device).findByIdWiFiSSIDV2(LowerLayers);
-      if (!ssid) {
-        return "";
-      }
-
-      return ssid.SSID._value;
-    }
-
-    return LowerLayers._value;
   };
 
-  const actionBodyTemplate = (data: EthernetLink) => {
+  const actionBodyTemplate = (data: Table) => {
     const isEmptyLowerLayers = data.LowerLayers._value === "";
-    const IPInterface = new Mikrotik(device).findByLowerLayersIPInterface(
+    const IPInterface = new IPInterfaceParser(device).findByLowerLayers(
       data.Id
     );
     return (
@@ -155,24 +160,24 @@ export function LinkTable() {
 
   return (
     <DataTable
-      value={new Mikrotik(device).findAllEthernetLink()}
+      value={new LinkParser(device).getTables()}
       filters={filters}
-      globalFilterFields={["name"]}
+      globalFilterFields={["Hardware._value", "Enable._value", "Status._value"]}
       header={header}
     >
+      <Column sortable field="Hardware._value" header="Interface"></Column>
       <Column
         sortable
-        field="Id._value"
-        header="Link"
-        body={idBodyTemplate}
+        field="Enable._value"
+        header="Enable"
+        body={enableBodyTemplate}
       ></Column>
       <Column
         sortable
-        field="LowerLayers._value"
-        header="SSID / Ethernet"
-        body={lowerLayersBodyTemplate}
+        field="Status._value"
+        header="Status"
+        body={statusBodyTemplate}
       ></Column>
-      <Column sortable field="Enable._value" header="Enable"></Column>
       <Column body={actionBodyTemplate}></Column>
     </DataTable>
   );

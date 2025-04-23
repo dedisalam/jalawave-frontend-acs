@@ -5,13 +5,12 @@ import React, { useContext } from "react";
 import { MikrotikContext } from "../../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
-import { MenuString } from "@/types/genieacs/base";
 import { InterfaceContext } from "../Interface.context";
-import { Link } from "@/service/parser/mikrotik/ethernet/link";
-import { Interface as IpInterface } from "@/service/parser/mikrotik/ip/interface";
-import { SSID } from "@/service/parser/mikrotik/wifi/ssid";
+import { GenericParser } from "../../../X_MIKROTIK_Interface/generic/Generic.parser";
+import { LinkParser } from "../../../ethernet/link/Link.parser";
+import { InterfaceParser } from "../Interface.parser";
 
-export function InterfaceInput() {
+export function LowerLayersInput() {
   const { device } = useContext(MikrotikContext);
   const { formData, submitted, setFormData } = useContext(InterfaceContext);
 
@@ -39,87 +38,32 @@ export function InterfaceInput() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const nameGeneric = (Id: MenuString): string => {
-    const generic = new Generic(device).findById(Id);
-    if (!generic) {
-      return "";
-    }
-
-    return generic.Name._value;
-  };
-
-  const nameLink = (Id: MenuString): string => {
-    const ethernetLink = new Link(device).findById(Id);
-    if (!ethernetLink) {
-      return "";
-    }
-    const lowerLayers = ethernetLink.LowerLayers._value;
-    const isSSID = lowerLayers.includes("Device.WiFi.SSID");
-    if (isSSID) {
-      const ssid = new SSID(device).findById(ethernetLink.LowerLayers);
-      if (!ssid) {
-        return "";
-      }
-      const isRadio = ssid.LowerLayers._value.includes("Device.WiFi.Radio");
-      if (isRadio) {
-        const radio = new Radio(device).findById(ssid.LowerLayers);
-        if (!radio) {
-          return "";
-        }
-        const ids = radio.Id._value.split(".");
-        return `wlan${ids[ids.length - 1]}`;
-      }
-    }
-    const isEthernet = lowerLayers.includes("Device.Ethernet.Interface");
-    if (isEthernet) {
-      const ethernet = new Interface(device).findById(ethernetLink.LowerLayers);
-      if (!ethernet) {
-        return "";
-      }
-      return ethernet.X_MIKROTIK_Name._value;
-    }
-
-    return "";
-  };
-
-  const name = (Id: MenuString): string => {
-    if (Id._value.includes("Device.Ethernet.Link")) {
-      return nameLink(Id);
-    }
-
-    if (Id._value.includes("Device.X_MIKROTIK_Interface.Generic")) {
-      return nameGeneric(Id);
-    }
-
-    return "";
-  };
-
   const findAll = (): {
     id: string;
     name: string;
   }[] => {
-    const link = new Link(device)
+    const link = new LinkParser(device)
       .findAll()
       .map(({ Id }): { id: string; name: string } => {
         return {
           id: Id._value,
-          name: nameLink(Id),
+          name: new LinkParser(device).getHardwareName(Id) || "",
         };
       });
 
-    const generic = new Generic(device)
+    const generic = new GenericParser(device)
       .findAll()
-      .map(({ Id, Name }): { id: string; name: string } => {
+      .map(({ Id }): { id: string; name: string } => {
         return {
           id: Id._value,
-          name: Name._value,
+          name: new GenericParser(device).getHardwareName(Id) || "",
         };
       });
 
     const linkGeneric = [link, generic]
       .flat()
       .filter(({ id }) => {
-        const ethlink = new IpInterface(device).findById({
+        const ethlink = new InterfaceParser(device).findById({
           _object: false,
           _type: "xsd:string",
           _value: id,
@@ -130,7 +74,7 @@ export function InterfaceInput() {
         return false;
       })
       .filter(({ id }) => {
-        const ethernetLink = new Link(device).findById({
+        const ethernetLink = new LinkParser(device).findById({
           _object: false,
           _type: "xsd:string",
           _value: id,
@@ -141,11 +85,11 @@ export function InterfaceInput() {
         return false;
       });
 
-    const selected = new IpInterface(device).findById(formData.Id);
+    const selected = new InterfaceParser(device).findById(formData.Id);
     if (selected && selected.LowerLayers._value !== "") {
       linkGeneric.push({
         id: selected.LowerLayers._value,
-        name: name(selected.LowerLayers),
+        name: new InterfaceParser(device).getHardwareName(selected.Id) || "",
       });
     }
 
@@ -166,7 +110,7 @@ export function InterfaceInput() {
       <Dropdown
         value={{
           id: formData.LowerLayers._value,
-          name: name(formData.LowerLayers),
+          name: new InterfaceParser(device).getHardwareName(formData.Id) || "",
         }}
         onChange={onChange}
         options={findAll()}

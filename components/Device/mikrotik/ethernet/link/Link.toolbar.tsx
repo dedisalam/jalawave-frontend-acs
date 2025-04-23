@@ -6,8 +6,8 @@ import { useContext, useState } from "react";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { EthernetLinkService } from "@/service/EthernetLinkService";
 import { LinkContext } from "./Link.context";
+import { LinkService } from "./Link.service";
 
 export function LinkToolbar() {
   const { toast } = useContext(LayoutContext);
@@ -21,7 +21,7 @@ export function LinkToolbar() {
 
   const create = async () => {
     setIsLoading(true);
-    const response = await new EthernetLinkService().create(device._id);
+    const response = await new LinkService().create(device._id);
     if (response.status === 200) {
       toast.current?.show({
         severity: "success",
@@ -42,7 +42,7 @@ export function LinkToolbar() {
 
   const refresh = async () => {
     setIsRefreshLoading(true);
-    const response = await new EthernetLinkService().refresh(device._id);
+    const response = await new LinkService().refresh(device._id);
     if (response.status === 200) {
       toast.current?.show({
         severity: "success",

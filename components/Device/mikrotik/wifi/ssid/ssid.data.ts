@@ -1,3 +1,5 @@
+import { Data } from "./ssid";
+
 export const emptyData: Data = {
   Id: {
     _type: "xsd:string",

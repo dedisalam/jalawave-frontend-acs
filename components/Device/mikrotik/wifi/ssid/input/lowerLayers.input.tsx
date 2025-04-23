@@ -3,13 +3,13 @@
 import { classNames } from "primereact/utils";
 import React, { useContext } from "react";
 import { SSIDContext } from "../ssid.context";
-import { Mikrotik } from "@/service/parser/Mikrotik";
 import { MikrotikContext } from "../../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
-import { MenuString } from "@/types/genieacs/base";
+import { RadioParser } from "../../radio/Radio.parser";
+import { SSIDParser } from "../ssid.parser";
 
-export function InterfaceInput() {
+export function LowerLayersInput() {
   const { device } = useContext(MikrotikContext);
   const { formData, submitted, setFormData } = useContext(SSIDContext);
 
@@ -20,14 +20,14 @@ export function InterfaceInput() {
   };
 
   const onChange = (e: DropdownChangeEvent) => {
-    const val = (e.target && e.target.value) || "";
+    const val = e.target && e.target.value;
 
     setFormData((data) => {
       return {
         ...data,
         LowerLayers: {
           ...data.LowerLayers,
-          _value: val,
+          _value: val.id,
         },
       };
     });
@@ -37,25 +37,16 @@ export function InterfaceInput() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const nameRadio = (Id: MenuString): string => {
-    const ids = Id._value.split(".");
-    const id = ids[ids.length - 1];
-
-    return `wlan${id}`;
-  };
-
   const findAllRadio = (): {
     id: string;
     name: string;
   }[] => {
-    const mikrotik = new Mikrotik(device);
-
-    const radio = mikrotik
-      .findAllWiFiRadio()
+    const radio = new RadioParser(device)
+      .findAll()
       .map(({ Id }): { id: string; name: string } => {
         return {
           id: Id._value,
-          name: nameRadio(Id),
+          name: new RadioParser(device).getHardwareName(Id) || "",
         };
       });
 
@@ -68,7 +59,7 @@ export function InterfaceInput() {
       <Dropdown
         value={{
           id: formData.LowerLayers._value,
-          name: nameRadio(formData.LowerLayers),
+          name: new SSIDParser(device).getHardwareName(formData.Id) || "",
         }}
         onChange={onChange}
         options={findAllRadio()}

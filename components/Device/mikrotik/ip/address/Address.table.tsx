@@ -16,18 +16,15 @@ import { Skeleton } from "primereact/skeleton";
 import { Tag } from "primereact/tag";
 import React, { useContext, useEffect, useState } from "react";
 import { MikrotikContext } from "../../Mikrotik.context";
-import { IPAddress } from "@/types/mikrotik";
-import { IPAddressService } from "@/service/IPAddressService";
-import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { Address } from "@/service/parser/mikrotik/ip/address";
+import { Table } from "./Address";
+import { AddressParser } from "./Address.parser";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 };
 
 export function AddressTable() {
-  const { toast } = useContext(LayoutContext);
-  const { device, setRefresh } = useContext(MikrotikContext);
+  const { device } = useContext(MikrotikContext);
   const { setFormData, setDialog, setDialogHeader } =
     useContext(AddressContext);
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
@@ -46,32 +43,37 @@ export function AddressTable() {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const edit = (data: IPAddress) => {
-    setFormData(data);
-    setDialog(true);
-    setDialogHeader("IP Address Details");
+  const edit = ({ Id }: Table) => {
+    const address = new AddressParser(device).findById(Id);
+    if (address) {
+      setFormData(address);
+      setDialog(true);
+      setDialogHeader("IP Address Details");
+    }
   };
 
-  const remove = async (data: IPAddress) => {
-    const response = await new IPAddressService().remove(
-      device._id,
-      data.IPInterface,
-      data
-    );
-    if (response.status === 200) {
-      toast.current?.show({
-        severity: "success",
-        summary: "Success",
-        detail: "Success Remove IP Address",
-      });
-
-      setRefresh(true);
-    } else {
-      toast.current?.show({
-        severity: "danger",
-        summary: "Error",
-        detail: `Error ${response.status} Code`,
-      });
+  const remove = async ({ Id }: Table) => {
+    const address = new AddressParser(device).findById(Id);
+    if (address) {
+      // const response = await new AddressService().remove(
+      //   device._id,
+      //   data.IPInterface,
+      //   address
+      // );
+      // if (response.status === 200) {
+      //   toast.current?.show({
+      //     severity: "success",
+      //     summary: "Success",
+      //     detail: "Success Remove IP Address",
+      //   });
+      //   setRefresh(true);
+      // } else {
+      //   toast.current?.show({
+      //     severity: "danger",
+      //     summary: "Error",
+      //     detail: `Error ${response.status} Code`,
+      //   });
+      // }
     }
   };
 
@@ -98,13 +100,13 @@ export function AddressTable() {
     </div>
   );
 
-  const flagBodyTemplate = ({ AddressingType }: IPAddress) => {
-    if (AddressingType._value === "X_MIKROTIK_Dynamic") {
+  const flagBodyTemplate = ({ AddressingType }: Table) => {
+    if (AddressingType._value === "D") {
       return <Tag value="D" severity="warning" />;
     }
   };
 
-  const enableBodyTemplate = ({ Enable }: IPAddress) => {
+  const enableBodyTemplate = ({ Enable }: Table) => {
     if (Enable._value) {
       return <Tag value="Enabled" severity="success" />;
     } else {
@@ -112,8 +114,8 @@ export function AddressTable() {
     }
   };
 
-  const actionBodyTemplate = (data: IPAddress) => {
-    const isDynamic = data.AddressingType._value === "X_MIKROTIK_Dynamic";
+  const actionBodyTemplate = (item: Table) => {
+    const isDynamic = item.AddressingType._value === "X_MIKROTIK_Dynamic";
 
     return (
       <>
@@ -121,14 +123,14 @@ export function AddressTable() {
           icon="pi pi-pencil"
           rounded
           severity="success"
-          onClick={() => edit(data)}
+          onClick={() => edit(item)}
         />
         {!isDynamic && (
           <Button
             icon="pi pi-trash"
             rounded
             severity="danger"
-            onClick={() => remove(data)}
+            onClick={() => remove(item)}
             className="ml-3"
           />
         )}
@@ -138,7 +140,7 @@ export function AddressTable() {
 
   return (
     <DataTable
-      value={new Address(device).findAll()}
+      value={new AddressParser(device).getTables()}
       filters={filters}
       globalFilterFields={["ip", "network", "interface"]}
       header={header}

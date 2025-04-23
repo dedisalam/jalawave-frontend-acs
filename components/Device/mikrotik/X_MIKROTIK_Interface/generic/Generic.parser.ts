@@ -75,4 +75,11 @@ export class GenericParser {
 
     return Enable;
   }
+
+  getHardwareName(Id: MenuString): string | undefined {
+    const generic = this.findById(Id);
+    if (generic) {
+      return generic.Name._value;
+    }
+  }
 }

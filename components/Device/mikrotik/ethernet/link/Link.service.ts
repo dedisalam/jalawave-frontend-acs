@@ -1,8 +1,8 @@
-import { EthernetLink } from "@/types/mikrotik";
-import { GenieService } from "./GenieService";
+import { GenieService } from "@/service/GenieService";
 import { AxiosResponse } from "axios";
+import { Data } from "./Link";
 
-export class EthernetLinkService {
+export class LinkService {
   private genieService: GenieService;
   constructor() {
     this.genieService = new GenieService();
@@ -23,7 +23,7 @@ export class EthernetLinkService {
     return response;
   }
 
-  async update(id: string, data: EthernetLink): Promise<AxiosResponse> {
+  async update(id: string, data: Data): Promise<AxiosResponse> {
     const response = await this.genieService.setParameterValues(id, [
       [`${data.Id._value}.Enable`, data.Enable._value, data.Enable._type],
       [
@@ -38,7 +38,7 @@ export class EthernetLinkService {
     return response;
   }
 
-  async remove(id: string, data: EthernetLink): Promise<AxiosResponse> {
+  async remove(id: string, data: Data): Promise<AxiosResponse> {
     const response = await this.genieService.deleteObject(id, data.Id._value);
 
     await this.refresh(id);

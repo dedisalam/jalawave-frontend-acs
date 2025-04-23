@@ -1,6 +1,4 @@
 "use client";
-import { emptyInterface } from "@/service/data/ip/interface";
-import { IPInterface } from "@/types/mikrotik";
 import {
   useState,
   createContext,
@@ -8,14 +6,16 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { Data } from "./Interface";
+import { emptyData } from "./Interface.data";
 
 interface InterfaceContextProps {
   dialog: boolean;
   setDialog: Dispatch<SetStateAction<boolean>>;
   dialogHeader: string;
   setDialogHeader: Dispatch<SetStateAction<string>>;
-  formData: IPInterface;
-  setFormData: Dispatch<SetStateAction<IPInterface>>;
+  formData: Data;
+  setFormData: Dispatch<SetStateAction<Data>>;
   submitted: boolean;
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
@@ -31,7 +31,7 @@ interface InterfaceProviderProps {
 export const InterfaceProvider = ({ children }: InterfaceProviderProps) => {
   const [dialog, setDialog] = useState(false);
   const [dialogHeader, setDialogHeader] = useState<string>("");
-  const [formData, setFormData] = useState<IPInterface>(emptyInterface);
+  const [formData, setFormData] = useState<Data>(emptyData);
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

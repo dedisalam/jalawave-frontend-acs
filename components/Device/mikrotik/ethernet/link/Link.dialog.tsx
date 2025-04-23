@@ -7,10 +7,10 @@ import { Skeleton } from "primereact/skeleton";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { LinkContext } from "./Link.context";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
-import { emptyLink } from "@/service/data/ethernet/link";
-import { EthernetLinkService } from "@/service/EthernetLinkService";
-import { SSIDEthernetInput } from "./input/ssidEthernet.input";
 import { EnableInput } from "./input/enable.input";
+import { LinkService } from "./Link.service";
+import { emptyData } from "./Link.data";
+import { LowerLayersInput } from "./input/lowerLayers.input";
 
 export function LinkDialog() {
   const { toast } = useContext(LayoutContext);
@@ -40,10 +40,7 @@ export function LinkDialog() {
     setIsLoading(true);
 
     if (formData.LowerLayers._value.trim()) {
-      const response = await new EthernetLinkService().update(
-        device._id,
-        formData
-      );
+      const response = await new LinkService().update(device._id, formData);
       if (response.status === 200) {
         toast.current?.show({
           severity: "success",
@@ -54,7 +51,7 @@ export function LinkDialog() {
         setSubmitted(false);
         setRefresh(true);
         setDialog(false);
-        setFormData(emptyLink);
+        setFormData(emptyData);
       } else {
         toast.current?.show({
           severity: "danger",
@@ -93,7 +90,7 @@ export function LinkDialog() {
       onHide={hide}
     >
       <EnableInput />
-      <SSIDEthernetInput />
+      <LowerLayersInput />
     </Dialog>
   );
 }
