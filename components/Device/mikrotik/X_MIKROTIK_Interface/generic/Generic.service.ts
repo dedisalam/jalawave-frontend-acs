@@ -1,6 +1,6 @@
 import { GenieService } from "@/service/GenieService";
-import { InterfaceGeneric } from "@/types/mikrotik";
 import { AxiosResponse } from "axios";
+import { Data } from "./Generic";
 
 export class GenericService {
   private genieService: GenieService;
@@ -15,7 +15,7 @@ export class GenericService {
     );
   }
 
-  async update(id: string, data: InterfaceGeneric): Promise<AxiosResponse> {
+  async update(id: string, data: Data): Promise<AxiosResponse> {
     const response = await this.genieService.setParameterValues(id, [
       [`${data.Id._value}.Enable`, data.Enable._value, data.Enable._type],
     ]);
