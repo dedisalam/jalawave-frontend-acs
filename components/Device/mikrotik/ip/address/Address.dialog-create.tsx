@@ -38,10 +38,10 @@ export function AddressDialogCreate() {
     setSubmitted(true);
     setIsLoading(true);
 
-    if (formData.IPInterface._value.trim()) {
+    if (formData.Id._value.trim()) {
       const response = await new AddressService().create(
         device._id,
-        formData.IPInterface
+        formData.Id
       );
       if (response.status === 200) {
         toast.current?.show({

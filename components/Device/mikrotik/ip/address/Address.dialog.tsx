@@ -7,11 +7,12 @@ import { Button } from "primereact/button";
 import { IPInput } from "./input/ip.input";
 import { MikrotikContext } from "../../Mikrotik.context";
 import { Skeleton } from "primereact/skeleton";
-import * as ipaddr from "ipaddr.js";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
 import { EnableInput } from "./input/enable.input";
 import { AddressService } from "./Address.service";
 import { emptyData } from "./Address.data";
+import { MenuString } from "@/types/genieacs/base";
+import { IPv4 } from "ipaddr.js";
 
 export function AddressDialog() {
   const { toast } = useContext(LayoutContext);
@@ -40,11 +41,23 @@ export function AddressDialog() {
     setSubmitted(true);
     setIsLoading(true);
 
-    if (formData.CIDR._value.trim()) {
-      if (ipaddr.IPv4.isValidCIDR(formData.CIDR._value)) {
+    if (formData.IPAddress._value.trim() && formData.SubnetMask._value.trim()) {
+      const prefix = IPv4.parse(
+        formData.SubnetMask._value
+      ).prefixLengthFromSubnetMask();
+      if (prefix !== 0) {
+        const [d, ip, i, id] = formData.Id._value.split(".");
+        const Interface: MenuString = {
+          _object: false,
+          _type: "xsd:string",
+          _value: `${d}.${ip}.${i}.${id}`,
+          _timestamp: Date.now().toString(),
+          _writable: false,
+        };
+
         const response = await new AddressService().update(
           device._id,
-          formData.IPInterface,
+          Interface,
           formData
         );
         if (response.status === 200) {

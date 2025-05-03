@@ -67,8 +67,8 @@ export class InterfaceParser {
     });
 
     return tables.sort((a, b) => {
-      const aName = a.Id._value.toLowerCase();
-      const bName = b.Id._value.toLowerCase();
+      const aName = a.Hardware._value.toLowerCase();
+      const bName = b.Hardware._value.toLowerCase();
       if (aName < bName) {
         return -1;
       }

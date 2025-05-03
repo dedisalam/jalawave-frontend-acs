@@ -74,7 +74,7 @@ export function LowerLayersInput() {
         return false;
       })
       .filter(({ id }) => {
-        const ethernetLink = new LinkParser(device).findById({
+        const ethernetLink = new LinkParser(device).findByLowerLayers({
           _object: false,
           _type: "xsd:string",
           _value: id,

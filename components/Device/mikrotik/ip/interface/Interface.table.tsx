@@ -20,6 +20,8 @@ import { LayoutContext } from "@/components/layout/context/layoutcontext";
 import { InterfaceService } from "./Interface.service";
 import { Table } from "./Interface";
 import { InterfaceParser } from "./Interface.parser";
+import { RemoveButton } from "./Interface.remove-button";
+import { LinkParser } from "../../ethernet/link/Link.parser";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -32,6 +34,7 @@ export function InterfaceTable() {
     useContext(InterfaceContext);
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
+  const [removeLoading, setRemoveLoading] = useState(false);
 
   const initFilters = () => {
     setFilters(defaultFilters);
@@ -65,10 +68,15 @@ export function InterfaceTable() {
     }
   };
 
-  const removeInterface = ({ Id }: Table) => {
+  const removeInterface = async ({ Id }: Table) => {
+    setRemoveLoading(true);
     const Interface = new InterfaceParser(device).findById(Id);
     if (Interface) {
-      new InterfaceService().remove(device._id, Interface).then(() => {
+      const response = await new InterfaceService().remove(
+        device._id,
+        Interface
+      );
+      if (response.status === 200) {
         toast.current?.show({
           severity: "success",
           summary: "Success",
@@ -76,8 +84,15 @@ export function InterfaceTable() {
         });
 
         setRefresh(true);
-      });
+      } else {
+        toast.current?.show({
+          severity: "danger",
+          summary: "Error",
+          detail: `Error ${response.status} Code`,
+        });
+      }
     }
+    setRemoveLoading(false);
   };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,7 +139,10 @@ export function InterfaceTable() {
   };
 
   const actionBodyTemplate = (rowData: Table) => {
+    console.log("Row Data Called");
+    const isEmptyLowerLayers = rowData.LowerLayers._value === "";
     const isEmpty = rowData.IPv4AddressNumberOfEntries._value === 0;
+    const IPInterface = new LinkParser(device).findByLowerLayers(rowData.Id);
 
     return (
       <>
@@ -134,13 +152,10 @@ export function InterfaceTable() {
           severity="success"
           onClick={() => editInterface(rowData)}
         />
-        {isEmpty && (
-          <Button
-            icon="pi pi-trash"
-            rounded
-            severity="danger"
-            onClick={() => removeInterface(rowData)}
-            className="ml-4"
+        {(isEmptyLowerLayers || !IPInterface) && (
+          <RemoveButton
+            accept={() => removeInterface(rowData)}
+            loading={removeLoading}
           />
         )}
       </>

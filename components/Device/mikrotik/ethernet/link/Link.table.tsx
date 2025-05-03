@@ -21,6 +21,7 @@ import { LinkParser } from "./Link.parser";
 import { LinkService } from "./Link.service";
 import { InterfaceParser as IPInterfaceParser } from "../../ip/interface/Interface.parser";
 import { Tag } from "primereact/tag";
+import { RemoveButton } from "./Link.remove-button";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -32,6 +33,7 @@ export function LinkTable() {
   const { setFormData, setDialog, setDialogHeader } = useContext(LinkContext);
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
+  const [removeLoading, setRemoveLoading] = useState(false);
 
   const initFilters = () => {
     setFilters(defaultFilters);
@@ -56,6 +58,7 @@ export function LinkTable() {
   };
 
   const remove = async ({ Id }: Table) => {
+    setRemoveLoading(true);
     const link = new LinkParser(device).findById(Id);
     if (link) {
       const response = await new LinkService().remove(device._id, link);
@@ -75,6 +78,7 @@ export function LinkTable() {
         });
       }
     }
+    setRemoveLoading(false);
   };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,13 +150,9 @@ export function LinkTable() {
           onClick={() => edit(data)}
         />
         {(isEmptyLowerLayers || !IPInterface) && (
-          <Button
-            icon="pi pi-trash"
-            rounded
-            severity="danger"
-            onClick={() => remove(data)}
-            className="ml-3"
-          />
+          <>
+            <RemoveButton accept={() => remove(data)} loading={removeLoading} />
+          </>
         )}
       </>
     );

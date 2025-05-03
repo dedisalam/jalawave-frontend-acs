@@ -7,4 +7,6 @@ export interface Data extends IPv4AddressMenuMikrotik {
 export interface Table extends Data {
   Enable: MenuString;
   CIDR: MenuString;
+  Network: MenuString;
+  Hardware: MenuString;
 }

@@ -2,6 +2,7 @@ import { DeviceObjectMikrotik } from "@/types/genieacs";
 import { MenuString } from "@/types/genieacs/base";
 import { Data, Table } from "./Address";
 import * as ipaddr from "ipaddr.js";
+import { InterfaceParser } from "../interface/Interface.parser";
 
 export class AddressParser {
   private device: DeviceObjectMikrotik;
@@ -64,6 +65,8 @@ export class AddressParser {
         Enable: this.parseEnable(item),
         AddressingType: this.parseAddressingType(item),
         CIDR: this.parseCIDR(item),
+        Network: this.parseNetwork(item),
+        Hardware: this.parseHardware(item),
       };
     });
 
@@ -114,16 +117,67 @@ export class AddressParser {
   }
 
   private parseCIDR(address: Data): MenuString {
-    const ip = ipaddr.IPv4.parse(address.SubnetMask._value);
+    const prefix = ipaddr.IPv4.parse(
+      address.SubnetMask._value
+    ).prefixLengthFromSubnetMask();
 
     const CIDR: MenuString = {
       _object: false,
       _type: "xsd:string",
-      _value: ip.toNormalizedString(),
+      _value: `${address.IPAddress._value}/${prefix}`,
       _timestamp: Date.now().toString(),
       _writable: false,
     };
 
     return CIDR;
+  }
+
+  private parseNetwork(address: Data): MenuString {
+    const prefix = ipaddr.IPv4.parse(
+      address.SubnetMask._value
+    ).prefixLengthFromSubnetMask();
+    const network = ipaddr.IPv4.networkAddressFromCIDR(
+      `${address.IPAddress._value}/${prefix}`
+    );
+
+    const Network: MenuString = {
+      _object: false,
+      _type: "xsd:string",
+      _value: network.toNormalizedString(),
+      _timestamp: Date.now().toString(),
+      _writable: false,
+    };
+
+    return Network;
+  }
+
+  private parseHardware(Interface: Data): MenuString {
+    const Hardware: MenuString = {
+      _object: false,
+      _type: "xsd:string",
+      _value: this.getHardwareName(Interface.Id) || "",
+      _timestamp: Date.now().toString(),
+      _writable: false,
+    };
+
+    return Hardware;
+  }
+
+  getHardwareName(Id: MenuString): string | undefined {
+    const address = this.findById(Id);
+    if (address) {
+      const [device, ip, i, id] = address.Id._value.split(".");
+      const LowerLayers = `${device}.${ip}.${i}.${id}`;
+      const Interface = new InterfaceParser(this.device).getHardwareName({
+        _object: false,
+        _type: "xsd:string",
+        _value: LowerLayers,
+        _timestamp: Date.now().toString(),
+        _writable: false,
+      });
+      if (Interface) {
+        return Interface;
+      }
+    }
   }
 }
