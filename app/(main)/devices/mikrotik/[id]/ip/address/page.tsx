@@ -1,13 +1,9 @@
 import { AddressProvider } from "@/components/Device/mikrotik/ip/address/Address.context";
 import { AddressPage } from "@/components/Device/mikrotik/ip/address/Address.page";
 
-interface PageProps {
-  params: Promise<{ id: string }>;
-}
-
-export default function Page({ params }: PageProps) {
+export default function Page() {
   return (
-    <AddressProvider params={params}>
+    <AddressProvider>
       <AddressPage />
     </AddressProvider>
   );

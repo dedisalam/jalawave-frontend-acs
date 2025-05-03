@@ -44,7 +44,7 @@ export const MikrotikProvider = ({
       try {
         const param = await params;
         setId(param.id);
-        if (id) {
+        if (id !== undefined) {
           const response = await DeviceService.findById(id);
           if (response.status === 200) {
             setDevice(response.data[0] as DeviceObjectMikrotik);
@@ -60,7 +60,7 @@ export const MikrotikProvider = ({
   }, [id, params, refresh]);
 
   useEffect(() => {
-    if (device) {
+    if (device !== undefined) {
       const identity =
         device.Device.DeviceInfo.X_MIKROTIK_SystemIdentity._value;
       const menu = activeListMenu.find((item) => item.label === identity);

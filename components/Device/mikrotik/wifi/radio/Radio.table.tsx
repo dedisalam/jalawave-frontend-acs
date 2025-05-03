@@ -43,9 +43,9 @@ export function RadioTable() {
   }
 
   const edit = (item: Table) => {
-    const data = new RadioParser(device).findById(item.Id);
-    if (data) {
-      setFormData(data);
+    const Radio = new RadioParser(device).findById(item.Id);
+    if (Radio) {
+      setFormData(Radio);
       setDialog(true);
       setDialogHeader("WiFi Radio Details");
     }

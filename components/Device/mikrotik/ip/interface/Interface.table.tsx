@@ -20,8 +20,7 @@ import { LayoutContext } from "@/components/layout/context/layoutcontext";
 import { InterfaceService } from "./Interface.service";
 import { Table } from "./Interface";
 import { InterfaceParser } from "./Interface.parser";
-import { RemoveButton } from "./Interface.remove-button";
-import { LinkParser } from "../../ethernet/link/Link.parser";
+import { RemoveButton } from "../../Remove.button";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -45,21 +44,11 @@ export function InterfaceTable() {
     initFilters();
   }, []);
 
-  if (!device) {
+  if (device === undefined) {
     return <Skeleton height="8rem"></Skeleton>;
   }
 
-  const getSeverity = (status: string) => {
-    switch (status) {
-      case "Up":
-        return "success";
-
-      case "Down":
-        return "danger";
-    }
-  };
-
-  const editInterface = ({ Id }: Table) => {
+  const edit = ({ Id }: Table) => {
     const Interface = new InterfaceParser(device).findById(Id);
     if (Interface) {
       setFormData(Interface);
@@ -68,7 +57,7 @@ export function InterfaceTable() {
     }
   };
 
-  const removeInterface = async ({ Id }: Table) => {
+  const remove = async ({ Id }: Table) => {
     setRemoveLoading(true);
     const Interface = new InterfaceParser(device).findById(Id);
     if (Interface) {
@@ -135,14 +124,23 @@ export function InterfaceTable() {
   };
 
   const statusBodyTemplate = ({ Status }: Table) => {
-    return <Tag value={Status._value} severity={getSeverity(Status._value)} />;
+    switch (Status._value) {
+      case "Up":
+        return <Tag value={Status._value} severity="success" />;
+        break;
+
+      case "Down":
+        return <Tag value={Status._value} severity="danger" />;
+        break;
+
+      default:
+        return <Tag value={Status._value} severity="info" />;
+        break;
+    }
   };
 
-  const actionBodyTemplate = (rowData: Table) => {
-    console.log("Row Data Called");
-    const isEmptyLowerLayers = rowData.LowerLayers._value === "";
-    const isEmpty = rowData.IPv4AddressNumberOfEntries._value === 0;
-    const IPInterface = new LinkParser(device).findByLowerLayers(rowData.Id);
+  const actionBodyTemplate = (item: Table) => {
+    const isEmpty = item.IPv4AddressNumberOfEntries._value === 0;
 
     return (
       <>
@@ -150,13 +148,16 @@ export function InterfaceTable() {
           icon="pi pi-pencil"
           rounded
           severity="success"
-          onClick={() => editInterface(rowData)}
+          onClick={() => edit(item)}
         />
-        {(isEmptyLowerLayers || !IPInterface) && (
-          <RemoveButton
-            accept={() => removeInterface(rowData)}
-            loading={removeLoading}
-          />
+        {isEmpty && (
+          <>
+            <RemoveButton
+              accept={() => remove(item)}
+              loading={removeLoading}
+              group={item.Id._value}
+            />
+          </>
         )}
       </>
     );

@@ -21,6 +21,7 @@ import { AddressParser } from "./Address.parser";
 import { MenuString } from "@/types/genieacs/base";
 import { AddressService } from "./Address.service";
 import { LayoutContext } from "@/components/layout/context/layoutcontext";
+import { RemoveButton } from "../../Remove.button";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -33,6 +34,7 @@ export function AddressTable() {
     useContext(AddressContext);
   const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
+  const [removeLoading, setRemoveLoading] = useState(false);
 
   const initFilters = () => {
     setFilters(defaultFilters);
@@ -57,6 +59,7 @@ export function AddressTable() {
   };
 
   const remove = async ({ Id }: Table) => {
+    setRemoveLoading(true);
     const address = new AddressParser(device).findById(Id);
     if (address) {
       const [d, ip, i, id] = address.Id._value.split(".");
@@ -87,6 +90,7 @@ export function AddressTable() {
         });
       }
     }
+    setRemoveLoading(false);
   };
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,12 +150,10 @@ export function AddressTable() {
           onClick={() => edit(item)}
         />
         {!isDynamic && (
-          <Button
-            icon="pi pi-trash"
-            rounded
-            severity="danger"
-            onClick={() => remove(item)}
-            className="ml-3"
+          <RemoveButton
+            accept={() => remove(item)}
+            group={item.Id._value}
+            loading={removeLoading}
           />
         )}
       </>

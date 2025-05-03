@@ -21,7 +21,7 @@ import { LinkParser } from "./Link.parser";
 import { LinkService } from "./Link.service";
 import { InterfaceParser as IPInterfaceParser } from "../../ip/interface/Interface.parser";
 import { Tag } from "primereact/tag";
-import { RemoveButton } from "./Link.remove-button";
+import { RemoveButton } from "../../Remove.button";
 
 const defaultFilters: DataTableFilterMeta = {
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -53,7 +53,7 @@ export function LinkTable() {
     if (link) {
       setFormData(link);
       setDialog(true);
-      setDialogHeader(`Link Details`);
+      setDialogHeader("Link Details");
     }
   };
 
@@ -136,10 +136,10 @@ export function LinkTable() {
     }
   };
 
-  const actionBodyTemplate = (data: Table) => {
-    const isEmptyLowerLayers = data.LowerLayers._value === "";
+  const actionBodyTemplate = (item: Table) => {
+    const isEmptyLowerLayers = item.LowerLayers._value === "";
     const IPInterface = new IPInterfaceParser(device).findByLowerLayers(
-      data.Id
+      item.Id
     );
     return (
       <>
@@ -147,11 +147,15 @@ export function LinkTable() {
           icon="pi pi-pencil"
           rounded
           severity="success"
-          onClick={() => edit(data)}
+          onClick={() => edit(item)}
         />
         {(isEmptyLowerLayers || !IPInterface) && (
           <>
-            <RemoveButton accept={() => remove(data)} loading={removeLoading} />
+            <RemoveButton
+              accept={() => remove(item)}
+              loading={removeLoading}
+              group={item.Id._value}
+            />
           </>
         )}
       </>

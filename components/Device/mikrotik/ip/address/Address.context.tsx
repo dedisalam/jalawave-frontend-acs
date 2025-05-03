@@ -30,7 +30,6 @@ export const AddressContext = createContext({} as AddressContextProps);
 
 interface AddressProviderProps {
   children: ReactNode;
-  params: Promise<{ id: string }>;
 }
 
 export const AddressProvider = ({ children }: AddressProviderProps) => {
