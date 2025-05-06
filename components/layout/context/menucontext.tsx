@@ -11,6 +11,10 @@ export const MenuProvider = ({ children }: ChildContainerProps) => {
       label: "Home",
       items: [{ label: "Devices", icon: "pi pi-fw pi-home", to: "/devices" }],
     },
+    {
+      label: "System",
+      items: [{ label: "Users", icon: "pi pi-fw pi-user", to: "/users" }],
+    },
   ]);
 
   const value = {

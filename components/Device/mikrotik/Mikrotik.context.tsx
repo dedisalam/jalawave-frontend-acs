@@ -67,8 +67,9 @@ export const MikrotikProvider = ({
 
       if (menu === undefined) {
         setActiveListMenu([
-          ...activeListMenu,
+          activeListMenu[0],
           new Mikrotik(device).getMenuItem(),
+          activeListMenu[1],
         ]);
       }
     }

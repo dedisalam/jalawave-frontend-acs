@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/layout";
 import { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import { Suspense } from "react";
 
 interface AppLayoutProps {
@@ -24,7 +25,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AppLayout({ children }: AppLayoutProps) {
+export default async function AppLayout({ children }: AppLayoutProps) {
+  const cookieStorage = await cookies();
+  const cookie = cookieStorage.get("AUTH");
+  if (!cookie) {
+    return <meta httpEquiv="refresh" content="0; url=/auth/login" />;
+  }
+
   return (
     <Suspense>
       <Layout>{children}</Layout>
