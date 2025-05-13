@@ -4,7 +4,7 @@ import { User } from "@/types/users";
 export class InterfaceService {
   private host: string;
   constructor() {
-    this.host = "http://60.253.103.102:7557";
+    this.host = process.env.NEXT_PUBLIC_GENIEACS_URL || "";
   }
 
   async findAll(): Promise<AxiosResponse<User[]>> {

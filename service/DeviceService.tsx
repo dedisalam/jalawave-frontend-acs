@@ -24,7 +24,7 @@ import axios, { AxiosResponse } from "axios";
 
 export const DeviceService = {
   async findAll(): Promise<AxiosResponse<DeviceObject[]>> {
-    const url = "http://60.253.103.102:7557/devices";
+    const url = `${process.env.NEXT_PUBLIC_GENIEACS_URL}/devices`;
 
     const response = await axios.get<DeviceObject[]>(url);
 
@@ -32,7 +32,7 @@ export const DeviceService = {
   },
 
   async findById(id: string): Promise<AxiosResponse<DeviceObject[]>> {
-    const url = `http://60.253.103.102:7557/devices/?query=%7B%22_id%22%3A%22${id}%22%7D`;
+    const url = `${process.env.NEXT_PUBLIC_GENIEACS_URL}/devices/?query=%7B%22_id%22%3A%22${id}%22%7D`;
 
     const response = await axios.get<DeviceObject[]>(url);
 
@@ -41,7 +41,7 @@ export const DeviceService = {
 
   async reboot(id: string) {
     await axios.post(
-      `http://60.253.103.102:7557/devices/${id}/tasks?timeout=3000&connection_request=true`,
+      `${process.env.NEXT_PUBLIC_GENIEACS_URL}/devices/${id}/tasks?timeout=3000&connection_request=true`,
       {
         name: "reboot",
       }
@@ -54,7 +54,7 @@ export const DeviceService = {
   // ): Promise<AxiosResponse> {
   //   const Id = encodeURIComponent(id);
   //   return await axios.post(
-  //     `http://60.253.103.102:7557/devices/${Id}/tasks?timeout=3000&connection_request=true`,
+  //     `${process.env.NEXT_PUBLIC_GENIEACS_URL}/devices/${Id}/tasks?timeout=3000&connection_request=true`,
   //     {
   //       name: "setParameterValues",
   //       parameterValues,
@@ -91,7 +91,7 @@ export const DeviceService = {
   // async addObject(id: string, objectName: string): Promise<AxiosResponse> {
   //   const Id = encodeURIComponent(id);
   //   const response = await axios.post(
-  //     `http://60.253.103.102:7557/devices/${Id}/tasks?timeout=3000&connection_request=true`,
+  //     `${process.env.NEXT_PUBLIC_GENIEACS_URL}/devices/${Id}/tasks?timeout=3000&connection_request=true`,
   //     {
   //       name: "addObject",
   //       objectName,
@@ -104,7 +104,7 @@ export const DeviceService = {
   // async deleteObject(id: string, objectName: string): Promise<AxiosResponse> {
   //   const Id = encodeURIComponent(id);
   //   const response = await axios.post(
-  //     `http://60.253.103.102:7557/devices/${Id}/tasks?timeout=3000&connection_request=true`,
+  //     `${process.env.NEXT_PUBLIC_GENIEACS_URL}/devices/${Id}/tasks?timeout=3000&connection_request=true`,
   //     {
   //       name: "deleteObject",
   //       objectName,
@@ -116,7 +116,7 @@ export const DeviceService = {
 
   // async getParamaterValues(id: string, parameterNames: string[]) {
   //   return await axios.post(
-  //     `http://60.253.103.102:7557/devices/${id}/tasks?timeout=3000&connection_request=true`,
+  //     `${process.env.NEXT_PUBLIC_GENIEACS_URL}/devices/${id}/tasks?timeout=3000&connection_request=true`,
   //     {
   //       name: "getParameterValues",
   //       parameterNames,
@@ -127,7 +127,7 @@ export const DeviceService = {
   // async refreshObject(id: string, objectName: string) {
   //   const Id = encodeURIComponent(id);
   //   const response = await axios.post(
-  //     `http://60.253.103.102:7557/devices/${Id}/tasks?timeout=3000&connection_request=true`,
+  //     `${process.env.NEXT_PUBLIC_GENIEACS_URL}/devices/${Id}/tasks?timeout=3000&connection_request=true`,
   //     {
   //       name: "refreshObject",
   //       objectName,

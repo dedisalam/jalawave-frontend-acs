@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
   const body: { username: string; password: string } = await request.json();
 
   const findAll = async (): Promise<AxiosResponse<User[]>> => {
-    const url = "http://60.253.103.102:7557/users";
+    const url = `${process.env.NEXT_PUBLIC_GENIEACS_URL}/users`;
 
     const response = await axios.get<User[]>(url);
 
